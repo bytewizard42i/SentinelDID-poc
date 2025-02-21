@@ -4,7 +4,7 @@
     "description": "SentinelDID PoC for Johnny5i",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js" // Tells Node: “Run this file with npm start!”
+        "start": "node server.js" 
     },
     "dependencies": {
         "express": "^5.0.1", 
