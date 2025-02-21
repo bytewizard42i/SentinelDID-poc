@@ -1,0 +1,4 @@
+# .gitignore
+node_modules/          # Ignore installed tools
+*.log                  # Skip log files
+YOUR_TESTNET_PRIVATE_KEY  # Don’t commit your key!
