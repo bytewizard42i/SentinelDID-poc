@@ -23,6 +23,7 @@ import CompactStandardLibrary;
 //         assert(verifyZkProof(proof, kycHash)); // Fake for PoC
 //     }
 // }
+// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 // New code after OG learning more about midnight
 
