@@ -1,0 +1,63 @@
+/* styles.css */
+
+/* This is CSS - it’s like paint for your HTML. It makes stuff look pretty! */
+
+/* TAG STYLING - Targets HTML tags directly, like <p> or <h1> */
+/* <p> is a paragraph tag - regular text blocks */
+p {
+    font-size: 12px; /* Sets text size to 12 pixels - what you wanted! */
+    font-family: Arial, sans-serif; /* Picks a clean font - Arial’s common */
+}
+
+/* <h1> is a heading tag - big titles */
+h1 {
+    font-size: 24px; /* Big size - twice your paragraph size */
+    font-weight: bold; /* Makes it bold - stands out */
+}
+
+/* CLASS STYLING - Targets stuff with a 'class' label in HTML */
+/* Classes are like nicknames - you slap 'em on with class="name" */
+/* We’ll use this for the form later */
+.form-container {
+    margin: 20px; /* Space around the form - like a buffer zone */
+    padding: 10px; /* Space inside - keeps it comfy */
+}
+
+/* ID STYLING - Targets one specific thing with an 'id' label */
+/* IDs are unique - only one thing gets id="name" in HTML */
+/* Styling the form itself */
+#kycForm {
+    display: flex; /* Lines up form stuff in a column - neat! */
+    flex-direction: column; /* Stacks items top to bottom */
+    width: 300px; /* Sets form width - not too wide */
+}
+
+/* Styling inputs (like <input> tags) inside the form */
+#kycForm input {
+    margin-bottom: 10px; /* Space below each input - breathing room */
+    padding: 8px; /* Padding inside inputs - makes ‘em comfy to type in */
+    font-size: 12px; /* Matches your paragraph size */
+}
+
+/* Styling the button - big buttons, your fave! */
+#kycForm button {
+    font-size: 16px; /* Bigger text than paragraphs - readable */
+    padding: 12px; /* Fat padding - makes button chunky */
+    width: 100%; /* Full width of form - BIG button! */
+    background-color: #4CAF50; /* Green color - looks clickable */
+    color: white; /* White text - pops on green */
+    border: none; /* No ugly border - clean */
+    cursor: pointer; /* Hand icon when hovering - says “click me!” */
+}
+
+/* Hover effect - changes when you mouse over */
+#kycForm button:hover {
+    background-color: #45a049; /* Darker green - feedback for hover */
+}
+
+/* Styling the QR code image */
+#qrCode {
+    margin-top: 20px; /* Space above QR - separates from form */
+    width: 200px; /* Sets QR size - big but not crazy */
+    height: 200px; /* Square shape - matches width */
+}
