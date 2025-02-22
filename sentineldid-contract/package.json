@@ -1,0 +1,5 @@
+{
+    "name": "sentineldid-contract",
+    "version": "1.0.0",
+    "scripts": { "deploy": "midnight-cli deploy SentinelDID.compact --network testnet" } // Deploys contract
+}

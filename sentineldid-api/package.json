@@ -1,0 +1,11 @@
+{
+    "name": "sentineldid-api",
+    "version": "1.0.0",
+    "main": "server.js",
+    "scripts": { "start": "node server.js" }, // Runs API
+    "dependencies": {
+        "express": "^5.0.1",
+        "ethers": "^6.13.5",
+        "qrcode": "^1.5.1"
+    }
+}
