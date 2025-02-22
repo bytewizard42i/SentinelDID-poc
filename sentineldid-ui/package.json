@@ -1,0 +1,6 @@
+{
+    "name": "sentineldid-ui",
+    "version": "1.0.0",
+    "scripts": { "start": "live-server --port=5500" }, 
+    "devDependencies": { "live-server": "^1.2.2" } 
+}
