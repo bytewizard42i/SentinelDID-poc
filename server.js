@@ -1,96 +1,77 @@
-// // server.js
-// // Load tools we need - think of these as your plumber’s toolkit
-// const express = require('express'); // Makes a server
-// const { keccak256 } = require('ethers'); // Hashes KYC
-// const QRCode = require('qrcode'); // Makes QR codes
-// const { MidnightClient } = require('midnight-sdk'); // Talks to Midnight (fake for now)
-
-// // Set up the server
-// const app = express();
-// app.use(express.json()); // Lets server read JSON from the form
-
-// // Temp storage for KYC - like a notepad for PoC
-// let kycStore = [];
-
-// // Connect to Midnight Testnet - your blockchain hookup
-// const client = new MidnightClient({
-//     rpcUrl: 'https://testnet2.midnight.network',
-//     privateKey: 'YOUR_TESTNET_PRIVATE_KEY' // Get this from midnight-cli keygen
-// });
-// const contractAddress = '0xYourDeployedAddress'; // After deploying SentinelDID.compact
-// const contract = client.contract(/* ABI - fill this after deploy */, contractAddress);
-
-// // When form sends KYC - this catches it
-// app.post('/mint-nft', async (req, res) => {
-//     // Grab KYC from the form
-//     const kyc = req.body; // { name, idNumber }
-//     kycStore.push(kyc); // Save it for PoC
-//     // Hash KYC - turns it into a secret code
-//     const kycHash = keccak256(JSON.stringify(kyc));
-//     // Mint NFT on Midnight - like stamping a digital ID
-//     const tx = await contract.issueDid(kycHash);
-//     const receipt = await tx.wait(); // Wait for Midnight to say “done”
-//     const didId = receipt.events[0].args.didId; // Unique ID for the NFT
-//     // Make a QR code linking to the NFT
-//     const qrUrl = await QRCode.toDataURL(`http://localhost:3000/did/${didId}`);
-//     // Send QR back to website
-//     res.json({ qrUrl });
-// });
-
-// // When QR is scanned - this shows NFT info
-// app.get('/did/:didId', async (req, res) => {
-//     const didId = req.params.didId; // Grab ID from URL
-//     const kycHash = await contract.didNFTs(didId); // Get hash from Midnight
-//     res.json({ didId, kycHash }); // Send back - PoC keeps it simple
-// });
-
-// // Start server on port 3000 - like turning on a light
-// app.listen(3000, () => console.log('Server running on http://localhost:3000'));
-// // ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-// new code:
-
-// server.js
-const express = require('express');
-const { keccak256 } = require('ethers');
-const QRCode = require('qrcode');
-const { exec } = require('child_process'); // Runs CLI commands
+ // server.js
+const express = require('express'); // Web server tool
+const { keccak256 } = require('ethers'); // Hashing tool
+const QRCode = require('qrcode'); // QR code tool
+const { exec } = require('child_process'); // Runs Midnight CLI
 
 const app = express();
-app.use(express.json());
-let kycStore = []; // Temp KYC notepad
+app.use(express.json()); // Reads JSON from form
+let kycStore = []; // Temp KYC storage
 
 const contractAddress = '0xYourDeployedAddress'; // From midnight-cli deploy
 
-// Mint DID - form sends KYC here
+// Mint DID - processes KYC
 app.post('/mint-nft', (req, res) => {
-    const kyc = req.body; // { name, idNumber }
-    kycStore.push(kyc); // Save for PoC
-    const kycHash = keccak256(JSON.stringify(kyc)); // Hash it - secret code
-    // Call Midnight CLI - mints NFT, args explicit per docs
+    const kyc = req.body; // Gets KYC from form
+    kycStore.push(kyc); // Stores temporarily
+    const kycHash = keccak256(JSON.stringify(kyc)); // Hashes KYC
     exec(`midnight-cli call ${contractAddress} issueDid ${kycHash} --network testnet`, (err, stdout) => {
-        if (err) return res.status(500).json({ error: 'Mint failed' });
-        const didId = stdout.match(/didId: (\w+)/)?.[1]; // Grab ID from output
+        if (err) return res.status(500).json({ error: 'Minting failed' });
+        const didId = stdout.match(/didId: (\w+)/)?.[1]; // Extracts DID
         QRCode.toDataURL(`http://localhost:3000/did/${didId}`, (err, qrUrl) => {
-            res.json({ qrUrl }); // Send QR to webpage
+            res.json({ qrUrl }); // Sends QR back
         });
     });
 });
 
-// Show DID info - QR scan hits this
+// Show DID info - for QR scans
 app.get('/did/:didId', (req, res) => {
-    const didId = req.params.didId; // ID from URL
-    res.json({ didId, kycHash: 'stored-on-chain' }); // Fake for PoC - real fetch later
+    const didId = req.params.didId; // Gets DID from URL
+    res.json({ didId, kycHash: 'stored-on-chain' }); // Placeholder
 });
 
-// Check if DID exists - new feature!
+// Check DID - verifies existence
 app.get('/has-did/:didId', (req, res) => {
-    const didId = req.params.didId; // ID from URL
+    const didId = req.params.didId;
     exec(`midnight-cli call ${contractAddress} hasDid ${didId} --network testnet`, (err, stdout) => {
         if (err) return res.status(500).json({ error: 'Check failed' });
-        const exists = stdout.includes('true'); // Parse CLI output - rough but works
-        res.json({ didId, exists }); // Send back { didId, exists: true/false }
+        const exists = stdout.includes('true'); // Checks output
+        res.json({ didId, exists }); // Returns result
     });
 });
 
-app.listen(3000, () => console.log('Server on http://localhost:3000'));
+// Verify Age - ZKP proof
+app.post('/verify-age/:didId', (req, res) => {
+    const didId = req.params.didId; // Gets DID
+    const proof = '0x1234'; // Dummy proof for PoC
+    exec(`midnight-cli call ${contractAddress} verifyAge ${didId} ${proof} --network testnet`, (err, stdout) => {
+        if (err) return res.status(500).json({ error: 'Verification failed' });
+        const isOver18 = stdout.includes('true'); // Parses result
+        res.json({ didId, isOver18 }); // Sends proof outcome
+    });
+});
+
+// Total DIDs - stat
+app.get('/did-count', (req, res) => {
+    exec(`midnight-cli call ${contractAddress} getDidCount --network testnet`, (err, stdout) => {
+        if (err) return res.status(500).json({ error: 'Count failed' });
+        const count = parseInt(stdout.match(/(\d+)/)?.[0] || '0'); // Extracts number
+        res.json({ totalDids: count }); // Returns total
+    });
+});
+
+// Last DID - stat
+app.get('/last-did', (req, res) => {
+    exec(`midnight-cli call ${contractAddress} getLastDid --network testnet`, (err, stdout) => {
+        if (err) return res.status(500).json({ error: 'Last DID failed' });
+        const lastDid = stdout.match(/didId: (\w+)/)?.[1] || 'None yet'; // Extracts DID
+        res.json({ lastDid }); // Returns last DID
+    });
+});
+
+// Connect Lace Wallet - placeholder for client-side
+app.get('/connect-wallet', (req, res) => {
+    res.send(`<script>connectLace();</script>`); // Triggers wallet connect
+});
+
+app.listen(3000, () => console.log('Server running on http://localhost:3000')); // Starts server

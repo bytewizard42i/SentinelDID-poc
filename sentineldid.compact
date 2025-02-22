@@ -1,51 +1,47 @@
 import CompactStandardLibrary;
 
-// contract SentinelDID {
-//     // Storage for NFTs - like a filing cabinet
-//     mapping(bytes32 => bytes32) public didNFTs; // didId => kycHash
-    
-//     // Event to say “NFT made!”
-//     event DidIssued(bytes32 didId);
-    
-//     // Mint a DID NFT - takes a hash, makes an ID
-//     public function issueDid(bytes32 kycHash) returns (bytes32) {
-//         // Make a unique ID from hash + time
-//         bytes32 didId = keccak256(kycHash, now());
-//         // Store the hash under that ID
-//         didNFTs[didId] = kycHash;
-//         // Shout “done” to the world
-//         emit DidIssued(didId);
-//         return didId; // Give ID back
-//     }
-    
-//     // Placeholder ZKProof - proves stuff later
-//     predicate isValid(bytes32 kycHash, bytes proof) {
-//         assert(verifyZkProof(proof, kycHash)); // Fake for PoC
-//     }
-// }
-// ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-// New code after OG learning more about midnight
-
 // SentinelDID.compact
 contract SentinelDID {
-    // Map ADT - like a filing cabinet with slots for each DID
-    // Key is didId (unique ID), value is kycHash (secret code)
-    Map<bytes32, bytes32> public didNFTs;
+    // Internal Map - private storage for DID-to-KYC hash pairs
+    Map<bytes32, bytes32> didNFTs;
+    // Public Cell - tracks latest DID
+    Cell<bytes32> public lastDid;
 
-    // Event - yells “DID made!” to the world
+    // Event - announces new DIDs
     event DidIssued(bytes32 didId);
 
-    // Mint a DID - takes a hash, makes an ID, stores it
+    // Mint DID - creates public DID, stores hash privately
     public function issueDid(bytes32 kycHash) returns (bytes32) {
-        bytes32 didId = keccak256(kycHash, now()); // Unique ID from hash + time
-        didNFTs.insert(didId, kycHash); // Pop it in the Map
-        emit DidIssued(didId); // Shout it out
-        return didId; // Give ID back
+        bytes32 didId = keccak256(kycHash, now()); // Unique public DID
+        didNFTs.insert(didId, kycHash); // Private storage
+        lastDid.write(didId); // Updates last DID
+        emit DidIssued(didId); // Notifies publicly
+        return didId; // Returns DID
     }
 
-    // Check if DID exists - handy for PoC demo!
+    // Check DID - public check
     public function hasDid(bytes32 didId) returns (bool) {
-        return didNFTs.member(didId); // True if didId’s in the Map
+        return didNFTs.member(didId); // Verifies existence
+    }
+
+    // Total DIDs - public stat
+    public function getDidCount() returns (uint64) {
+        return didNFTs.size(); // Counts DIDs
+    }
+
+    // Last DID - public stat
+    public function getLastDid() returns (bytes32) {
+        return lastDid.read(); // Shows latest DID
+    }
+
+    // ZKProof - verifies KYC trait privately
+    predicate isOver18(bytes32 kycHash, bytes proof) {
+        assert(verifyZkProof(proof, kycHash)); // Checks proof - placeholder
+    }
+
+    // Verify Age - public ZKP call
+    public function verifyAge(bytes32 didId, bytes proof) returns (bool) {
+        bytes32 kycHash = didNFTs.lookup(didId); // Private lookup
+        return isOver18(kycHash, proof); // Returns proof result
     }
 }
