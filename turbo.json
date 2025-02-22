@@ -1,0 +1,5 @@
+{
+    "pipeline": {
+        "start": { "dependsOn": ["^start"] } // Runs startup tasks in order
+    }
+}

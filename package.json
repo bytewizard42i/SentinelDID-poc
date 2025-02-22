@@ -1,14 +1,13 @@
 {
-    "name": "sentinel-did-poc",
-    "version": "1.0.0",
-    "description": "SentinelDID PoC for Johnny5i",
-    "main": "server.js",
+    "name": "sentineldid-poc-root", 
+    "version": "1.0.0", 
+    "private": true, 
+    "workspaces": ["sentineldid-ui", "sentineldid-api", "sentineldid-contract"], 
     "scripts": {
-        "start": "node server.js" 
+        "start": "turbo run start" 
     },
-    "dependencies": {
-        "express": "^5.0.1", 
-        "ethers": "^6.13.5",   
-        "qrcode": "^1.5.1"   
-    }
+    "devDependencies": {
+        "turbo": "^2.0.0" 
+    },
+    "packageManager": "yarn@4.4.0" 
 }

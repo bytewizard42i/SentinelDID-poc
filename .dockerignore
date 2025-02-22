@@ -1,0 +1,4 @@
+# .dockerignore
+# Keeps junk out of Docker builds - like a filter
+node_modules
+*.log

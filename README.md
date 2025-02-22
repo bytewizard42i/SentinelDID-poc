@@ -67,3 +67,9 @@ Hackathon Fit
 Public didIds show activity (count, last DID).
 Private kycHash in didNFTs—ZKPs prove traits (age) without leaks.
 Local proof server—Midnight’s privacy in action!
+
+Ai instructions:
+# SentinelDID PoC
+A privacy-first DID system on Midnight Testnet for Johnny5i’s hackathon (March 6, 2025).
+- **Run**: `yarn install && yarn turbo run start`
+- **Files**: UI (`sentineldid-ui`), API (`sentineldid-api`), Contract (`sentineldid-contract`)

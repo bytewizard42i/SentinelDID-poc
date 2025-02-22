@@ -1,0 +1,3 @@
+# .yarnrc.yml
+# Configures Yarn - our tool manager
+nodeLinker: node-modules
