@@ -107,7 +107,7 @@ button:hover {
 
 /* 🎨 Special: Connect Wallet Button (Bigger Text & More Attention) */
 #connectWalletButton {
-    font-size: 24px; /* 🔥 Larger text */
+    font-size: 36px; /* 🔥 Larger text */
     padding: 18px;
     width: 100%;
     background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
