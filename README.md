@@ -22,21 +22,6 @@
 | **Privacy Protection**   | `kycHash` remains hidden, proof server ensures security |
 | **ZKProof Verification** | Verifier → `verifyAge` → private proof → result |
 
-## Setup & Instructions
-
-**SentinelDID PoC: A privacy-first DID system on Midnight Testnet for Johnny5i’s hackathon (March 6, 2025).**
-
-### Running the Project
-```sh
-yarn install && yarn turbo run start
-```
-
-## Project Structure
-
-- **UI:** `sentineldid-ui`
-- **API:** `sentineldid-api`
-- **Smart Contract:** `sentineldid-contract`
-
 
 # 🚀 SentinelDID: Decentralized Identity Unleashed
 
