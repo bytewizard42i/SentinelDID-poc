@@ -84,3 +84,41 @@ Check the logs in the terminal for any errors or debugging messages.
 
 Enjoy using SentinelDID for decentralized identity management! 🚀
 
+# 🚀 SentinelDID: Decentralized Identity Unleashed
+
+Welcome to **SentinelDID**, a cutting-edge proof-of-concept for decentralized identity management built on Midnight Testnet. This project showcases privacy-first DID creation and verification, powered by a sleek frontend and robust backend. Ready to dive in? Let’s get started!
+
+---
+
+## **🚀 Starting the Application**
+
+To launch the SentinelDID form and backend services, execute this command from the root directory (`/SentinelDID-poc`):
+
+```bash
+yarn turbo run start
+
+What Happens?
+Backend API: Fires up server.js in sentineldid-api-folder—handles DID minting and ZKP verification.
+Frontend UI: Serves index.html from sentineldid-ui-folder—your gateway to identity management.
+Seamless Connection: Ties everything together for a smooth experience.
+Accessing the App
+Once running, your default browser should auto-open the app.
+Manual Navigation: If it doesn’t, visit:
+http://localhost:3000
+(Swap 3000 for your port if customized.)
+🛑 Stopping the Program
+Need to halt the action? Simple!
+In the Terminal: Press CTRL + C where the app is running—shuts it down instantly.
+Restarting
+To fire it back up, just rerun:  
+bash
+yarn turbo run start
+📌 Additional Notes
+Setup Checklist
+Dependencies: Run yarn install first to grab all goodies (express, ethers, etc.)—ensures a smooth launch!
+Port Check: If issues arise, confirm ports (e.g., 3000) aren’t blocked—use netstat -tulnp | grep 3000 to peek.
+Debugging: Peek at terminal logs for error hints—your trusty co-pilot!
+Pro Tip
+Keep an eye on sentineldid-api-folder/server.js—update contractAddress post-deployment for Midnight Testnet magic!
+🌟 Enjoy SentinelDID!
+Dive into decentralized identity with SentinelDID—mint DIDs, connect via Lace wallet, and verify with zero-knowledge proofs. Built with ❤️ for privacy and innovation. Happy hacking! 🚀
