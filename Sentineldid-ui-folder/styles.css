@@ -151,16 +151,18 @@ button:disabled {
     box-shadow: none;
 }
 /* 🔹 Input Fields - Darker Borders & Drop Shadow */
+/* 🔹 Input Fields - Lighter Border & Darker Drop Shadow */
 #kycForm input, 
 #kycForm textarea {
     margin-bottom: 12px;
     padding: 12px;
     font-size: 16px;
-    border: 2px solid #333; /* 🔥 Darker border */
+    background: #f9f9f9;  /* 🔥 Lighter box color */
+    border: 1px solid #999; /* 🔥 Lighter border */
     border-radius: 5px;
     width: 100%;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2); /* 🔥 Subtle drop shadow */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); /* 🔥 Darker drop shadow */
 }
 
 /* 🟢 Enhanced Focus Effect */
@@ -168,5 +170,5 @@ button:disabled {
 #kycForm textarea:focus {
     outline: none;
     border-color: #4CAF50; /* Turns green when selected */
-    box-shadow: 0 5px 10px rgba(76, 175, 80, 0.3); /* More glow on focus */
+    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5); /* More glow on focus */
 }
