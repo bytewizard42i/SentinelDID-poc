@@ -1,8 +1,120 @@
-p { font-size: 12px; font-family: Arial, sans-serif; }
-h1 { font-size: 24px; font-weight: bold; }
-.form-container { margin: 20px; padding: 10px; }
-#kycForm { display: flex; flex-direction: column; width: 300px; }
-#kycForm input { margin-bottom: 10px; padding: 8px; font-size: 12px; }
-#kycForm button { font-size: 16px; padding: 12px; width: 100%; background-color: #4CAF50; color: white; border: none; cursor: pointer; }
-#kycForm button:hover { background-color: #45a049; }
-#qrCode { margin-top: 20px; width: 200px; height: 200px; }
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+h2 {
+    font-size: 18px;
+    color: #666;
+}
+
+p {
+    font-size: 14px;
+    color: #444;
+}
+
+/* Form Container */
+.form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    text-align: left;
+}
+
+/* Input Fields */
+#kycForm {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+#kycForm input, #kycForm textarea {
+    margin-bottom: 12px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#kycForm input:focus, #kycForm textarea:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Buttons - 3D Effect with Hover */
+button {
+    font-size: 16px;
+    padding: 12px;
+    width: 100%;
+    background: linear-gradient(180deg, #4CAF50 0%, #388E3C 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    text-transform: uppercase;
+}
+
+button:hover {
+    background: linear-gradient(180deg, #45a049 0%, #2E7D32 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Special: Connect Wallet Button */
+#connectWalletButton {
+    font-size: 20px;
+    padding: 15px;
+    width: 100%;
+    background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    animation: vibrate 0.3s infinite ease-in-out alternate 3s;
+}
+
+/* Button Hover Effect */
+#connectWalletButton:hover {
+    background: linear-gradient(180deg, #ffb74d 0%, #e64a19 100%);
+    transform: scale(1.08);
+    box-shadow: 0 8px 16px rgba(255, 87, 34, 0.3);
+}
+
+/* Vibrating Effect */
+@keyframes vibrate {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+/* QR Code */
+#qrCode {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Disabled Button */
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
