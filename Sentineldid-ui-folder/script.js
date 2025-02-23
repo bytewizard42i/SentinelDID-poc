@@ -33,6 +33,7 @@ async function getStats() {
 }
 
 async function connectLace() {
+    console.log('Available wallets:', window.midnight, window.cardano);
     if (window.midnight && window.midnight.lace) {
         try {
             const wallet = await window.midnight.lace.enable();
@@ -43,6 +44,9 @@ async function connectLace() {
             document.getElementById('walletAddress').textContent = 'Wallet Error: Check Console';
             console.error('Midnight Lace connection failed:', error);
         }
+    } else if (window.cardano && window.cardano.lace) {
+        document.getElementById('walletAddress').textContent = 'Cardano Lace Detected—Use Midnight Lace!';
+        console.warn('Found Cardano Lace—switch to Midnight Lace!');   
     } else {
         document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
         console.warn('Midnight Lace extension not found—install from releases.midnight.network');
