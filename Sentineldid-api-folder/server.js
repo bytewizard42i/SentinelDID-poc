@@ -11,7 +11,9 @@ let kycStore = []; // Temp KYC storage
 const contractAddress = '0xYourDeployedAddress'; // From midnight-cli deploy
 
 // Mint DID - processes KYC
-app.post('/mint-nft', (req, res) => {
+app.post('/mint-nft', async (req, res) => {
+    const { name, idNumber, wallet } = req.body; // Your logic to mint the DID-NFT using the wallet address New 2-23-2025
+    // ...
     const kyc = req.body; // Gets KYC from form
     kycStore.push(kyc); // Stores temporarily
     const kycHash = keccak256(JSON.stringify(kyc)); // Hashes KYC
