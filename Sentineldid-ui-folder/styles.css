@@ -106,7 +106,7 @@ button:hover {
 }
 
 /* 🎨 Special: Connect Wallet Button (Bigger Text & More Attention) */
-#connectWalletButton {
+button#connectWalletButton {
     font-size: 36px !important; /* 🔥 Larger text */
     font-weight: bold !important; /* 🔥 Makes text bold */
     padding: 18px;
