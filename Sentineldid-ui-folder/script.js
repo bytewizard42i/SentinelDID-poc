@@ -1,6 +1,16 @@
 // script.js
 async function mintDid() {
-    const kyc = { name: document.getElementById('name').value, idNumber: document.getElementById('idNumber').value };
+    
+    if (!walletAddress) {       // Check if wallet is connected
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
+
+    const kyc = { 
+        name: document.getElementById('name').value, 
+        idNumber: document.getElementById('idNumber').value,
+        wallet: walletAddress // new 2-23-2025 Include wallet address in the request
+    };
     const response = await fetch('http://localhost:3000/mint-nft', {
         method: 'POST', body: JSON.stringify(kyc), headers: { 'Content-Type': 'application/json' }
     });
@@ -32,7 +42,7 @@ async function getStats() {
     document.getElementById('stats').textContent = `Total DIDs: ${countData.totalDids}, Last DID: ${lastData.lastDid}`;
 }
 
-let walletAddress = null; // new 2-23-2025
+let walletAddress = null;       // new 2-23-2025
 
 async function connectLace() {
     console.log('Available wallets:', window.midnight, window.cardano);
@@ -40,7 +50,7 @@ async function connectLace() {
         try {
             const wallet = await window.midnight.lace.enable();
             const address = await wallet.getAddress(); 
-            walletAddress = address; // new 2-23-2025
+            walletAddress = address;        // new 2-23-2025
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
             console.log('Connected to Midnight Lace at:', address);
         } catch (error) {
