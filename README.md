@@ -80,49 +80,89 @@ Need to dock the ship? Easy peasy!
   yarn turbo run start
 
   📌 Additional Notes
-Setup Checklist
-Dependencies:
-Run yarn install first—grabs all the goodies (express, ethers, etc.) for a smooth launch!
-Port Check:
-Hiccups? Ensure ports (e.g., 3000) are free—peek with netstat -tulnp | grep 3000.
-Debugging:
-Spy on terminal logs—your trusty co-pilot for error hints!
-Pro Tip
-Watch sentineldid-api-folder/server.js—update contractAddress after deploying to Midnight Testnet for that extra ✨ magic!
-🌟 Enjoy SentinelDID!
-Dive into decentralized identity with SentinelDID—mint DIDs, link via Lace wallet, and verify with ZKPs. Built with ❤️ for privacy and innovation. Happy hacking, captain! 🚀
 
-🌟 Hashing Schema for Immutable KYC Data 🌟
-In the SentinelDID system, ensuring the uniqueness and integrity of Decentralized Identifiers (DIDs) is critical. To prevent individuals from creating multiple DIDs using the same immutable Know Your Customer (KYC) information, we’ve implemented a robust hashing schema. This schema leverages cryptographic hashing to securely and efficiently detect duplicate or fraudulent attempts while preserving user privacy.
-🔐 Purpose of the Hashing Schema
-The hashing schema is designed to:
-Prevent duplicate DIDs by ensuring that each unique combination of immutable KYC data (e.g., full name, driver’s license number, Social Security Number) corresponds to only one DID.
-Detect altered or fraudulent data by flagging inconsistencies in immutable fields, such as slight modifications to SSNs or driver’s license numbers.
-🛠️ How the Hashing Schema Works
-The hashing process follows these key steps:
-Selection of Immutable Fields
-We use fields that are unique to an individual and rarely change:
-Full Name (first name + last name)
-Driver’s License Number (DL#)
-Social Security Number (SSN)
-Normalization of Data
-To ensure consistency and prevent variations (e.g., extra spaces or capitalization) from affecting the hash:
-Full Name: Converted to lowercase and stripped of spaces or special characters (e.g., "John Doe" → "johndoe").
-DL# and SSN: Removed of spaces, dashes, or other separators (e.g., "DL123 456" → "dl123456", "123-45-6789" → "123456789").
-Concatenation and Hashing
-The normalized fields are combined into a single string (e.g., "johndoedl123456123456789") and hashed using the Keccak-256 algorithm, a secure, one-way cryptographic function commonly used in blockchain systems. This produces a unique hash value tied to the immutable KYC data.
-Duplicate Check
-Before creating a new DID, the system checks if the computed hash already exists in the storage (e.g., an in-memory store for the proof of concept or a database in production).  
-If the hash exists: The request is rejected, indicating a duplicate DID attempt.  
-If the hash does not exist: The DID creation proceeds, and the new hash is stored for future checks.
-🔍 Benefits of the Hashing Schema
-Enhanced Security: By using a one-way hash, the original KYC data is never stored or exposed, ensuring user privacy and compliance with data protection standards.
-Duplicate Prevention: The schema guarantees that only one DID can be created per unique set of immutable KYC data, preventing abuse of the system.
-Fraud Detection: Any alteration to the immutable fields (e.g., a modified SSN) results in a different hash, flagging the attempt for further review.
-💻 Implementation Details
-Hashing Algorithm: We use Keccak-256, a widely adopted cryptographic hash function in blockchain ecosystems, ensuring both security and performance.
-Storage: For the proof of concept, hashes are stored in an in-memory array (kycStore). In a production environment, this will be replaced with a secure, persistent database or blockchain-based storage solution.
-Normalization: Ensures that minor formatting differences (e.g., extra spaces or capitalization) do not bypass the duplicate check.
-🚀 Conclusion
-The hashing schema is a cornerstone of the SentinelDID system’s integrity. By securely hashing immutable KYC data, we prevent duplicate DIDs, detect fraudulent attempts, and protect user privacy—all while maintaining a simple and efficient process. This approach ensures that each DID is uniquely tied to an individual’s identity, fostering trust and reliability in decentralized emergency management.
 
+# 🌟 Hashing Schema for Immutable KYC Data 🌟
+
+In the **SentinelDID system**, ensuring the **uniqueness and integrity** of Decentralized Identifiers (**DIDs**) is critical. To prevent individuals from creating multiple DIDs using the same **immutable Know Your Customer (KYC) information**, we’ve implemented a robust **hashing schema**.  
+
+This schema leverages **cryptographic hashing** to securely and efficiently detect duplicate or fraudulent attempts while preserving **user privacy**.
+
+---
+
+## 🔐 Purpose of the Hashing Schema
+
+The hashing schema is designed to:  
+
+- **Prevent duplicate DIDs** by ensuring that each unique combination of **immutable KYC data** (e.g., **full name, driver’s license number, Social Security Number**) corresponds to **only one DID**.  
+- **Detect altered or fraudulent data** by flagging inconsistencies in **immutable fields**, such as slight modifications to **SSNs or driver’s license numbers**.
+
+---
+
+## 🛠️ How the Hashing Schema Works
+
+### **1️⃣ Selection of Immutable Fields**
+We use fields that are **unique to an individual and rarely change**:
+- **Full Name** (first name + last name)
+- **Driver’s License Number (DL#)**
+- **Social Security Number (SSN)**
+
+### **2️⃣ Normalization of Data**
+To ensure consistency and prevent variations (**e.g., extra spaces or capitalization**) from affecting the hash:
+- **Full Name** → Converted to **lowercase** and **stripped of spaces or special characters**  
+  _(e.g., "John Doe" → "johndoe")_
+- **DL# and SSN** → **Spaces, dashes, and separators removed**  
+  _(e.g., "DL123 456" → "dl123456", "123-45-6789" → "123456789")_
+
+### **3️⃣ Concatenation and Hashing**
+- The **normalized fields** are combined into a **single string**  
+  _(e.g., "johndoedl123456123456789")_
+- The string is **hashed using the Keccak-256 algorithm**, a secure, **one-way cryptographic function** commonly used in **blockchain systems**.
+- This produces a **unique hash value** tied to the **immutable KYC data**.
+
+### **4️⃣ Duplicate Check**
+Before creating a new **DID**, the system **checks if the computed hash already exists** in storage.  
+
+- **If the hash exists** → The request is **rejected**, indicating a **duplicate DID attempt**.  
+- **If the hash does not exist** → The **DID creation proceeds**, and the new hash is **stored for future checks**.
+
+---
+
+## 🔍 Benefits of the Hashing Schema
+✅ **Enhanced Security**  
+- By using a **one-way hash**, the original **KYC data is never stored or exposed**, ensuring **user privacy** and **compliance with data protection standards**.
+
+✅ **Duplicate Prevention**  
+- The schema guarantees that **only one DID** can be created per **unique set of immutable KYC data**, preventing abuse of the system.
+
+✅ **Fraud Detection**  
+- Any **alteration** to the **immutable fields** (e.g., a modified SSN) results in a **different hash**, flagging the attempt for **further review**.
+
+---
+
+## 💻 Implementation Details
+🔹 **Hashing Algorithm**  
+- We use **Keccak-256**, a widely adopted **cryptographic hash function** in blockchain ecosystems, ensuring both **security and performance**.
+
+🔹 **Storage**  
+- For the **proof of concept**, hashes are stored in an **in-memory array (`kycStore`)**.  
+- In a **production environment**, this will be replaced with a **secure, persistent database** or **blockchain-based storage solution**.
+
+🔹 **Normalization**  
+- Ensures that **minor formatting differences** (e.g., extra spaces or capitalization) **do not bypass the duplicate check**.
+
+---
+
+## 🚀 Conclusion
+The **hashing schema** is a **cornerstone** of the **SentinelDID system’s integrity**.  
+
+By securely **hashing immutable KYC data**, we:  
+✔️ **Prevent duplicate DIDs**  
+✔️ **Detect fraudulent attempts**  
+✔️ **Protect user privacy**  
+
+All while maintaining a **simple and efficient process**.  
+
+This approach ensures that **each DID is uniquely tied to an individual’s identity**, fostering **trust** and **reliability** in **decentralized emergency management**.  
+
+---
