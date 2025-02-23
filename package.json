@@ -1,13 +1,17 @@
 {
-    "name": "sentineldid-poc-root", 
-    "version": "1.0.0", 
-    "private": true, 
-    "workspaces": ["sentineldid-ui", "sentineldid-api", "sentineldid-contract"], 
+    "name": "sentineldid-poc-root",
+    "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "sentineldid-ui",
+        "sentineldid-api",
+        "sentineldid-contract"
+    ],
     "scripts": {
-        "start": "turbo run start" 
+        "start": "turbo run start"
     },
     "devDependencies": {
-        "turbo": "^2.0.0" 
+        "turbo": "^2.0.0"
     },
-    "packageManager": "yarn@4.4.0" 
+    "packageManager": "yarn@4.4.0"
 }
