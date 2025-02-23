@@ -1,3 +1,9 @@
+# 🚀 SentinelDID: Decentralized Identity Unleashed
+
+Welcome to **SentinelDID**, a cutting-edge proof-of-concept for decentralized identity management built on Midnight Testnet. This project showcases privacy-first DID creation and verification, powered by a sleek frontend and robust backend. Ready to dive in? Let’s get started!
+
+---
+
 # SentinelDID PoC
 
 **The main repo for the DID Hackathon for Midnight for the SentinelDID Proof of Concept (PoC).**
@@ -21,13 +27,6 @@
 | **QR Code**              | `didId` → QR → user |
 | **Privacy Protection**   | `kycHash` remains hidden, proof server ensures security |
 | **ZKProof Verification** | Verifier → `verifyAge` → private proof → result |
-
-
-# 🚀 SentinelDID: Decentralized Identity Unleashed
-
-Welcome to **SentinelDID**, a cutting-edge proof-of-concept for decentralized identity management built on Midnight Testnet. This project showcases privacy-first DID creation and verification, powered by a sleek frontend and robust backend. Ready to dive in? Let’s get started!
-
----
 
 ## **🚀 Starting the Application**
 
