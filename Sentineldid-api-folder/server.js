@@ -7,16 +7,18 @@ const { exec } = require('child_process');
 const app = express();
 app.use(express.json());
 let kycStore = [];
-const contractAddress = '0xYourDeployedAddress'; // Replace with actual address
+const contractAddress = '0xYourDeployedAddress'; // ****Replace with actual address****
 
 app.post('/mint-nft', async (req, res) => {
-    const { firstName, lastName, idNumber, wallet } = req.body;
-    if (!firstName || !lastName || !idNumber || !wallet) {
+    const { firstName, lastName, idNumber, driversLicense, dob, ssn, address, phone, backgroundCheck, biometric, nokName, nokRelationship, nokPhone, wallet } = req.body;
+    if (!firstName || !lastName || !idNumber || !driversLicense || !dob || !ssn || !address || !phone || !nokName || !nokRelationship || !nokPhone || !wallet) {
         return res.status(400).json({ error: 'Missing required fields' });
     }
-    const kycData = { firstName, lastName, idNumber };
+
+    const kycData = { firstName, lastName, idNumber, driversLicense, dob, ssn, address, phone, biometric };
     const kycHash = keccak256(JSON.stringify(kycData));
-    kycStore.push({ ...kycData, wallet }); // Store with wallet for reference
+    kycStore.push({ ...kycData, backgroundCheck, nokName, nokRelationship, nokPhone, wallet });
+
     exec(`midnight-cli call ${contractAddress} issueDid ${kycHash} ${wallet} --network testnet`, (err, stdout) => {
         if (err) {
             console.error('Minting failed:', err);
@@ -39,7 +41,7 @@ app.post('/mint-nft', async (req, res) => {
 
 app.get('/did/:didId', (req, res) => {
     const didId = req.params.didId;
-    res.json({ didId, kycHash: 'stored-on-chain' }); // Placeholder
+    res.json({ didId, kycHash: 'stored-on-chain' });
 });
 
 app.get('/has-did/:didId', (req, res) => {
