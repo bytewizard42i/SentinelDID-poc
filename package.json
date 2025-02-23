@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "private": true,
     "workspaces": [
-        "sentineldid-ui",
-        "sentineldid-api",
-        "sentineldid-contract"
+    "Sentineldid-ui-folder",
+    "Sentineldid-api-folder",
+    "Sentineldid-contract-folder"
     ],
     "scripts": {
         "start": "turbo run start"
