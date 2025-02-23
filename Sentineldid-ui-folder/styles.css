@@ -6,7 +6,7 @@ body {
     padding: 20px;
 }
 
-/* 🔹 Title & Headers (Now 25% Bigger) */
+/* 🔹 Title & Headers (25% Bigger) */
 h1 {
     font-size: 40px; /* Increased by 25% */
     font-weight: bold;
@@ -30,20 +30,31 @@ h2 {
 
 /* Paragraphs */
 p {
-    font-size: 18px; /* Slightly larger for readability */
+    font-size: 18px;
     color: #444;
 }
 
-/* 🔹 Form Container - 40% Wider */
+/* 🔹 Form Container - Now More 3D & Pronounced */
 .form-container {
     background: white;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    border-radius: 15px; /* Slightly rounded corners for smooth feel */
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),  /* Stronger shadow depth */
+        0 4px 6px rgba(0, 0, 0, 0.1);   /* Lighter shadow inside */
     display: inline-block;
     text-align: left;
-    width: 60%;  /* 💡 Increased width */
-    max-width: 600px;
+    width: 60%; /* Increased width */
+    max-width: 650px; /* Ensures it doesn’t stretch too wide */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect - Makes the Form Feel Even More 3D */
+.form-container:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4), 
+        0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* 📝 Input Fields */
@@ -79,16 +90,16 @@ button {
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
     text-transform: uppercase;
-    margin-top: 15px; /* 🔹 Adds spacing between buttons */
+    margin-top: 15px;
 }
 
 /* 🖱️ Hover Effect */
 button:hover {
     background: linear-gradient(180deg, #45a049 0%, #2E7D32 100%);
     transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
 /* 🎨 Special: Connect Wallet Button */
@@ -107,7 +118,7 @@ button:hover {
 #connectWalletButton:hover {
     background: linear-gradient(180deg, #ffb74d 0%, #e64a19 100%);
     transform: scale(1.08);
-    box-shadow: 0 8px 16px rgba(255, 87, 34, 0.3);
+    box-shadow: 0 8px 16px rgba(255, 87, 34, 0.4);
 }
 
 /* 🎭 Vibrating Effect */
@@ -135,4 +146,3 @@ button:disabled {
     cursor: not-allowed;
     box-shadow: none;
 }
-
