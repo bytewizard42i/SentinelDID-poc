@@ -51,6 +51,7 @@ async function connectLace() {
             const wallet = await window.midnight.lace.enable();
             const address = await wallet.getAddress(); 
             walletAddress = address;    // new 2-23-2025
+            document.getElementById('mintButton').disabled = false; //turns on mint button after wallet is connected new 2-23-2025
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
             console.log('Connected to Midnight Lace at:', address);
         } catch (error) {
