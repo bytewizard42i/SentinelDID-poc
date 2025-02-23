@@ -1,4 +1,4 @@
-# ⚕️ [SentinelDID](https://https://sentineldid.com): Decentralized Identity, Saving Lives
+# ⚕️ [SentinelDID](https://sentineldid.com): Decentralized Identity, Saving Lives
 
 ### Welcome to **SentinelDID**, a cutting-edge proof-of-concept for decentralized identity management for use with the SentinelDID Protocol<sup>TM</sup> that uses these identities for incredibly streamlined emergency services actions.          <br><br>Built on the amazing selective privacy protocol of [Midnight Testnet](https.//https://docs.midnight.network), SentinelDID showcases our privacy-first DID-NFT creation and ZKProof based verification for information about the user.       <br><br>Superiors, subordinates, victims, and their families—all protected, all in contact, in real time.     <br><br>The future is now for emergency response, and crisis management will never be the same. Join us on this journey to save lives...  ### 
 
