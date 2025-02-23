@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>SentinelDID</h1>
+    <h2>"Digital IDentity, Saving Lives"</h2>
     <p>Create and verify your DID!</p>
     <div class="form-container">
         <button type="button" onclick="connectLace()">Connect Wallet</button>
@@ -15,6 +16,17 @@
             <label>First Name: <input id="firstName" placeholder="Johnny"></label><br>
             <label>Last Name: <input id="lastName" placeholder="Appleseed"></label><br>
             <label>Sentinel-Assigned-ID: <input id="idNumber" placeholder="SDIDxx12345"></label><br>
+            <label>Driver’s License: <input id="driversLicense" placeholder="DL12345678"></label><br>
+            <label>Date of Birth: <input type="date" id="dob"></label><br>
+            <label>Social Security Number: <input type="password" id="ssn" placeholder="123-45-6789"></label><br>
+            <label>Current Address: <textarea id="address" placeholder="123 Main St, Anytown, USA"></textarea></label><br>
+            <label>Phone Number: <input type="tel" id="phone" placeholder="555-123-4567"></label><br>
+            <label>Biometric Fingerprint (simulate with text): <input type="text" id="biometric" placeholder="Fingerprint data"></label><br>
+            <label>Permission for Background Check: <input type="checkbox" id="backgroundCheck"></label><br>
+            <h3>Next of Kin</h3>
+            <label>Name: <input id="nokName" placeholder="Jane Doe"></label><br>
+            <label>Relationship: <input id="nokRelationship" placeholder="Spouse"></label><br>
+            <label>Phone Number: <input type="tel" id="nokPhone" placeholder="555-987-6543"></label><br>
             <button id="mintButton" type="button" onclick="mintDid()" disabled>Mint DID</button>
         </form>
         <img id="qrCode" alt="Your DID QR" style="display:none;">
