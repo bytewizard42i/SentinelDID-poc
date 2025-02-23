@@ -1,6 +1,6 @@
 # 🚀 SentinelDID: Decentralized Identity Saving Lives
 
-Welcome to **SentinelDID**, a cutting-edge proof-of-concept for decentralized identity management for use with the SentinelDID Protocol<sup>TM</sup> which uses these identities for incredible streamlined emergency services actions.  Built on the amazing selective privacy protocol of Midnight Testnet, SentinelDID showcases our privacy-first DID-NFT creation and ZKProof based verification for information about the user. Superiors, subordinates, victims, and their families, all protected, all in contact. In real time. The future is now for emergency response, and crisis management will never be the same. Join us on this journey to save lives...
+### Welcome to **SentinelDID**, a cutting-edge proof-of-concept for decentralized identity management for use with the SentinelDID Protocol<sup>TM</sup> which uses these identities for incredible streamlined emergency services actions.  Built on the amazing selective privacy protocol of Midnight Testnet, SentinelDID showcases our privacy-first DID-NFT creation and ZKProof based verification for information about the user. Superiors, subordinates, victims, and their families, all protected, all in contact. In real time. The future is now for emergency response, and crisis management will never be the same. Join us on this journey to save lives... ### 
 
 ---
 
