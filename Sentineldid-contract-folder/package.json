@@ -1,5 +1,7 @@
 {
     "name": "sentineldid-contract",
     "version": "1.0.0",
-    "scripts": { "deploy": "midnight-cli deploy SentinelDID.compact --network testnet" } 
+    "scripts": {
+        "deploy": "midnight-cli deploy SentinelDID.compact --network testnet"
+    }
 }
