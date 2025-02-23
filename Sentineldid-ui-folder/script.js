@@ -32,13 +32,15 @@ async function getStats() {
     document.getElementById('stats').textContent = `Total DIDs: ${countData.totalDids}, Last DID: ${lastData.lastDid}`;
 }
 
+let walletAddress = null; // new 2-23-2025
+
 async function connectLace() {
     console.log('Available wallets:', window.midnight, window.cardano);
     if (window.midnight && window.midnight.lace) {
         try {
             const wallet = await window.midnight.lace.enable();
             const address = await wallet.getAddress(); 
-            walletAddress = address;
+            walletAddress = address; // new 2-23-2025
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
             console.log('Connected to Midnight Lace at:', address);
         } catch (error) {
