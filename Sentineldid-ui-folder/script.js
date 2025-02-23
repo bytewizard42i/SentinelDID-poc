@@ -38,6 +38,7 @@ async function connectLace() {
         try {
             const wallet = await window.midnight.lace.enable();
             const address = await wallet.getAddress(); 
+            walletAddress = address;
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
             console.log('Connected to Midnight Lace at:', address);
         } catch (error) {
