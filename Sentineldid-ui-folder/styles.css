@@ -6,19 +6,31 @@ body {
     padding: 20px;
 }
 
+/* 🔹 Title & Headers (Now 25% Bigger) */
 h1 {
-    font-size: 32px;
+    font-size: 40px; /* Increased by 25% */
     font-weight: bold;
     color: #333;
+    display: inline-block; /* Keeps inline formatting */
 }
 
+/* 🏷️ Trademark (™) Styling */
+.tm {
+    font-size: 14px; /* Small superscript style */
+    vertical-align: super;
+    color: #666;
+    margin-left: 3px;
+}
+
+/* Subtitle (Also 25% Bigger) */
 h2 {
-    font-size: 18px;
+    font-size: 22px; /* Increased by 25% */
     color: #666;
 }
 
+/* Paragraphs */
 p {
-    font-size: 14px;
+    font-size: 18px; /* Slightly larger for readability */
     color: #444;
 }
 
@@ -30,8 +42,8 @@ p {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     display: inline-block;
     text-align: left;
-    width: 60%;  /* 💡 Increased width (was around 40%) */
-    max-width: 600px; /* Ensures it doesn’t get too big */
+    width: 60%;  /* 💡 Increased width */
+    max-width: 600px;
 }
 
 /* 📝 Input Fields */
@@ -123,3 +135,4 @@ button:disabled {
     cursor: not-allowed;
     box-shadow: none;
 }
+
