@@ -22,29 +22,32 @@ p {
     color: #444;
 }
 
-/* Form Container */
+/* 🔹 Form Container - 40% Wider */
 .form-container {
     background: white;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     display: inline-block;
     text-align: left;
+    width: 60%;  /* 💡 Increased width (was around 40%) */
+    max-width: 600px; /* Ensures it doesn’t get too big */
 }
 
-/* Input Fields */
+/* 📝 Input Fields */
 #kycForm {
     display: flex;
     flex-direction: column;
-    width: 350px;
+    width: 100%;
 }
 
 #kycForm input, #kycForm textarea {
     margin-bottom: 12px;
-    padding: 10px;
-    font-size: 14px;
+    padding: 12px;
+    font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    transition: 0.2s;
 }
 
 #kycForm input:focus, #kycForm textarea:focus {
@@ -53,10 +56,10 @@ p {
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
 }
 
-/* Buttons - 3D Effect with Hover */
+/* 🔹 Buttons - Fancy & Spaced */
 button {
     font-size: 16px;
-    padding: 12px;
+    padding: 14px;
     width: 100%;
     background: linear-gradient(180deg, #4CAF50 0%, #388E3C 100%);
     color: white;
@@ -66,18 +69,20 @@ button {
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     text-transform: uppercase;
+    margin-top: 15px; /* 🔹 Adds spacing between buttons */
 }
 
+/* 🖱️ Hover Effect */
 button:hover {
     background: linear-gradient(180deg, #45a049 0%, #2E7D32 100%);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Special: Connect Wallet Button */
+/* 🎨 Special: Connect Wallet Button */
 #connectWalletButton {
     font-size: 20px;
-    padding: 15px;
+    padding: 16px;
     width: 100%;
     background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
     color: white;
@@ -86,14 +91,14 @@ button:hover {
     animation: vibrate 0.3s infinite ease-in-out alternate 3s;
 }
 
-/* Button Hover Effect */
+/* Hover & Glow */
 #connectWalletButton:hover {
     background: linear-gradient(180deg, #ffb74d 0%, #e64a19 100%);
     transform: scale(1.08);
     box-shadow: 0 8px 16px rgba(255, 87, 34, 0.3);
 }
 
-/* Vibrating Effect */
+/* 🎭 Vibrating Effect */
 @keyframes vibrate {
     0% { transform: translateX(0); }
     25% { transform: translateX(-2px); }
@@ -102,7 +107,7 @@ button:hover {
     100% { transform: translateX(0); }
 }
 
-/* QR Code */
+/* 📷 QR Code */
 #qrCode {
     margin-top: 20px;
     width: 200px;
@@ -112,7 +117,7 @@ button:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Disabled Button */
+/* ❌ Disabled Button */
 button:disabled {
     background: #ccc;
     cursor: not-allowed;
