@@ -6,7 +6,7 @@
 
 # SentinelDID PoC
 
-**The main repo for the DID Hackathon for Midnight for the SentinelDID Proof of Concept (PoC).**
+**This is the main repo for the DID Hackathon for Midnight for the SentinelDID Proof of Concept (PoC).**
 
 ## Workflow for SentinelDID PoC
 
@@ -32,7 +32,6 @@
 
 To launch the SentinelDID form and backend services, execute this command from the root directory (`/SentinelDID-poc`):
 
-```bash
 yarn turbo run start
 
 ## **🚀 What Happens When You Start?**
