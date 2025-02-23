@@ -97,28 +97,56 @@ To launch the SentinelDID form and backend services, execute this command from t
 ```bash
 yarn turbo run start
 
-What Happens?
-Backend API: Fires up server.js in sentineldid-api-folder—handles DID minting and ZKP verification.
-Frontend UI: Serves index.html from sentineldid-ui-folder—your gateway to identity management.
-Seamless Connection: Ties everything together for a smooth experience.
-Accessing the App
-Once running, your default browser should auto-open the app.
-Manual Navigation: If it doesn’t, visit:
-http://localhost:3000
-(Swap 3000 for your port if customized.)
-🛑 Stopping the Program
-Need to halt the action? Simple!
-In the Terminal: Press CTRL + C where the app is running—shuts it down instantly.
-Restarting
-To fire it back up, just rerun:  
-bash
-yarn turbo run start
-📌 Additional Notes
+## **🚀 What Happens When You Start?**
+
+Fire up the engines with `yarn turbo run start`—here’s the magic it unleashes:
+
+- **🔧 Backend API**:  
+  Ignites `server.js` in `sentineldid-api-folder`—powers DID minting and zero-knowledge proof (ZKP) verification like a pro!
+
+- **🎨 Frontend UI**:  
+  Serves `index.html` from `sentineldid-ui-folder`—your sleek portal to decentralized identity management.
+
+- **🔗 Seamless Connection**:  
+  Links the frontend and backend for a flawless, smooth-as-silk experience.
+
+---
+
+## **🌐 Accessing the App**
+
+- **Auto-Launch**:  
+  Once the server’s humming, your default browser should pop open the app—ready to roll!
+
+- **Manual Navigation**:  
+  No auto-open? No sweat—point your browser to:  
+  **`http://localhost:3000`**  
+  *(Tweak the port if you’ve customized it—3000’s the default!)*
+
+---
+
+## **🛑 Stopping the Program**
+
+Need to dock the ship? Easy peasy!
+
+- **In the Terminal**:  
+  Hit **`CTRL + C`** where the app’s running—shuts it down faster than a blink.
+
+### **Restarting**
+- Ready to sail again? Just rerun:  
+  ```bash
+  yarn turbo run start
+
+  📌 Additional Notes
 Setup Checklist
-Dependencies: Run yarn install first to grab all goodies (express, ethers, etc.)—ensures a smooth launch!
-Port Check: If issues arise, confirm ports (e.g., 3000) aren’t blocked—use netstat -tulnp | grep 3000 to peek.
-Debugging: Peek at terminal logs for error hints—your trusty co-pilot!
+Dependencies:
+Run yarn install first—grabs all the goodies (express, ethers, etc.) for a smooth launch!
+Port Check:
+Hiccups? Ensure ports (e.g., 3000) are free—peek with netstat -tulnp | grep 3000.
+Debugging:
+Spy on terminal logs—your trusty co-pilot for error hints!
 Pro Tip
-Keep an eye on sentineldid-api-folder/server.js—update contractAddress post-deployment for Midnight Testnet magic!
+Watch sentineldid-api-folder/server.js—update contractAddress after deploying to Midnight Testnet for that extra ✨ magic!
 🌟 Enjoy SentinelDID!
-Dive into decentralized identity with SentinelDID—mint DIDs, connect via Lace wallet, and verify with zero-knowledge proofs. Built with ❤️ for privacy and innovation. Happy hacking! 🚀
+Dive into decentralized identity with SentinelDID—mint DIDs, link via Lace wallet, and verify with ZKPs. Built with ❤️ for privacy and innovation. Happy hacking, captain! 🚀
+
+
