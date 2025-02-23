@@ -1,79 +1,92 @@
- // server.js
-const express = require('express'); // Web server tool
-const { keccak256 } = require('ethers'); // Hashing tool
-const QRCode = require('qrcode'); // QR code tool
-const { exec } = require('child_process'); // Runs Midnight CLI
+// script.js
+let walletAddress = null;
 
-const app = express();
-app.use(express.json()); // Reads JSON from form
-let kycStore = []; // Temp KYC storage
+async function connectLace() {
+    console.log('Available wallets:', window.midnight, window.cardano);
+    if (window.midnight && window.midnight.lace) {
+        try {
+            const wallet = await window.midnight.lace.enable();
+            const address = await wallet.getAddress(); 
+            walletAddress = address;
+            document.getElementById('mintButton').disabled = false;
+            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
+            console.log('Connected to Midnight Lace at:', address);
+        } catch (error) {
+            document.getElementById('walletAddress').textContent = 'Wallet Error: Check Console';
+            console.error('Midnight Lace connection failed:', error);
+        }
+    } else if (window.cardano && window.cardano.lace) {
+        document.getElementById('walletAddress').textContent = 'Cardano Lace Detected—Use Midnight Lace!';
+        console.warn('Found Cardano Lace—switch to Midnight Lace!');   
+    } else {
+        document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
+        console.warn('Midnight Lace extension not found—install from releases.midnight.network');
+    }       
+}
 
-const contractAddress = '0xYourDeployedAddress'; // From midnight-cli deploy
+async function mintDid() {
+    if (!walletAddress) {
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
 
-// Mint DID - processes KYC
-app.post('/mint-nft', async (req, res) => {
-    const { name, idNumber, wallet } = req.body; // Your logic to mint the DID-NFT using the wallet address New 2-23-2025
-    // ...
-    const kyc = req.body; // Gets KYC from form
-    kycStore.push(kyc); // Stores temporarily
-    const kycHash = keccak256(JSON.stringify(kyc)); // Hashes KYC
-    exec(`midnight-cli call ${contractAddress} issueDid ${kycHash} --network testnet`, (err, stdout) => {
-        if (err) return res.status(500).json({ error: 'Minting failed' });
-        const didId = stdout.match(/didId: (\w+)/)?.[1]; // Extracts DID
-        QRCode.toDataURL(`http://localhost:3000/did/${didId}`, (err, qrUrl) => {
-            res.json({ qrUrl }); // Sends QR back
-        });
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const idNumber = document.getElementById('idNumber').value;
+
+    if (!firstName || !lastName || !idNumber) {
+        alert('Please fill in all fields.');
+        return;
+    }
+
+    const kyc = { 
+        firstName, 
+        lastName,
+        idNumber,
+        wallet: walletAddress
+    };
+    const response = await fetch('http://localhost:3000/mint-nft', {
+        method: 'POST', 
+        body: JSON.stringify(kyc), 
+        headers: { 'Content-Type': 'application/json' }
     });
-});
+    const data = await response.json();
+    if (data.qrUrl) {
+        document.getElementById('qrCode').src = data.qrUrl;
+        document.getElementById('qrCode').style.display = 'block';
+    } else {
+        alert('Failed to mint DID.');
+    }
+}
 
-// Show DID info - for QR scans
-app.get('/did/:didId', (req, res) => {
-    const didId = req.params.didId; // Gets DID from URL
-    res.json({ didId, kycHash: 'stored-on-chain' }); // Placeholder
-});
+async function checkDid() {
+    const didId = document.getElementById('checkDid').value;
+    if (!didId) {
+        alert('Please enter a DID to check.');
+        return;
+    }
+    const response = await fetch(`http://localhost:3000/has-did/${didId}`);
+    const data = await response.json();
+    document.getElementById('result').textContent = data.exists ? 'DID exists!' : 'No such DID.';
+}
 
-// Check DID - verifies existence
-app.get('/has-did/:didId', (req, res) => {
-    const didId = req.params.didId;
-    exec(`midnight-cli call ${contractAddress} hasDid ${didId} --network testnet`, (err, stdout) => {
-        if (err) return res.status(500).json({ error: 'Check failed' });
-        const exists = stdout.includes('true'); // Checks output
-        res.json({ didId, exists }); // Returns result
+async function verifyAge() {
+    const didId = document.getElementById('checkDid').value;
+    if (!didId) {
+        alert('Please enter a DID to verify age.');
+        return;
+    }
+    const response = await fetch(`http://localhost:3000/verify-age/${didId}`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }
     });
-});
+    const data = await response.json();
+    document.getElementById('result').textContent = data.isOver18 ? 'Over 18!' : 'Not over 18.';
+}
 
-// Verify Age - ZKP proof
-app.post('/verify-age/:didId', (req, res) => {
-    const didId = req.params.didId; // Gets DID
-    const proof = '0x1234'; // Dummy proof for PoC
-    exec(`midnight-cli call ${contractAddress} verifyAge ${didId} ${proof} --network testnet`, (err, stdout) => {
-        if (err) return res.status(500).json({ error: 'Verification failed' });
-        const isOver18 = stdout.includes('true'); // Parses result
-        res.json({ didId, isOver18 }); // Sends proof outcome
-    });
-});
-
-// Total DIDs - stat
-app.get('/did-count', (req, res) => {
-    exec(`midnight-cli call ${contractAddress} getDidCount --network testnet`, (err, stdout) => {
-        if (err) return res.status(500).json({ error: 'Count failed' });
-        const count = parseInt(stdout.match(/(\d+)/)?.[0] || '0'); // Extracts number
-        res.json({ totalDids: count }); // Returns total
-    });
-});
-
-// Last DID - stat
-app.get('/last-did', (req, res) => {
-    exec(`midnight-cli call ${contractAddress} getLastDid --network testnet`, (err, stdout) => {
-        if (err) return res.status(500).json({ error: 'Last DID failed' });
-        const lastDid = stdout.match(/didId: (\w+)/)?.[1] || 'None yet'; // Extracts DID
-        res.json({ lastDid }); // Returns last DID
-    });
-});
-
-// Connect Lace Wallet - placeholder for client-side
-app.get('/connect-wallet', (req, res) => {
-    res.send(`<script>connectLace();</script>`); // Triggers wallet connect
-});
-
-app.listen(3000, () => console.log('Server running on http://localhost:3000')); // Starts server
+async function getStats() {
+    const countResp = await fetch('http://localhost:3000/did-count');
+    const countData = await countResp.json();
+    const lastResp = await fetch('http://localhost:3000/last-did');
+    const lastData = await lastResp.json();
+    document.getElementById('stats').textContent = `Total DIDs: ${countData.totalDids}, Last DID: ${lastData.lastDid}`;
+}
