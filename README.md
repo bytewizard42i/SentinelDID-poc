@@ -12,6 +12,8 @@
 
 **This is the main repo for the DID Hackathon for Midnight for the SentinelDID Proof of Concept (PoC).**
 
+![SentinelDID Cover Page](images/SentinelDID-cover.png)
+
 ## Workflow for SentinelDID PoC
 
 - **User Enters KYC:** Form submission in `index.html` → processed by `server.js`.
