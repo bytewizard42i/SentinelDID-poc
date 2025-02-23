@@ -40,3 +40,47 @@ yarn install && yarn turbo run start
 ## Contact & Contributions
 For any questions or contributions, feel free to submit issues or pull requests! 🚀
 
+🚀 Starting the Application
+
+To spin up the form and backend services, run the following command in the root directory of your project:
+
+yarn turbo run start
+
+This command will:
+
+Start the backend API (server.js in Sentineldid-api-folder).
+
+Serve the frontend UI (index.html in Sentineldid-ui-folder).
+
+Connect everything to work seamlessly.
+
+Once the server starts, your default web browser should automatically open the application. If it does not, manually navigate to:
+
+http://localhost:3000
+
+(Replace 3000 with the correct port if necessary.)
+
+🛑 Stopping the Program
+
+If you need to stop the program at any time, press:
+
+CTRL + C
+
+inside the terminal where the application is running.
+
+To restart it later, simply rerun:
+
+yarn turbo run start
+
+📌 Additional Notes
+
+Ensure all dependencies are installed by running yarn install before starting the program for the first time.
+
+If encountering issues, verify that ports are not blocked or in use by other processes.
+
+Check the logs in the terminal for any errors or debugging messages.
+
+
+
+Enjoy using SentinelDID for decentralized identity management! 🚀
+
