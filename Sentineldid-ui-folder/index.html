@@ -9,23 +9,21 @@
     <h1>SentinelDID</h1>
     <p>Create and verify your DID!</p>
     <div class="form-container">
+        <button type="button" onclick="connectLace()">Connect Wallet</button>
+        <p id="walletAddress">Wallet: Not connected</p>
         <form id="kycForm">
-            <label>First-Name: <input id="name" placeholder="Johnny"></label><br>
-            <label>Last-Name: <input id="name" placeholder="Johnny"></label><br>
+            <label>First Name: <input id="firstName" placeholder="Johnny"></label><br>
+            <label>Last Name: <input id="lastName" placeholder="Appleseed"></label><br>
             <label>Sentinel-Assigned-ID: <input id="idNumber" placeholder="SDIDxx12345"></label><br>
-            <button type="button" onclick="mintDid()">Mint DID</button>
-            <button onclick="connectLace()">Connect Wallet</button>
-            <button id="mintButton" onclick="mintDid()" disabled>Mint DID</button>
+            <button id="mintButton" type="button" onclick="mintDid()" disabled>Mint DID</button>
         </form>
-        <img id="qrCode" alt="Your DID QR">
+        <img id="qrCode" alt="Your DID QR" style="display:none;">
         <label>Check DID: <input id="checkDid" placeholder="Paste DID"></label><br>
         <button type="button" onclick="checkDid()">Verify DID</button>
         <button type="button" onclick="verifyAge()">Verify Age</button>
         <p id="result"></p>
         <button type="button" onclick="getStats()">Stats</button>
         <p id="stats"></p>
-        <button type="button" onclick="connectLace()">Connect Wallet</button>
-        <p id="walletAddress">Wallet: Not connected</p>
     </div>
     <script src="script.js"></script>
 </body>
