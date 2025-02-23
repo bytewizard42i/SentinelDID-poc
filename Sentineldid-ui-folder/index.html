@@ -10,9 +10,12 @@
     <p>Create and verify your DID!</p>
     <div class="form-container">
         <form id="kycForm">
-            <label>Name: <input id="name" placeholder="Johnny5i"></label><br>
-            <label>ID: <input id="idNumber" placeholder="12345"></label><br>
+            <label>First-Name: <input id="name" placeholder="Johnny"></label><br>
+            <label>Last-Name: <input id="name" placeholder="Johnny"></label><br>
+            <label>Sentinel-Assigned-ID: <input id="idNumber" placeholder="SDIDxx12345"></label><br>
             <button type="button" onclick="mintDid()">Mint DID</button>
+            <button onclick="connectLace()">Connect Wallet</button>
+            <button id="mintButton" onclick="mintDid()" disabled>Mint DID</button>
         </form>
         <img id="qrCode" alt="Your DID QR">
         <label>Check DID: <input id="checkDid" placeholder="Paste DID"></label><br>
