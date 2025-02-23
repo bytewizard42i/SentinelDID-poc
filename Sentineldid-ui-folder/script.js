@@ -33,11 +33,18 @@ async function getStats() {
 }
 
 async function connectLace() {
-    if (window.cardano && window.cardano.lace) {
-        const wallet = await window.cardano.lace.enable();
-        const address = await wallet.getChangeAddress();
-        document.getElementById('walletAddress').textContent = `Wallet: ${address}`;
+    if (window.midnight && window.midnight.lace) {
+        try {
+            const wallet = await window.midnight.lace.enable();
+            const address = await wallet.getAddress(); 
+            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
+            console.log('Connected to Midnight Lace at:', address);
+        } catch (error) {
+            document.getElementById('walletAddress').textContent = 'Wallet Error: Check Console';
+            console.error('Midnight Lace connection failed:', error);
+        }
     } else {
-        document.getElementById('walletAddress').textContent = 'Wallet: Lace not found!';
-    }
+        document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
+        console.warn('Midnight Lace extension not found—install from releases.midnight.network');
+    }       
 }
