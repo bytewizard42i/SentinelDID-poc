@@ -1,0 +1,58 @@
+// SentinelDID.compact
+// Brings in Midnight's standard tools - Map, Cell, keccak256, etc.
+import CompactStandardLibrary;
+
+contract SentinelDID {
+    // Internal Map - private storage for DID-to-KYC hash pairs
+    // Key: didId (public), Value: kycHash (private)
+    Map<bytes32, bytes32> didNFTs;
+    
+    // Public Cell - tracks the most recently issued DID
+    // Accessible to all - shows latest DID
+    Cell<bytes32> public lastDid;
+
+    // Event - broadcasts when a new DID is created
+    // Publicly announces didId for tracking
+    event DidIssued(bytes32 didId);
+
+    // Mint DID - creates a public DID from a private KYC hash
+    // Input: kycHash (hashed KYC data), Output: didId (unique identifier)
+    public function issueDid(bytes32 kycHash) returns (bytes32) {
+        bytes32 didId = keccak256(kycHash, now()); // Generates unique DID using hash and timestamp
+        didNFTs.insert(didId, kycHash); // Stores DID and hash privately in Map
+        lastDid.write(didId); // Updates the latest DID in Cell
+        emit DidIssued(didId); // Notifies the world of the new DID
+        return didId; // Returns DID to caller (e.g., server.js)
+    }
+
+    // Check DID - verifies if a DID exists in the Map
+    // Input: didId, Output: true/false
+    public function hasDid(bytes32 didId) returns (bool) {
+        return didNFTs.member(didId); // Checks if didId is a key in the Map
+    }
+
+    // Total DIDs - counts how many DIDs have been issued
+    // Output: number of DIDs (uint64)
+    public function getDidCount() returns (uint64) {
+        return didNFTs.size(); // Returns total entries in the Map
+    }
+
+    // Last DID - retrieves the most recent DID issued
+    // Output: didId (bytes32)
+    public function getLastDid() returns (bytes32) {
+        return lastDid.read(); // Reads the latest DID from Cell
+    }
+
+    // ZKProof Predicate - verifies a KYC trait (e.g., over 18) privately
+    // Inputs: kycHash (stored hash), proof (ZK proof from proof server)
+    predicate isOver18(bytes32 kycHash, bytes proof) {
+        assert(verifyZkProof(proof, kycHash)); // Checks proof against hash - placeholder for real ZKP
+    }
+
+    // Verify Age - public function to trigger ZKP verification
+    // Inputs: didId (public DID), proof (ZK proof), Output: true/false
+    public function verifyAge(bytes32 didId, bytes proof) returns (bool) {
+        bytes32 kycHash = didNFTs.lookup(didId); // Fetches private hash from Map
+        return isOver18(kycHash, proof); // Returns if proof validates (e.g., over 18)
+    }
+}
