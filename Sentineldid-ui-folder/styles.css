@@ -6,12 +6,14 @@ body {
     padding: 20px;
 }
 
-/* 🔹 Title & Headers (25% Bigger) */
+/* 🔹 Title & Headers (Now 15% Bigger + Shadow & Offset) */
 h1 {
-    font-size: 40px; /* Increased by 25% */
+    font-size: 46px; /* Increased by 15% */
     font-weight: bold;
     color: #333;
-    display: inline-block; /* Keeps inline formatting */
+    display: inline-block;
+    position: relative;
+    text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow & offset */
 }
 
 /* 🏷️ Trademark (™) Styling */
@@ -22,10 +24,11 @@ h1 {
     margin-left: 3px;
 }
 
-/* Subtitle (Also 25% Bigger) */
+/* 🔹 Subtitle (Darker & More Readable) */
 h2 {
-    font-size: 22px; /* Increased by 25% */
-    color: #666;
+    font-size: 23px; /* Slightly bigger */
+    color: #444; /* Darker than before */
+    font-weight: 500;
 }
 
 /* Paragraphs */
@@ -38,20 +41,20 @@ p {
 .form-container {
     background: white;
     padding: 30px;
-    border-radius: 15px; /* Slightly rounded corners for smooth feel */
+    border-radius: 15px;
     box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.3),  /* Stronger shadow depth */
-        0 4px 6px rgba(0, 0, 0, 0.1);   /* Lighter shadow inside */
+        0 10px 30px rgba(0, 0, 0, 0.3),  
+        0 4px 6px rgba(0, 0, 0, 0.1);
     display: inline-block;
     text-align: left;
-    width: 60%; /* Increased width */
-    max-width: 650px; /* Ensures it doesn’t stretch too wide */
+    width: 60%;
+    max-width: 650px;
     transition: all 0.3s ease-in-out;
 }
 
-/* Hover Effect - Makes the Form Feel Even More 3D */
+/* Hover Effect - Lifts Form for Extra 3D Feel */
 .form-container:hover {
-    transform: translateY(-5px); /* Slight lift effect */
+    transform: translateY(-5px);
     box-shadow: 
         0 15px 40px rgba(0, 0, 0, 0.4), 
         0 6px 10px rgba(0, 0, 0, 0.15);
@@ -81,7 +84,7 @@ p {
 
 /* 🔹 Buttons - Fancy & Spaced */
 button {
-    font-size: 16px;
+    font-size: 18px; /* Slightly bigger for readability */
     padding: 14px;
     width: 100%;
     background: linear-gradient(180deg, #4CAF50 0%, #388E3C 100%);
@@ -102,10 +105,10 @@ button:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* 🎨 Special: Connect Wallet Button */
+/* 🎨 Special: Connect Wallet Button (Bigger Text & More Attention) */
 #connectWalletButton {
-    font-size: 20px;
-    padding: 16px;
+    font-size: 24px; /* 🔥 Larger text */
+    padding: 18px;
     width: 100%;
     background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
     color: white;
