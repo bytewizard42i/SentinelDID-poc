@@ -1,0 +1,25 @@
+.
+├── .dockerignore
+├── .editorconfig
+├── .gitignore
+├── .nvmrc
+├── package.json
+├── .prettierrc.json
+├── README.md
+├── Sentineldid-api-folder
+│   ├── package.json
+│   └── server.js
+├── Sentineldid-contract-folder
+│   ├── package.json
+│   └── sentineldid.compact
+├── sentinelDID_tree.txt
+├── Sentineldid-ui-folder
+│   ├── index.html
+│   ├── package.json
+│   ├── script.js
+│   └── styles.css
+├── turbo.json
+├── yarn.lock
+└── .yarnrc.yml
+
+4 directories, 19 files
