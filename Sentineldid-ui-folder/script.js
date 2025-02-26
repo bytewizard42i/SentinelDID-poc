@@ -30,19 +30,33 @@ async function mintDid() {
         return;
     }
 
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const idNumber = document.getElementById('idNumber').value;
-    const driversLicense = document.getElementById('driversLicense').value;
-    const dob = document.getElementById('dob').value;
-    const ssn = document.getElementById('ssn').value;
-    const address = document.getElementById('address').value;
-    const phone = document.getElementById('phone').value;
-    const backgroundCheck = document.getElementById('backgroundCheck').checked;
-    const biometric = document.getElementById('biometric').value;
-    const nokName = document.getElementById('nokName').value;
-    const nokRelationship = document.getElementById('nokRelationship').value;
-    const nokPhone = document.getElementById('nokPhone').value;
+    // *** This code is an example of how we might use the exact order of the immutable user kyc information to make a rebuildable hash with in conjuction with biometrics eliminate fake and duplicate NFTs
+    const kycHash = keccak256(
+        "John Doe",
+        "1990-01-01",
+        "123-45-6789"
+    );
+    // Then we would confirm the individual is attached to this NFT (which has a datee associated with it, so if someone presents a younger NFT than the one registered it is denied without biometrics.)
+        // fingerprintData,
+        // faceData,
+        // bloodType,"A+",
+        // dnaSequence, "ctcgtgctcgctcggcgctatcgcta"
+
+        
+    //*** Alternate params for the kyc object ( but we want on)
+    // const firstName = document.getElementById('firstName').value;
+    // const lastName = document.getElementById('lastName').value;
+    // const idNumber = document.getElementById('idNumber').value;
+    // const driversLicense = document.getElementById('driversLicense').value;
+    // const dob = document.getElementById('dob').value;
+    // const ssn = document.getElementById('ssn').value;
+    // const address = document.getElementById('address').value;
+    // const phone = document.getElementById('phone').value;
+    // const backgroundCheck = document.getElementById('backgroundCheck').checked;
+    // const biometric = document.getElementById('biometric').value;
+    // const nokName = document.getElementById('nokName').value;
+    // const nokRelationship = document.getElementById('nokRelationship').value;
+    // const nokPhone = document.getElementById('nokPhone').value;
 
     if (!firstName || !lastName || !idNumber || !driversLicense || !dob || !ssn || !address || !phone || !nokName || !nokRelationship || !nokPhone) {
         alert('Please fill in all required fields.');
