@@ -33,7 +33,7 @@ async function mintDid() {
     // *** This code is an example of how we might use the exact order of the immutable user kyc information to make a rebuildable hash with in conjuction with biometrics eliminate fake and duplicate NFTs
     const kycHash = keccak256(
         "John Doe",
-        "1990-01-01",
+        "12.27.2025",
         "123-45-6789"
     );
     // Then we would confirm the individual is attached to this NFT (which has a datee associated with it, so if someone presents a younger NFT than the one registered it is denied without biometrics.)
