@@ -24,18 +24,13 @@ contract SentinelDID {
     }
 
     // Verify if a DID exists
+    // Input: didId, Output: true/false
     public function verifyDid(bytes32 didId) returns (bool) {
         return didNFTs.member(didId);               // True if minted
     }
 }
 
-    // Check DID - verifies if a DID exists in the Map
-    // Input: didId, Output: true/false
-    public function hasDid(bytes32 didId) returns (bool) {
-        return didNFTs.member(didId); // Checks if didId is a key in the Map
-    }
-
-    // Total DIDs - counts how many DIDs have been issued
+        // Total DIDs - counts how many DIDs have been issued
     // Output: number of DIDs (uint64)
     public function getDidCount() returns (uint64) {
         return didNFTs.size(); // Returns total entries in the Map
