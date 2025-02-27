@@ -1,30 +1,14 @@
 
-[38;2;162;59;114m[1][39m  INFO  Accepting connections at http://localhost:3001
 Opening in existing browser session.
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:29 AM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:29 AM ::1 Returned 304 in 20 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:30 AM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:30 AM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:30 AM ::1 Returned 304 in 8 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:30 AM ::1 Returned 200 in 11 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:32 AM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:26:32 AM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:52 AM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:52 AM ::1 Returned 304 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:52 AM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:52 AM ::1 Returned 304 in 3 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:52 AM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:52 AM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:53 AM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:27:53 AM ::1 Returned 304 in 5 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:50 AM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:50 AM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:50 AM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:50 AM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:50 AM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:50 AM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:51 AM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  2/27/2025 7:38:51 AM ::1 Returned 304 in 0 ms
+[38;2;162;59;114m[1][39m  INFO  Accepting connections at http://localhost:3001
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:06 PM ::1 GET /
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:06 PM ::1 Returned 304 in 26 ms
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:06 PM ::1 GET /styles.css
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:06 PM ::1 Returned 304 in 2 ms
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:06 PM ::1 GET /script.js
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:06 PM ::1 Returned 304 in 2 ms
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:07 PM ::1 GET /favicon.ico
+[38;2;162;59;114m[1][39m  HTTP  2/27/2025 1:01:07 PM ::1 Returned 304 in 1 ms
 [38;2;162;59;114m[1][39m 
 [38;2;162;59;114m[1][39m  INFO  Gracefully shutting down. Please wait...
 Job [38;2;162;59;114m[1][39m, '[38;2;162;59;114mserve -s . -p 3001[39m' has ended
