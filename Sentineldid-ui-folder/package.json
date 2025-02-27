@@ -1,10 +1,8 @@
 {
-    "name": "sentineldid-ui",
+    "name": "sentineldid-contract",
     "version": "1.0.0",
     "scripts": {
-        "start": "live-server --port=5500"
-    },
-    "devDependencies": {
-        "live-server": "^1.2.2"
+        "compile": "compactc compile SentinelDID.compact",
+        "deploy": "midnight-cli deploy SentinelDID.compact --network testnet"
     }
 }
