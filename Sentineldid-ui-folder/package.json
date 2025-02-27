@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "private": true,
     "scripts": {
-      "start": "serve -s . -p 3001 --open"
+        "start": "serve -s . -p 3001"  
     },
     "devDependencies": {
-      "serve": "^14.2.3"
+        "serve": "^14.2.3"
     }
-  }
+}
