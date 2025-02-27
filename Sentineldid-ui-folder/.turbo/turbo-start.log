@@ -1,12 +1,15 @@
 
-[31m[1mInternal Error[22m[39m: Package for [38;2;215;95;0m@sentineldid/[39m[38;2;215;135;95mui[39m[38;2;135;175;255m@[39m[38;2;135;175;255mworkspace:Sentineldid-ui-folder[39m not found in the project
-    at Lb (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:190:943)
-    at aue (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:190:1949)
-    at bat (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:189:3352)
-    at async /home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:189:2629
-    at async Tn.mktempPromise (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:9:45514)
-    at async Object.Nb (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:189:2568)
-    at async wE.execute (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:509:516)
-    at async wE.validateAndExecute (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:94:787)
-    at async t.run (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:98:3249)
-    at async APt (/home/js/.cache/node/corepack/v1/yarn/4.4.0/yarn.js:735:7743)
+[32m[39m
+[32m   ┌──────────────────────────────────────────┐[39m
+   [32m│[39m                                          [32m│[39m
+   [32m│[39m   [32mServing![39m                               [32m│[39m
+   [32m│[39m                                          [32m│[39m
+   [32m│[39m   [1m- Local:[22m    http://localhost:3001      [32m│[39m
+   [32m│[39m   [1m- Network:[22m  http://192.168.1.23:3001   [32m│[39m
+   [32m│[39m                                          [32m│[39m
+   [32m│[39m   [90mCopied local address to clipboard![39m     [32m│[39m
+   [32m│[39m                                          [32m│[39m
+[32m   └──────────────────────────────────────────┘[39m
+[32m[39m
+
+[45m[1m INFO [22m[49m Gracefully shutting down. Please wait...
