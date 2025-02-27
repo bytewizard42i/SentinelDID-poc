@@ -1,4 +1,3 @@
-// script.js
 let walletAddress = null;
 
 async function connectLace() {
@@ -6,22 +5,19 @@ async function connectLace() {
     if (window.midnight && window.midnight.lace) {
         try {
             const wallet = await window.midnight.lace.enable();
-            const address = await wallet.getAddress(); 
+            const address = await wallet.getAddress();
             walletAddress = address;
             document.getElementById('mintButton').disabled = false;
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
             console.log('Connected to Midnight Lace at:', address);
         } catch (error) {
-            document.getElementById('walletAddress').textContent = 'Wallet Error: Check Console';
+            document.getElementById('walletAddress').textContent = 'Wallet Connection Failed: ' + error.message;
             console.error('Midnight Lace connection failed:', error);
         }
-    } else if (window.cardano && window.cardano.lace) {
-        document.getElementById('walletAddress').textContent = 'Cardano Lace Detected—Use Midnight Lace!';
-        console.warn('Found Cardano Lace—switch to Midnight Lace!');   
     } else {
         document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
         console.warn('Midnight Lace extension not found—install from releases.midnight.network');
-    }       
+    }
 }
 
 async function mintDid() {
@@ -30,99 +26,99 @@ async function mintDid() {
         return;
     }
 
-    // *** This code is an example of how we might use the exact order of the immutable user kyc information to make a rebuildable hash with in conjuction with biometrics eliminate fake and duplicate NFTs
-    const kycHash = keccak256(
-        "John Doe",
-        "12.27.2025",
-        "123-45-6789"
-    );
-    // Then we would confirm the individual is attached to this NFT (which has a datee associated with it, so if someone presents a younger NFT than the one registered it is denied without biometrics.)
-        // fingerprintData,
-        // faceData,
-        // bloodType,"A+",
-        // dnaSequence, "ctcgtgctcgctcggcgctatcgcta"
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const idNumber = document.getElementById('idNumber').value;
+    const driversLicense = document.getElementById('driversLicense').value;
+    const dob = document.getElementById('dob').value;
+    const ssn = document.getElementById('ssn').value;
+    const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
+    const biometric = document.getElementById('biometric').value;
+    const backgroundCheck = document.getElementById('backgroundCheck').checked;
+    const nokName = document.getElementById('nokName').value;
+    const nokRelationship = document.getElementById('nokRelationship').value;
+    const nokPhone = document.getElementById('nokPhone').value;
 
-        
-    //*** Alternate params for the kyc object ( but we want on)
-    // const firstName = document.getElementById('firstName').value;
-    // const lastName = document.getElementById('lastName').value;
-    // const idNumber = document.getElementById('idNumber').value;
-    // const driversLicense = document.getElementById('driversLicense').value;
-    // const dob = document.getElementById('dob').value;
-    // const ssn = document.getElementById('ssn').value;
-    // const address = document.getElementById('address').value;
-    // const phone = document.getElementById('phone').value;
-    // const backgroundCheck = document.getElementById('backgroundCheck').checked;
-    // const biometric = document.getElementById('biometric').value;
-    // const nokName = document.getElementById('nokName').value;
-    // const nokRelationship = document.getElementById('nokRelationship').value;
-    // const nokPhone = document.getElementById('nokPhone').value;
-
-    if (!firstName || !lastName || !idNumber || !driversLicense || !dob || !ssn || !address || !phone || !nokName || !nokRelationship || !nokPhone) {
+    if (!firstName || !lastName || !idNumber || !driversLicense || !dob || !ssn || !address || !phone || !biometric || !nokName || !nokRelationship || !nokPhone) {
         alert('Please fill in all required fields.');
         return;
     }
 
-    const kyc = {
-        firstName,
-        lastName,
-        idNumber,
-        driversLicense,
-        dob,
-        ssn,
-        address,
-        phone,
-        backgroundCheck,
-        biometric,
-        nokName,
-        nokRelationship,
-        nokPhone,
-        wallet: walletAddress
-    };
+    const kycData = `${firstName}|${lastName}|${idNumber}|${driversLicense}|${dob}|${ssn}|${address}|${phone}|${biometric}|${nokName}|${nokRelationship}|${nokPhone}`;
+    const kycHash = await keccak256(kycData); // Simulated hash; ideally computed server-side
 
-    const response = await fetch('http://localhost:3000/mint-nft', {
-        method: 'POST',
-        body: JSON.stringify(kyc),
-        headers: { 'Content-Type': 'application/json' }
-    });
-    const data = await response.json();
-    if (data.qrUrl) {
-        document.getElementById('qrCode').src = data.qrUrl;
-        document.getElementById('qrCode').style.display = 'block';
-    } else {
-        alert('Failed to mint DID.');
+    try {
+        const response = await fetch('http://localhost:3000/mint-nft', {
+            method: 'POST',
+            body: JSON.stringify({ kycHash, wallet: walletAddress }),
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await response.json();
+        if (data.qrUrl) {
+            document.getElementById('qrCode').src = data.qrUrl;
+            document.getElementById('qrCode').style.display = 'block';
+        } else {
+            alert('Failed to mint DID: ' + (data.error || 'Unknown error'));
+        }
+    } catch (error) {
+        alert('Error minting DID: ' + error.message);
     }
 }
 
 async function checkDid() {
+    if (!walletAddress) {
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
     const didId = document.getElementById('checkDid').value;
     if (!didId) {
         alert('Please enter a DID to check.');
         return;
     }
-    const response = await fetch(`http://localhost:3000/has-did/${didId}`);
-    const data = await response.json();
-    document.getElementById('result').textContent = data.exists ? 'DID exists!' : 'No such DID.';
+    try {
+        const response = await fetch(`http://localhost:3000/has-did/${didId}`);
+        const data = await response.json();
+        document.getElementById('result').textContent = data.exists ? 'DID exists!' : 'No such DID.';
+    } catch (error) {
+        alert('Error checking DID: ' + error.message);
+    }
 }
 
 async function verifyAge() {
+    if (!walletAddress) {
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
     const didId = document.getElementById('checkDid').value;
     if (!didId) {
         alert('Please enter a DID to verify age.');
         return;
     }
-    const response = await fetch(`http://localhost:3000/verify-age/${didId}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' }
-    });
-    const data = await response.json();
-    document.getElementById('result').textContent = data.isOver18 ? 'Over 18!' : 'Not over 18.';
+    try {
+        const response = await fetch(`http://localhost:3000/verify-age/${didId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await response.json();
+        document.getElementById('result').textContent = data.isOver18 ? 'Over 18!' : 'Not over 18.';
+    } catch (error) {
+        alert('Error verifying age: ' + error.message);
+    }
 }
 
 async function getStats() {
-    const countResp = await fetch('http://localhost:3000/did-count');
-    const countData = await countResp.json();
-    const lastResp = await fetch('http://localhost:3000/last-did');
-    const lastData = await lastResp.json();
-    document.getElementById('stats').textContent = `Total DIDs: ${countData.totalDids}, Last DID: ${lastData.lastDid}`;
+    if (!walletAddress) {
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
+    try {
+        const countResp = await fetch('http://localhost:3000/did-count');
+        const countData = await countResp.json();
+        const lastResp = await fetch('http://localhost:3000/last-did');
+        const lastData = await lastResp.json();
+        document.getElementById('stats').textContent = `Total DIDs: ${countData.totalDids}, Last DID: ${lastData.lastDid}`;
+    } catch (error) {
+        alert('Error fetching stats: ' + error.message);
+    }
 }
