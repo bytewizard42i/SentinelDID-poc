@@ -1,17 +1,15 @@
 {
-    "name": "sentineldid-poc-root",
-    "version": "1.0.0",
+    "name": "sentineldid-poc",
     "private": true,
     "workspaces": [
-        "Sentineldid-ui-folder",
-        "Sentineldid-api-folder",
-        "Sentineldid-contract-folder"
+      "Sentineldid-ui-folder",
+      "Sentineldid-contract-folder",
+      "Sentineldid-api-folder"
     ],
     "scripts": {
-        "start": "turbo run start"
+      "start": "turbo run start"
     },
     "devDependencies": {
-        "turbo": "^2.0.0"
-    },
-    "packageManager": "yarn@4.4.0"
-}
+      "turbo": "^2.4.2"
+    }
+  }
