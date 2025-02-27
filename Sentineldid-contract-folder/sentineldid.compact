@@ -1,57 +1,38 @@
-// SentinelDID.compact
-// Brings in Midnight's standard tools - Map, Cell, keccak256, etc.
-import CompactStandardLibrary;
+import CompactStandardLibrary prefix Std_;
 
 contract SentinelDID {
-    // Map to track minted DIDs (NFTs)
-    // Key: didId (kycHash), Value: true if minted
-    Map<bytes32, bool> didNFTs;
+    ledger didNFTs: Std_Map<bytes32, bool>;  // Implicit Cell for Map
+    ledger lastDid: bytes32;                 // Implicit Cell removed
 
-    // Cell to store the most recently issued DID
-    Cell<bytes32> public lastDid;
-
-    // Event to announce a new DID
     event DidIssued(bytes32 didId);
 
-    // Mint a DID using the pre-hashed KYC data
     public function issueDid(bytes32 kycHash) returns (bytes32) {
-        bytes32 didId = kycHash;                    // Use kycHash directly as didId
-        require(!didNFTs.member(didId), "DID already exists"); // No duplicates
-        didNFTs.insert(didId, true);                // Mint the NFT
-        lastDid.write(didId);                       // Update last DID
-        emit DidIssued(didId);                      // Announce it
-        return didId;                               // Return it
+        bytes32 didId = kycHash;
+        require(!didNFTs.member(didId), "DID already exists");
+        didNFTs.insert(didId, true);
+        lastDid = didId;  // Implicit write
+        Std_emit_event("DidIssued", didId);
+        return didId;
     }
 
-    // Verify if a DID exists
-    // Input: didId, Output: true/false
     public function verifyDid(bytes32 didId) returns (bool) {
-        return didNFTs.member(didId);               // True if minted
+        return didNFTs.member(didId);
     }
-}
 
-        // Total DIDs - counts how many DIDs have been issued
-    // Output: number of DIDs (uint64)
     public function getDidCount() returns (uint64) {
-        return didNFTs.size(); // Returns total entries in the Map
+        return didNFTs.size();
     }
 
-    // Last DID - retrieves the most recent DID issued
-    // Output: didId (bytes32)
     public function getLastDid() returns (bytes32) {
-        return lastDid.read(); // Reads the latest DID from Cell
+        return lastDid;  // Implicit read
     }
 
-    // ZKProof Predicate - verifies a KYC trait (e.g., over 18) privately
-    // Inputs: kycHash (stored hash), proof (ZK proof from proof server)
     predicate isOver18(bytes32 kycHash, bytes proof) {
-        assert(verifyZkProof(proof, kycHash)); // Checks proof against hash - placeholder for real ZKP
+        assert(Std_verifyZkProof(proof, kycHash));
     }
 
-    // Verify Age - public function to trigger ZKP verification
-    // Inputs: didId (public DID), proof (ZK proof), Output: true/false
     public function verifyAge(bytes32 didId, bytes proof) returns (bool) {
-        bytes32 kycHash = didNFTs.lookup(didId); // Fetches private hash from Map
-        return isOver18(kycHash, proof); // Returns if proof validates (e.g., over 18)
+        bytes32 kycHash = didNFTs.lookup(didId);
+        return isOver18(kycHash, proof);
     }
 }
