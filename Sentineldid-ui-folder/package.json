@@ -1,5 +1,5 @@
 {
-    "name": "sentineldid-contract",
+    "name": "sentineldid-contract-ui",
     "version": "1.0.0",
     "scripts": {
         "compile": "compactc compile SentinelDID.compact",
