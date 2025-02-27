@@ -6,8 +6,10 @@ const { exec } = require('child_process');
 
 const app = express();
 app.use(express.json());
-let kycStore = [];
+let kycStore = []; // you might want to store this in a DB instead, but for a POC it's fine I guess
 const contractAddress = '0xYourDeployedAddress'; // ****Replace with actual address****
+
+const server = app.listen(3000, () => console.log(`Server running on ${server.address()}`)); // the {port} be parameterized here
 
 app.post('/mint-nft', async (req, res) => {
     const { firstName, lastName, idNumber, driversLicense, dob, ssn, address, phone, backgroundCheck, biometric, nokName, nokRelationship, nokPhone, wallet } = req.body;
@@ -17,8 +19,9 @@ app.post('/mint-nft', async (req, res) => {
 
     const kycData = { firstName, lastName, idNumber, driversLicense, dob, ssn, address, phone, biometric };
     const kycHash = keccak256(JSON.stringify(kycData));
-    kycStore.push({ ...kycData, backgroundCheck, nokName, nokRelationship, nokPhone, wallet });
+    kycStore.push({ ...kycData, backgroundCheck, nokName, nokRelationship, nokPhone, wallet }); // I thought we're only storing the hash...
 
+    // need to sanitize {wallet} to prevent malicious attacks
     exec(`midnight-cli call ${contractAddress} issueDid ${kycHash} ${wallet} --network testnet`, (err, stdout) => {
         if (err) {
             console.error('Minting failed:', err);
@@ -29,7 +32,7 @@ app.post('/mint-nft', async (req, res) => {
             return res.status(500).json({ error: 'Failed to extract didId' });
         }
         const didId = didIdMatch[1];
-        QRCode.toDataURL(`http://localhost:3000/did/${didId}`, (err, qrUrl) => {
+        QRCode.toDataURL(`${server.address()}/${didId}`, (err, qrUrl) => {
             if (err) {
                 console.error('QR code generation failed:', err);
                 return res.status(500).json({ error: 'QR code generation failed' });
@@ -40,12 +43,12 @@ app.post('/mint-nft', async (req, res) => {
 });
 
 app.get('/did/:didId', (req, res) => {
-    const didId = req.params.didId;
-    res.json({ didId, kycHash: 'stored-on-chain' });
+    const didId = req.params.didId;                  // I don't really understand this endpoint,
+    res.json({ didId, kycHash: 'stored-on-chain' }); // is it a plan that the hash should be retrieved from the on-chain?
 });
 
 app.get('/has-did/:didId', (req, res) => {
-    const didId = req.params.didId;
+    const didId = req.params.didId; // need to sanitize {didId} to prevent malicious attacks
     exec(`midnight-cli call ${contractAddress} hasDid ${didId} --network testnet`, (err, stdout) => {
         if (err) {
             console.error('Check failed:', err);
@@ -57,7 +60,7 @@ app.get('/has-did/:didId', (req, res) => {
 });
 
 app.post('/verify-age/:didId', (req, res) => {
-    const didId = req.params.didId;
+    const didId = req.params.didId; // need to sanitize {didId} to prevent malicious attacks
     const proof = '0x1234'; // Dummy proof for PoC
     exec(`midnight-cli call ${contractAddress} verifyAge ${didId} ${proof} --network testnet`, (err, stdout) => {
         if (err) {
@@ -90,5 +93,3 @@ app.get('/last-did', (req, res) => {
         res.json({ lastDid });
     });
 });
-
-app.listen(3000, () => console.log('Server running on http://localhost:3000'));
