@@ -6,37 +6,44 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>SentinelDID<sup>TM</sup></h1>
-    <h2>"Digital IDentity, Saving Lives"</h2>
-    <p>Create and verify your DID!</p>
-    <div class="form-container">
-        <button type="button" onclick="connectLace()">Connect Wallet</button>
-        <p id="walletAddress">Wallet: Not connected</p>
-        <form id="kycForm">
-            <label>First Name: <input id="firstName" placeholder="Johnny"></label><br>
-            <label>Last Name: <input id="lastName" placeholder="Appleseed"></label><br>
-            <label>Sentinel-Assigned-ID: <input id="idNumber" placeholder="SDIDxx12345"></label><br>
-            <label>Driver’s License: <input id="driversLicense" placeholder="DL12345678"></label><br>
-            <label>Date of Birth: <input type="date" id="dob"></label><br>
-            <label>Social Security Number: <input type="password" id="ssn" placeholder="123-45-6789"></label><br>
-            <label>Current Address: <textarea id="address" placeholder="123 Main St, Anytown, USA"></textarea></label><br>
-            <label>Phone Number: <input type="tel" id="phone" placeholder="555-123-4567"></label><br>
-            <label>Biometric Fingerprint (simulate with text): <input type="text" id="biometric" placeholder="Fingerprint data"></label><br>
-            <label>Permission for Background Check: <input type="checkbox" id="backgroundCheck"></label><br>
-            <h3>Next of Kin</h3>
-            <label>Name: <input id="nokName" placeholder="Jane Doe"></label><br>
-            <label>Relationship: <input id="nokRelationship" placeholder="Spouse"></label><br>
-            <label>Phone Number: <input type="tel" id="nokPhone" placeholder="555-987-6543"></label><br>
-            <button id="mintButton" type="button" onclick="mintDid()" disabled>Mint DID</button>
-        </form>
-        <img id="qrCode" alt="Your DID QR" style="display:none;">
-        <label>Check DID: <input id="checkDid" placeholder="Paste DID"></label><br>
-        <button type="button" onclick="checkDid()">Verify DID</button>
-        <button type="button" onclick="verifyAge()">Verify Age</button>
-        <p id="result"></p>
-        <button type="button" onclick="getStats()">Stats</button>
-        <p id="stats"></p>
-    </div>
+    <header>
+        <h1>SentinelDID<sup>TM</sup></h1>
+        <h2>"Digital IDentity, Saving Lives"</h2>
+    </header>
+    <main>
+        <p aria-live="polite">Create and verify your DID!</p>
+        <div class="form-container">
+            <button type="button" onclick="connectLace()" aria-label="Connect to Midnight Lace Wallet">Connect Wallet</button>
+            <p id="walletAddress" aria-live="assertive">Wallet: Not connected</p>
+            <form id="kycForm" aria-labelledby="formTitle">
+                <h3 id="formTitle">Enter Your Information</h3>
+                <label for="firstName">First Name: <input id="firstName" placeholder="Johnny" required></label><br>
+                <label for="lastName">Last Name: <input id="lastName" placeholder="Appleseed" required></label><br>
+                <label for="idNumber">Sentinel-Assigned-ID: <input id="idNumber" placeholder="SDIDxx12345" required></label><br>
+                <label for="driversLicense">Driver’s License: <input id="driversLicense" placeholder="DL12345678" required></label><br>
+                <label for="dob">Date of Birth: <input type="date" id="dob" required></label><br>
+                <label for="ssn">Social Security Number: <input type="password" id="ssn" placeholder="123-45-6789" required></label><br>
+                <label for="address">Current Address: <textarea id="address" placeholder="123 Main St, Anytown, USA" required></textarea></label><br>
+                <label for="phone">Phone Number: <input type="tel" id="phone" placeholder="555-123-4567" required></label><br>
+                <label for="biometric">Biometric Fingerprint (simulate with text): <input type="text" id="biometric" placeholder="Fingerprint data" required></label><br>
+                <label for="backgroundCheck">Permission for Background Check: <input type="checkbox" id="backgroundCheck"></label><br>
+                <fieldset>
+                    <legend>Next of Kin</legend>
+                    <label for="nokName">Name: <input id="nokName" placeholder="Jane Doe" required></label><br>
+                    <label for="nokRelationship">Relationship: <input id="nokRelationship" placeholder="Spouse" required></label><br>
+                    <label for="nokPhone">Phone Number: <input type="tel" id="nokPhone" placeholder="555-987-6543" required></label><br>
+                </fieldset>
+                <button id="mintButton" type="button" onclick="mintDid()" disabled aria-label="Mint DID (disabled until wallet connected)">Mint DID</button>
+            </form>
+            <img id="qrCode" alt="Your DID QR Code" style="display:none;">
+            <label for="checkDid">Check DID: <input id="checkDid" placeholder="Paste DID"></label><br>
+            <button type="button" onclick="checkDid()" aria-label="Verify DID">Verify DID</button>
+            <button type="button" onclick="verifyAge()" aria-label="Verify Age">Verify Age</button>
+            <p id="result" aria-live="polite"></p>
+            <button type="button" onclick="getStats()" aria-label="Get DID Stats">Stats</button>
+            <p id="stats" aria-live="polite"></p>
+        </div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
