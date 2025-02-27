@@ -1,31 +1,32 @@
 let walletAddress = null;
 
-async function connectLace() {
-    console.log('Available wallets:', window.midnight, window.cardano);
-    if (window.midnight && window.midnight.lace) {
-        try {
-            const wallet = await window.midnight.lace.enable();
-            const address = await wallet.getAddress();
-            walletAddress = address;
-            document.getElementById('mintButton').disabled = false;
-            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
-            console.log('Connected to Midnight Lace at:', address);
-        } catch (error) {
-            document.getElementById('walletAddress').textContent = 'Wallet Connection Failed: ' + error.message;
-            console.error('Midnight Lace connection failed:', error);
-        }
-    } else {
-        document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
-        console.warn('Midnight Lace extension not found—install from releases.midnight.network');
-    }
-}
+
 
 async function mintDid() {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
         return;
     }
-
+    async function connectLace() {
+        console.log('Available wallets:', window.midnight, window.cardano);
+        if (window.midnight?.mnLace) {
+            try {
+                const wallet = await window.midnight.mnLace.enable();
+                const address = await wallet.getAddress();
+                walletAddress = address;
+                document.getElementById('mintButton').disabled = false;
+                document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
+                console.log('Connected to Midnight Lace at:', address);
+            } catch (error) {
+                document.getElementById('walletAddress').textContent = 'Wallet Connection Failed: ' + error.message;
+                console.error('Midnight Lace connection failed:', error);
+            }
+        } else {
+            document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
+            console.warn('Midnight Lace extension not found—install from releases.midnight.network');
+        }
+    }
+    
     const firstName = document.getElementById('firstName').value;
     const lastName = document.getElementById('lastName').value;
     const idNumber = document.getElementById('idNumber').value;
