@@ -12,34 +12,35 @@
     <h1>Digital Identity, Saving Lives...</h1>
     <h4>***Demo Simulator for SentinelDID Workflow***</h4>
     <div class="form-container">
+        
         <form id="kycForm">
             <label for="firstName">First Name:</label>
-            <input type="text" id="firstName" required><br>
+            <input type="text" id="firstName" placeholder="e.g., Johnny" required><br>
             <label for="lastName">Last Name:</label>
-            <input type="text" id="lastName" required><br>
+            <input type="text" id="lastName" placeholder="e.g., Bytewizard" required><br>
             <label for="idNumber">Sentinel-Assigned-ID:</label>
-            <input type="text" id="idNumber" required><br>
+            <input type="text" id="idNumber" placeholder="e.g., SDIDxx12345" required><br>
             <label for="driversLicense">Driver’s License:</label>
-            <input type="text" id="driversLicense" required><br>
+            <input type="text" id="driversLicense" placeholder="e.g., DL12345678" required><br>
             <label for="dob">Date of Birth:</label>
-            <input type="date" id="dob" required><br>
+            <input type="date" id="dob" placeholder="YYYY-MM-DD" required><br>
             <label for="ssn">Social Security Number:</label>
-            <input type="text" id="ssn" required><br>
+            <input type="text" id="ssn" placeholder="e.g., 123-45-6789" required><br>
             <label for="address">Current Address:</label>
-            <textarea id="address" required></textarea><br>
+            <textarea id="address" placeholder="e.g., 123 Main St, Anytown, USA" required></textarea><br>
             <label for="phone">Phone Number:</label>
-            <input type="tel" id="phone" required><br>
+            <input type="tel" id="phone" placeholder="e.g., 555-123-4567" required><br>
             <label for="biometric">Biometric Fingerprint (Simulated):</label>
-            <input type="text" id="biometric" required><br>
+            <input type="text" id="biometric" placeholder="e.g., Fingerprint123" required><br>
             <label for="backgroundCheck">Background Check Permission:</label>
             <input type="checkbox" id="backgroundCheck"><br>
             <h3>Next of Kin</h3>
             <label for="nokName">Name:</label>
-            <input type="text" id="nokName" required><br>
+            <input type="text" id="nokName" placeholder="e.g., Jane Doe" required><br>
             <label for="nokRelationship">Relationship:</label>
-            <input type="text" id="nokRelationship" required><br>
+            <input type="text" id="nokRelationship" placeholder="e.g., Spouse" required><br>
             <label for="nokPhone">Phone Number:</label>
-            <input type="tel" id="nokPhone" required><br>
+            <input type="tel" id="nokPhone" placeholder="e.g., 555-987-6543" required><br>
             <button type="button" id="saveButton">Save Information</button>
         </form>
         <button type="button" id="mintButton" disabled>Mint DID NFT</button>

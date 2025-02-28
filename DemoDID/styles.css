@@ -104,7 +104,7 @@ p {
 /* Placeholder Styling */
 #kycForm input::placeholder,
 #kycForm textarea::placeholder {
-    color: #d3d3d3; /* Light gray */
+    color: #948f8f; /* Light gray */
     opacity: 1; /* Ensures full visibility */
 }
 
