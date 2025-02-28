@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background: url('rescue-rubble.jpg') no-repeat center center fixed; /* Wallpaper */
+    background: url('rescuers.jpg') no-repeat center center fixed; /* Wallpaper */
     background-size: cover; /* Full coverage */
     background-color: #f4f4f4; /* Fallback if image fails */
     text-align: center;
