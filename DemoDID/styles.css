@@ -1,45 +1,50 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: url('rescue-rubble.jpg') no-repeat center center fixed; /* Wallpaper */
+    background-size: cover; /* Full coverage */
+    background-color: #f4f4f4; /* Fallback if image fails */
     text-align: center;
     padding: 20px;
+    min-height: 100vh; /* Ensure full height */
 }
 
 /* 🔹 Title & Headers (Now 15% Bigger + Shadow & Offset) */
 h1 {
-    font-size: 46px; /* Increased by 15% */
+    font-size: 46px;
     font-weight: bold;
-    color: #333;
+    color: #fff; /* White for contrast on dark background */
     display: inline-block;
     position: relative;
-    text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow & offset */
+    text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.8); /* Darker shadow for readability */
 }
 
 /* 🏷️ Trademark (™) Styling */
 .tm {
-    font-size: 14px; /* Small superscript style */
+    font-size: 14px;
     vertical-align: super;
-    color: #666;
+    color: #ccc; /* Lighter gray for visibility */
     margin-left: 3px;
 }
 
 /* 🔹 Subtitle (Darker & More Readable) */
 h2 {
-    font-size: 23px; /* Slightly bigger */
-    color: #444; /* Darker than before */
+    font-size: 23px;
+    color: #fff; /* White for contrast */
     font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
 }
 
 /* Paragraphs */
 p {
     font-size: 18px;
-    color: #444;
+    color: #fff; /* White for contrast */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Shadow for readability */
 }
 
-/* 🔹 Form Container - Now More 3D & Pronounced */
+/* 🔹 Form Container - More Opaque for Readability */
 .form-container {
-    background: white;
+    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
     padding: 30px;
     border-radius: 15px;
     box-shadow: 
@@ -72,24 +77,24 @@ p {
     margin-bottom: 12px;
     padding: 12px;
     font-size: 16px;
-    background: #f9f9f9;  /* 🔥 Lighter box color */
-    border: 1px solid #999; /* 🔥 Lighter border */
+    background: #f9f9f9;
+    border: 1px solid #999;
     border-radius: 5px;
     width: 100%;
     transition: all 0.3s ease-in-out;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); /* 🔥 Darker drop shadow */
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
 }
 
 #kycForm input:focus, 
 #kycForm textarea:focus {
     outline: none;
-    border-color: #4CAF50; /* Turns green when selected */
-    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5); /* More glow on focus */
+    border-color: #4CAF50;
+    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5);
 }
 
 /* 🔹 Buttons - Fancy & Spaced */
 button {
-    font-size: 18px; /* Slightly bigger for readability */
+    font-size: 18px;
     padding: 14px;
     width: 100%;
     background: linear-gradient(180deg, #4CAF50 0%, #388E3C 100%);
@@ -117,10 +122,10 @@ button:disabled {
     box-shadow: none;
 }
 
-/* 🎨 Special: Connect Wallet Button (Bigger Text & More Attention) */
+/* 🎨 Special: Connect Wallet Button */
 button#connectWalletButton {
-    font-size: 36px !important; /* 🔥 Larger text */
-    font-weight: bold !important; /* 🔥 Makes text bold */
+    font-size: 36px !important;
+    font-weight: bold !important;
     padding: 18px;
     width: 100%;
     background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
@@ -155,12 +160,11 @@ button#connectWalletButton {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Additional DemoDID Elements */
 /* 🔹 NFT Display */
 #nftDisplay {
     margin-top: 20px;
     padding: 15px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.9); /* Match form opacity */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -182,7 +186,7 @@ button#connectWalletButton {
     margin: 20px auto;
     height: 200px;
     overflow-y: scroll;
-    background-color: #e0e0e0;
+    background-color: rgba(224, 224, 224, 0.9); /* Slightly transparent gray */
     padding: 10px;
     text-align: left;
     border: 1px solid #999;
@@ -199,10 +203,21 @@ button#connectWalletButton {
     padding: 8px;
     width: 300px;
     margin-right: 10px;
+    background: #f9f9f9;
+    border: 1px solid #999;
+    border-radius: 5px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+}
+
+#callDid input:focus {
+    outline: none;
+    border-color: #4CAF50;
+    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5);
 }
 
 #callResult {
     margin-top: 10px;
     font-size: 18px;
     color: #333;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Match other text */
 }
