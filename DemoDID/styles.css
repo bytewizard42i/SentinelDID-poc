@@ -96,8 +96,9 @@ p {
     background: #f9f9f9;
     border: 1px solid #999;
     border-radius: 5px;
-    width: calc(100% - 20px); /* Shrink width by 20px */
-    margin-right: 20px; /* Add space on the right */
+    width: calc(100% - 80px); /* Shrink by 40px each side (80px total) */
+    margin-right: 40px; /* 40px space on the right */
+    margin-left: 40px; /* 40px space on the left */
     transition: all 0.3s ease-in-out;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
 }
