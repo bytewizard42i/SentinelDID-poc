@@ -19,11 +19,11 @@ h1 {
     text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.8); /* Darker shadow for readability */
 }
 
-/* 🏷️ Trademark (™) Styling */
-.tm {
-    font-size: 7px;
+/* 🏷️ Trademark (™) Styling - Higher Priority */
+h1 .tm {
+    font-size: 25px !important; /* Your new size */
     vertical-align: super;
-    color: #ccc; /* Lighter gray for visibility */
+    color: #ccc;
     margin-left: 3px;
 }
 
