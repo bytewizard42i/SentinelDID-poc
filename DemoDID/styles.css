@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background: url('/rescuers.jpg') no-repeat center center fixed; /* Wallpaper */
+    background: url('demo-photo.jpg') no-repeat center center fixed; /* Wallpaper */
     background-size: cover; /* Full coverage */
     background-color: transparent; /* Fallback if image fails */
     text-align: center;
