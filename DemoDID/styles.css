@@ -76,7 +76,7 @@ p {
 #kycForm textarea {
     margin-bottom: 12px;
     padding: 12px;
-    font-size: 16px;
+    font-size: 18px;
     background: #f9f9f9;
     border: 1px solid #999;
     border-radius: 5px;
@@ -94,7 +94,7 @@ p {
 
 /* 🔹 Buttons - Fancy & Spaced */
 button {
-    font-size: 18px;
+    font-size: 20px;
     padding: 14px;
     width: 100%;
     background: linear-gradient(180deg, #4CAF50 0%, #388E3C 100%);
