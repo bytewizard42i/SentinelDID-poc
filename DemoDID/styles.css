@@ -45,9 +45,9 @@ h3 {
 
 h4 {
     font-size: 27px;
-    color: #fdff75; /* White for contrast */
+    color: #fbff01; /* Yellow for contrast */
     font-weight: 500;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
+    text-shadow: 4px 4px 8px rgb(0, 0, 0); /* Shadow for readability */
 }
 
 
@@ -60,12 +60,12 @@ p {
 
 /* 🔹 Form Container - More Opaque for Readability */
 .form-container {
-    background:rgb(63, 63, 80); /* Steel Blue */
+    background:rgba(0, 0, 255, 0.829); /* Steel Blue */
     padding: 30px;
     border-radius: 15px;
     box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.3),  
-        0 4px 6px rgba(0, 0, 0, 0.1);
+        0 15px 40px rgba(0, 0, 0, 0.993),  
+        0 6px 12px rgba(0, 0, 0, 0.907);
     display: inline-block;
     text-align: left;
     width: 60%;
@@ -99,6 +99,20 @@ p {
     width: 100%;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Placeholder Styling */
+#kycForm input::placeholder,
+#kycForm textarea::placeholder {
+    color: #d3d3d3; /* Light gray */
+    opacity: 1; /* Ensures full visibility */
+}
+
+/* Label Styling */
+#kycForm label {
+    color: #f5f5f5; /* Off-white */
+    font-size: 18px; /* Match input size */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Shadow for contrast */
 }
 
 #kycForm input:focus, 
