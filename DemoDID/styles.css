@@ -1,62 +1,182 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     text-align: center;
-    margin: 20px;
-}
-
-.form-container {
-    width: 60%;
-    margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
 }
 
-form label {
+/* 🔹 Title & Headers (Now 15% Bigger + Shadow & Offset) */
+h1 {
+    font-size: 46px; /* Increased by 15% */
+    font-weight: bold;
+    color: #333;
     display: inline-block;
-    width: 200px;
-    text-align: right;
-    margin-right: 10px;
+    position: relative;
+    text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow & offset */
 }
 
-form input, form textarea {
-    margin-bottom: 10px;
-    padding: 5px;
-    width: 300px;
+/* 🏷️ Trademark (™) Styling */
+.tm {
+    font-size: 14px; /* Small superscript style */
+    vertical-align: super;
+    color: #666;
+    margin-left: 3px;
 }
 
+/* 🔹 Subtitle (Darker & More Readable) */
+h2 {
+    font-size: 23px; /* Slightly bigger */
+    color: #444; /* Darker than before */
+    font-weight: 500;
+}
+
+/* Paragraphs */
+p {
+    font-size: 18px;
+    color: #444;
+}
+
+/* 🔹 Form Container - Now More 3D & Pronounced */
+.form-container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),  
+        0 4px 6px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    text-align: left;
+    width: 60%;
+    max-width: 650px;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect - Lifts Form for Extra 3D Feel */
+.form-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4), 
+        0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 📝 Input Fields */
+#kycForm {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#kycForm input, 
+#kycForm textarea {
+    margin-bottom: 12px;
+    padding: 12px;
+    font-size: 16px;
+    background: #f9f9f9;  /* 🔥 Lighter box color */
+    border: 1px solid #999; /* 🔥 Lighter border */
+    border-radius: 5px;
+    width: 100%;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); /* 🔥 Darker drop shadow */
+}
+
+#kycForm input:focus, 
+#kycForm textarea:focus {
+    outline: none;
+    border-color: #4CAF50; /* Turns green when selected */
+    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5); /* More glow on focus */
+}
+
+/* 🔹 Buttons - Fancy & Spaced */
 button {
-    padding: 10px 20px;
-    margin: 5px;
-    cursor: pointer;
-}
-
-#mintButton {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-#mintButton:not([disabled]) {
-    background-color: #4CAF50;
+    font-size: 18px; /* Slightly bigger for readability */
+    padding: 14px;
+    width: 100%;
+    background: linear-gradient(180deg, #4CAF50 0%, #388E3C 100%);
     color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    text-transform: uppercase;
+    margin-top: 15px;
 }
 
+/* 🖱️ Hover Effect */
+button:hover {
+    background: linear-gradient(180deg, #45a049 0%, #2E7D32 100%);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* ❌ Disabled Button */
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* 🎨 Special: Connect Wallet Button (Bigger Text & More Attention) */
+button#connectWalletButton {
+    font-size: 36px !important; /* 🔥 Larger text */
+    font-weight: bold !important; /* 🔥 Makes text bold */
+    padding: 18px;
+    width: 100%;
+    background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
+    color: white;
+    border-radius: 10px;
+    animation: vibrate 0.3s infinite ease-in-out alternate 3s;
+}
+
+/* Hover & Glow for Connect Wallet Button */
+#connectWalletButton:hover {
+    background: linear-gradient(180deg, #ffb74d 0%, #e64a19 100%);
+    transform: scale(1.08);
+    box-shadow: 0 8px 16px rgba(255, 87, 34, 0.4);
+}
+
+/* 🎭 Vibrating Effect */
+@keyframes vibrate {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-2px); }
+    50% { transform: translateX(2px); }
+    75% { transform: translateX(-2px); }
+    100% { transform: translateX(0); }
+}
+
+/* 📷 QR Code */
+#qrCode {
+    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    display: block;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Additional DemoDID Elements */
+/* 🔹 NFT Display */
 #nftDisplay {
     margin-top: 20px;
-    border: 1px solid #000;
+    padding: 15px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* 🔹 Verification Result */
+#verificationResult {
+    margin-top: 15px;
     padding: 10px;
-    display: inline-block;
+    background: #e0f7fa;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #00796b;
 }
 
-#qrCode {
-    margin-top: 10px;
-}
-
-#verificationButtons, #callDid {
-    margin-top: 20px;
-}
-
+/* 🔹 Server Log */
 #serverLog {
     width: 60%;
     margin: 20px auto;
@@ -67,4 +187,22 @@ button {
     text-align: left;
     border: 1px solid #999;
     font-family: monospace;
+    border-radius: 5px;
+}
+
+/* 🔹 Call DID Section */
+#callDid {
+    margin-top: 20px;
+}
+
+#callDid input {
+    padding: 8px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+#callResult {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
 }
