@@ -1,0 +1,14 @@
+File: DemoDID/index.html
+This is the main HTML file that defines the structure of the DemoDID application.
+Head Section: Includes the QRCode.js library via CDN for generating QR codes client-side.
+Form (#kycForm): A comprehensive form with fields based on prior discussions (e.g., name, ID, biometric data, etc.), all marked as required.
+Buttons: 
+#saveButton triggers data saving.
+#mintButton starts disabled and lights up (via CSS/JavaScript) after saving.
+Verification buttons call verifyProof() with different proof types.
+#exitButton and "Call DID" button for exiting or interacting with a DID.
+Display Areas: 
+#nftDisplay shows the DID NFT and QR code after minting.
+#verificationResult shows proof verification outcomes.
+#serverLog simulates the demo-server-log file as a visible log area.
+The <script src="script.js"> at the bottom loads the JavaScript logic.
