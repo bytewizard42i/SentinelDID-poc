@@ -35,6 +35,14 @@ h2 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
 }
 
+/* 🔹 Demo Server Log Title */
+h3 {
+    font-size: 24px; /* Slightly larger than h2 for prominence */
+    color: #fff; /* White to match background image contrast */
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
+}
+
 /* Paragraphs */
 p {
     font-size: 18px;
