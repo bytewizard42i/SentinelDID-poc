@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DemoDID</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+</head>
+<body>
+    <h1>DemoDID</h1>
+    <p>Simulating SentinelDID Workflow</p>
+    <div class="form-container">
+        <form id="kycForm">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required><br>
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required><br>
+            <label for="idNumber">Sentinel-Assigned-ID:</label>
+            <input type="text" id="idNumber" required><br>
+            <label for="driversLicense">Driver’s License:</label>
+            <input type="text" id="driversLicense" required><br>
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" required><br>
+            <label for="ssn">Social Security Number:</label>
+            <input type="text" id="ssn" required><br>
+            <label for="address">Current Address:</label>
+            <textarea id="address" required></textarea><br>
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required><br>
+            <label for="biometric">Biometric Fingerprint (Simulated):</label>
+            <input type="text" id="biometric" required><br>
+            <label for="backgroundCheck">Background Check Permission:</label>
+            <input type="checkbox" id="backgroundCheck"><br>
+            <h3>Next of Kin</h3>
+            <label for="nokName">Name:</label>
+            <input type="text" id="nokName" required><br>
+            <label for="nokRelationship">Relationship:</label>
+            <input type="text" id="nokRelationship" required><br>
+            <label for="nokPhone">Phone Number:</label>
+            <input type="tel" id="nokPhone" required><br>
+            <button type="button" id="saveButton">Save Information</button>
+        </form>
+        <button type="button" id="mintButton" disabled>Mint DID NFT</button>
+        <div id="nftDisplay" style="display:none;">
+            <h2>DID NFT</h2>
+            <p>ID: <span id="nftId"></span></p>
+            <p>Name: <span id="nftName"></span></p>
+            <p>Issued: <span id="nftDate"></span></p>
+            <img id="qrCode" alt="QR Code">
+        </div>
+        <div id="verificationButtons">
+            <button type="button" onclick="verifyProof('Age')">Verify Age</button>
+            <button type="button" onclick="verifyProof('Identity')">Verify Identity</button>
+        </div>
+        <div id="verificationResult" style="display:none;"></div>
+        <div id="callDid">
+            <label for="didInput">Enter DID NFT ID or Scan QR:</label>
+            <input type="text" id="didInput">
+            <button type="button" onclick="callDid()">Call DID</button>
+            <p id="callResult"></p>
+        </div>
+        <button type="button" id="exitButton">Exit</button>
+    </div>
+    <h3>Demo Server Log</h3>
+    <pre id="serverLog"></pre>
+    <script src="script.js"></script>
+</body>
+</html>
