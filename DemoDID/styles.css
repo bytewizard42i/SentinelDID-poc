@@ -43,6 +43,14 @@ h3 {
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
 }
 
+h4 {
+    font-size: 23px;
+    color: #fdff75; /* White for contrast */
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
+}
+
+
 /* Paragraphs */
 p {
     font-size: 18px;
