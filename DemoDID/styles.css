@@ -3,7 +3,7 @@ body {
     font-family: Arial, sans-serif;
     background: url('rescuers.jpg') no-repeat center center fixed; /* Wallpaper */
     background-size: cover; /* Full coverage */
-    background-color: #f4f4f4; /* Fallback if image fails */
+    background-color: transparent; /* Fallback if image fails */
     text-align: center;
     padding: 20px;
     min-height: 100vh; /* Ensure full height */
