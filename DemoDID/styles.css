@@ -44,7 +44,7 @@ h3 {
 }
 
 h4 {
-    font-size: 23px;
+    font-size: 27px;
     color: #fdff75; /* White for contrast */
     font-weight: 500;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Shadow for readability */
@@ -60,7 +60,7 @@ p {
 
 /* 🔹 Form Container - More Opaque for Readability */
 .form-container {
-    background: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    background:rgb(63, 63, 80); /* Steel Blue */
     padding: 30px;
     border-radius: 15px;
     box-shadow: 
