@@ -1,54 +1,45 @@
-let walletAddress = null; // Yep, this is fine here—global scope for wallet state
+let walletAddress = null;
 
-// Connect to Midnight Lace wallet (moved out of mintDid)
+// Simulated DID database (replace with real backend logic)
+const didData = {
+    'did:sentineldid:abc123': { name: 'Johnny Bytewizard', age: 30 }
+};
+
+// Log function for server log
+function logMessage(message) {
+    const log = document.getElementById('serverLog');
+    log.textContent += `[${new Date().toLocaleTimeString()}] ${message}\n`;
+    log.scrollTop = log.scrollHeight;
+}
+
+// Connect to Midnight Lace wallet
 async function connectLace() {
-    console.log('Available wallets:', window.midnight, window.cardano);
+    logMessage('Connecting to wallet...');
     if (window.midnight?.mnLace) {
         try {
-            const wallet = await window.midnight.mnLace.enable({ network: 'testnet' }); // Added network
-            const address = await wallet.getAddress();
-            walletAddress = address;
+            const wallet = await window.midnight.mnLace.enable({ network: 'testnet' });
+            walletAddress = await wallet.getAddress();
             document.getElementById('mintButton').disabled = false;
-            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
-            console.log('Connected to Midnight Lace at:', address);
+            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${walletAddress}`;
+            logMessage(`Connected to wallet: ${walletAddress}`);
         } catch (error) {
             document.getElementById('walletAddress').textContent = 'Wallet Connection Failed: ' + error.message;
-            console.error('Midnight Lace connection failed:', error);
+            logMessage('Wallet connection failed: ' + error.message);
         }
     } else {
         document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
-        console.warn('Midnight Lace extension not found—install from releases.midnight.network');
+        logMessage('Midnight Lace extension not found—install from releases.midnight.network');
     }
 }
 
+// Mint DID
 async function mintDid() {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
         return;
     }
-    
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const idNumber = document.getElementById('idNumber').value;
-    const driversLicense = document.getElementById('driversLicense').value;
-    const dob = document.getElementById('dob').value;
-    const ssn = document.getElementById('ssn').value;
-    const address = document.getElementById('address').value;
-    const phone = document.getElementById('phone').value;
-    const biometric = document.getElementById('biometric').value;
-    const backgroundCheck = document.getElementById('backgroundCheck').checked;
-    const nokName = document.getElementById('nokName').value;
-    const nokRelationship = document.getElementById('nokRelationship').value;
-    const nokPhone = document.getElementById('nokPhone').value;
-
-    if (!firstName || !lastName || !idNumber || !driversLicense || !dob || !ssn || !address || !phone || !biometric || !nokName || !nokRelationship || !nokPhone) {
-        alert('Please fill in all required fields.');
-        return;
-    }
-
-    const kycData = `${firstName}|${lastName}|${idNumber}|${driversLicense}|${dob}|${ssn}|${address}|${phone}|${biometric}|${nokName}|${nokRelationship}|${nokPhone}`;
-    const kycHash = await keccak256(kycData); // Still needs a hash lib—temp fix below
-
+    logMessage('Minting DID...');
+    const kycHash = btoa("kycData"); // Placeholder; replace with real form data hashing
     try {
         const response = await fetch('http://localhost:3000/mint-nft', {
             method: 'POST',
@@ -59,6 +50,7 @@ async function mintDid() {
         if (data.qrUrl) {
             document.getElementById('qrCode').src = data.qrUrl;
             document.getElementById('qrCode').style.display = 'block';
+            logMessage(`DID minted: ${data.didId}`);
         } else {
             alert('Failed to mint DID: ' + (data.error || 'Unknown error'));
         }
@@ -67,7 +59,72 @@ async function mintDid() {
     }
 }
 
-// Rest of your functions (checkDid, verifyAge, getStats) remain unchanged...
-async function checkDid() { /* ... */ }
-async function verifyAge() { /* ... */ }
-async function getStats() { /* ... */ }
+// Check DID
+async function checkDid() {
+    if (!walletAddress) {
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
+    const didId = document.getElementById('checkDid').value;
+    if (!didId) {
+        alert('Please enter a DID to check.');
+        return;
+    }
+    try {
+        const response = await fetch(`http://localhost:3000/has-did/${didId}`);
+        const data = await response.json();
+        document.getElementById('callResult').textContent = data.exists ? 'DID exists!' : 'No such DID.';
+        logMessage(`Checked DID: ${didId} - ${data.exists ? 'Found' : 'Not found'}`);
+    } catch (error) {
+        alert('Error checking DID: ' + error.message);
+    }
+}
+
+// Verify Age
+async function verifyAge() {
+    if (!walletAddress) {
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
+    const didId = document.getElementById('checkDid').value;
+    if (!didId) {
+        alert('Please enter a DID to verify age.');
+        return;
+    }
+    try {
+        const response = await fetch(`http://localhost:3000/verify-age/${didId}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' }
+        });
+        const data = await response.json();
+        document.getElementById('verificationResult').textContent = data.isOver18 ? 'Over 18!' : 'Not over 18.';
+        logMessage(`Age verified for DID: ${didId} - ${data.isOver18 ? 'Over 18' : 'Not over 18'}`);
+    } catch (error) {
+        alert('Error verifying age: ' + error.message);
+    }
+}
+
+// Get Stats
+async function getStats() {
+    if (!walletAddress) {
+        alert('Please connect your Midnight Lace wallet first!');
+        return;
+    }
+    try {
+        const countResp = await fetch('http://localhost:3000/did-count');
+        const countData = await countResp.json();
+        const lastResp = await fetch('http://localhost:3000/last-did');
+        const lastData = await lastResp.json();
+        document.getElementById('stats').textContent = `Total DIDs: ${countData.totalDids}, Last DID: ${lastData.lastDid}`;
+        logMessage('Fetched stats');
+    } catch (error) {
+        alert('Error fetching stats: ' + error.message);
+    }
+}
+
+// Exit DID
+function exitDid() {
+    logMessage('Exiting workflow...');
+    document.querySelector('.form-container').style.display = 'none';
+    document.querySelector('h1').textContent = 'Workflow Ended';
+}
