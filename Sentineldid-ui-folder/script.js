@@ -15,13 +15,16 @@ function logMessage(message) {
 // Connect to Midnight Lace wallet (tweaked with debug)
 async function connectLace() {
     logMessage('Connecting to wallet...');
-    console.log('Checking window.midnight:', window.midnight); // Debug extension
+    console.log('Checking window.midnight:', window.midnight); // Debug: Verify extension availability
     if (window.midnight?.mnLace) {
-        console.log('mnLace detected:', window.midnight.mnLace); // Confirm API
+        console.log('mnLace detected:', window.midnight.mnLace);
         try {
             const wallet = await window.midnight.mnLace.enable({ network: 'testnet' });
-            console.log('Wallet object:', wallet); // Debug wallet
-            walletAddress = await wallet.getAddress();
+            console.log('Wallet object:', wallet); // Debug: Inspect wallet object
+            const state = await wallet.state(); // Get wallet state
+            console.log('Wallet state:', state); // Debug: Log state to find address property
+            // Extract address; adjust based on state structure
+            const walletAddress = state.address || state.walletAddress || 'Unknown Address';
             document.getElementById('mintButton').disabled = false;
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${walletAddress}`;
             logMessage(`Connected to wallet: ${walletAddress}`);
