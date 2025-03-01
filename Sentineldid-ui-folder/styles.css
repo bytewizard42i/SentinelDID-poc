@@ -1,50 +1,65 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background: url('../DemoDID/demo-photo.jpg') no-repeat center center fixed; /* Calls from DemoDID folder */
+    background-size: cover;
+    background-color: transparent;
     text-align: center;
     padding: 20px;
+    min-height: 100vh;
 }
 
-/* 🔹 Title & Headers (Now 15% Bigger + Shadow & Offset) */
+/* 🔹 Title & Headers */
 h1 {
-    font-size: 46px; /* Increased by 15% */
+    font-size: 46px;
     font-weight: bold;
-    color: #333;
+    color: #fff;
     display: inline-block;
     position: relative;
-    text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow & offset */
+    text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.8);
 }
 
-/* 🏷️ Trademark (™) Styling */
 .tm {
-    font-size: 14px; /* Small superscript style */
+    font-size: 25px !important;
     vertical-align: super;
-    color: #666;
+    color: #ccc;
     margin-left: 3px;
 }
 
-/* 🔹 Subtitle (Darker & More Readable) */
 h2 {
-    font-size: 23px; /* Slightly bigger */
-    color: #444; /* Darker than before */
+    font-size: 23px;
+    color: #fff;
     font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h3 {
+    font-size: 24px;
+    color: #fff;
+    font-weight: 500;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h4 {
+    font-size: 27px;
+    color: #fbff01;
+    font-weight: 500;
+    text-shadow: 4px 4px 8px rgb(0, 0, 0);
 }
 
 /* Paragraphs */
 p {
     font-size: 18px;
-    color: #444;
+    color: #fff;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-/* 🔹 Form Container - Now More 3D & Pronounced */
+/* 🔹 Form Container */
 .form-container {
-    background: white;
+    background: rgba(70, 130, 180, 0.9); /* Steel Blue from DemoDID */
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 
-        0 10px 30px rgba(0, 0, 0, 0.3),  
-        0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 6px 12px rgba(0, 0, 0, 0.2);
     display: inline-block;
     text-align: left;
     width: 60%;
@@ -52,12 +67,9 @@ p {
     transition: all 0.3s ease-in-out;
 }
 
-/* Hover Effect - Lifts Form for Extra 3D Feel */
 .form-container:hover {
     transform: translateY(-5px);
-    box-shadow: 
-        0 15px 40px rgba(0, 0, 0, 0.4), 
-        0 6px 10px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
 /* 📝 Input Fields */
@@ -67,27 +79,48 @@ p {
     width: 100%;
 }
 
-#kycForm input, #kycForm textarea {
+#kycForm input, 
+#kycForm textarea {
     margin-bottom: 12px;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
+    padding: 12px 20px 12px 12px;
+    font-size: 18px;
+    background: #f9f9f9;
+    border: 1px solid #999;
     border-radius: 5px;
-    transition: 0.2s;
+    width: calc(100% - 80px);
+    margin-right: 40px;
+    margin-left: 40px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
 }
 
-#kycForm input:focus, #kycForm textarea:focus {
+#kycForm input::placeholder,
+#kycForm textarea::placeholder {
+    color: #d3d3d3;
+    opacity: 1;
+}
+
+#kycForm label {
+    color: #f5f5f5;
+    font-size: 18px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#kycForm input:focus, 
+#kycForm textarea:focus {
     outline: none;
     border-color: #4CAF50;
-    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5);
 }
 
-/* 🔹 Buttons - Fancy & Spaced */
+/* 🔹 Buttons */
 button {
-    font-size: 18px; /* Slightly bigger for readability */
+    font-size: 20px;
     padding: 14px;
-    width: 100%;
-    background: linear-gradient(180deg, #4CAF50 0%, #388E3C 100%);
+    width: calc(100% - 160px);
+    margin-right: 80px;
+    margin-left: 80px;
+    background: linear-gradient(180deg, rgba(255, 152, 0, 0.9) 0%, rgba(230, 81, 0, 0.9) 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -98,40 +131,16 @@ button {
     margin-top: 15px;
 }
 
-/* 🖱️ Hover Effect */
 button:hover {
-    background: linear-gradient(180deg, #45a049 0%, #2E7D32 100%);
+    background: linear-gradient(180deg, rgba(255, 167, 38, 0.9) 0%, rgba(239, 108, 0, 0.9) 100%);
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-/* 🎨 Special: Connect Wallet Button (Bigger Text & More Attention) */
-button#connectWalletButton {
-    font-size: 36px !important; /* 🔥 Larger text */
-    font-weight: bold !important; /* 🔥 Makes text bold */
-    padding: 18px;
-    width: 100%;
-    background: linear-gradient(180deg, #ff9800 0%, #e65100 100%);
-    color: white;
-    border-radius: 10px;
-    font-weight: bold;
-    animation: vibrate 0.3s infinite ease-in-out alternate 3s;
-}
-
-/* Hover & Glow */
-#connectWalletButton:hover {
-    background: linear-gradient(180deg, #ffb74d 0%, #e64a19 100%);
-    transform: scale(1.08);
-    box-shadow: 0 8px 16px rgba(255, 87, 34, 0.4);
-}
-
-/* 🎭 Vibrating Effect */
-@keyframes vibrate {
-    0% { transform: translateX(0); }
-    25% { transform: translateX(-2px); }
-    50% { transform: translateX(2px); }
-    75% { transform: translateX(-2px); }
-    100% { transform: translateX(0); }
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
 }
 
 /* 📷 QR Code */
@@ -144,31 +153,69 @@ button#connectWalletButton {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* ❌ Disabled Button */
-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
-    box-shadow: none;
-}
-/* 🔹 Input Fields - Darker Borders & Drop Shadow */
-/* 🔹 Input Fields - Lighter Border & Darker Drop Shadow */
-#kycForm input, 
-#kycForm textarea {
-    margin-bottom: 12px;
-    padding: 12px;
-    font-size: 16px;
-    background: #f9f9f9;  /* 🔥 Lighter box color */
-    border: 1px solid #999; /* 🔥 Lighter border */
-    border-radius: 5px;
-    width: 100%;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5); /* 🔥 Darker drop shadow */
+/* 🔹 NFT Display */
+#nftDisplay {
+    margin-top: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
-/* 🟢 Enhanced Focus Effect */
-#kycForm input:focus, 
-#kycForm textarea:focus {
+/* 🔹 Verification Buttons */
+#verificationButtons {
+    margin-top: 20px;
+}
+
+/* 🔹 Verification Result */
+#verificationResult {
+    margin-top: 15px;
+    padding: 10px;
+    background: #e0f7fa;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #00796b;
+}
+
+/* 🔹 Call DID Section */
+#callDid {
+    margin-top: 20px;
+}
+
+#callDid input {
+    padding: 8px;
+    width: 300px;
+    margin-right: 10px;
+    background: #f9f9f9;
+    border: 1px solid #999;
+    border-radius: 5px;
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.5);
+}
+
+#callDid input:focus {
     outline: none;
-    border-color: #4CAF50; /* Turns green when selected */
-    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5); /* More glow on focus */
+    border-color: #4CAF50;
+    box-shadow: 0 7px 14px rgba(76, 175, 80, 0.5);
+}
+
+#callResult {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #333;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* 🔹 Server Log */
+#serverLog {
+    width: 60%;
+    margin: 20px auto;
+    height: 200px;
+    overflow-y: scroll;
+    background-color: rgba(224, 224, 224, 0.9);
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #999;
+    font-family: monospace;
+    border-radius: 5px;
 }
