@@ -18,7 +18,9 @@ async function connectLace() {
     if (window.midnight?.mnLace) {
         try {
             const wallet = await window.midnight.mnLace.enable({ network: 'testnet' });
-            walletAddress = await wallet.getAddress();
+            const state = await wallet.state(); // Get wallet state
+            console.log('Wallet state:', state); // Log to inspect the structure
+            walletAddress = state.address; // Adjust this if the property is different
             document.getElementById('mintButton').disabled = false;
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${walletAddress}`;
             logMessage(`Connected to wallet: ${walletAddress}`);
