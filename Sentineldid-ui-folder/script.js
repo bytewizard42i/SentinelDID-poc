@@ -1,46 +1,49 @@
 let walletAddress = null;
 
-// Simulated DID database (replace with real backend logic)
+// Simulated DID database (unchanged)
 const didData = {
     'did:sentineldid:abc123': { name: 'Johnny Bytewizard', age: 30 }
 };
 
-// Log function for server log
+// Log function (your cool demo feature—unchanged)
 function logMessage(message) {
     const log = document.getElementById('serverLog');
     log.textContent += `[${new Date().toLocaleTimeString()}] ${message}\n`;
     log.scrollTop = log.scrollHeight;
 }
 
-// Connect to Midnight Lace wallet (back to working version)
+// Connect to Midnight Lace wallet (tweaked with debug)
 async function connectLace() {
-    console.log('Available wallets:', window.midnight, window.cardano);
+    logMessage('Connecting to wallet...');
+    console.log('Checking window.midnight:', window.midnight); // Debug extension
     if (window.midnight?.mnLace) {
+        console.log('mnLace detected:', window.midnight.mnLace); // Confirm API
         try {
-            const wallet = await window.midnight.mnLace.enable({ network: 'testnet' }); // Added network
-            const address = await wallet.getAddress();
-            walletAddress = address;
+            const wallet = await window.midnight.mnLace.enable({ network: 'testnet' });
+            console.log('Wallet object:', wallet); // Debug wallet
+            walletAddress = await wallet.getAddress();
             document.getElementById('mintButton').disabled = false;
-            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
-            console.log('Connected to Midnight Lace at:', address);
+            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${walletAddress}`;
+            logMessage(`Connected to wallet: ${walletAddress}`);
         } catch (error) {
             document.getElementById('walletAddress').textContent = 'Wallet Connection Failed: ' + error.message;
-            console.error('Midnight Lace connection failed:', error);
+            logMessage('Wallet connection failed: ' + error.message);
+            console.error('Connection error:', error);
         }
     } else {
         document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
-        console.warn('Midnight Lace extension not found—install from releases.midnight.network');
+        logMessage('Midnight Lace extension not found—install from releases.midnight.network');
     }
 }
 
-// Mint DID
+// Mint DID (unchanged)
 async function mintDid() {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
         return;
     }
     logMessage('Minting DID...');
-    const kycHash = btoa("kycData"); // Placeholder; replace with real form data hashing
+    const kycHash = btoa("kycData"); // Placeholder
     try {
         const response = await fetch('http://localhost:3000/mint-nft', {
             method: 'POST',
@@ -60,7 +63,7 @@ async function mintDid() {
     }
 }
 
-// Check DID
+// Check DID (unchanged)
 async function checkDid() {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
@@ -81,7 +84,7 @@ async function checkDid() {
     }
 }
 
-// Verify Proof (unchanged from your setup)
+// Verify Proof (unchanged demo flair)
 async function verifyProof(type) {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
@@ -100,7 +103,7 @@ async function verifyProof(type) {
     }, 2000);
 }
 
-// Get Stats
+// Get Stats (unchanged)
 async function getStats() {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
@@ -118,7 +121,7 @@ async function getStats() {
     }
 }
 
-// Exit DID
+// Exit DID (unchanged demo exit)
 function exitDid() {
     logMessage('Exiting workflow...');
     document.querySelector('.form-container').style.display = 'none';
