@@ -14,21 +14,22 @@ function logMessage(message) {
 
 // Connect to Midnight Lace wallet (back to working version)
 async function connectLace() {
-    logMessage('Connecting to wallet...');
+    console.log('Available wallets:', window.midnight, window.cardano);
     if (window.midnight?.mnLace) {
         try {
-            const wallet = await window.midnight.mnLace.enable({ network: 'testnet' });
-            walletAddress = await wallet.getAddress(); // Revert to this—it worked!
+            const wallet = await window.midnight.mnLace.enable({ network: 'testnet' }); // Added network
+            const address = await wallet.getAddress();
+            walletAddress = address;
             document.getElementById('mintButton').disabled = false;
-            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${walletAddress}`;
-            logMessage(`Connected to wallet: ${walletAddress}`);
+            document.getElementById('walletAddress').textContent = `Midnight Wallet: ${address}`;
+            console.log('Connected to Midnight Lace at:', address);
         } catch (error) {
             document.getElementById('walletAddress').textContent = 'Wallet Connection Failed: ' + error.message;
-            logMessage('Wallet connection failed: ' + error.message);
+            console.error('Midnight Lace connection failed:', error);
         }
     } else {
         document.getElementById('walletAddress').textContent = 'Wallet: Midnight Lace Not Detected';
-        logMessage('Midnight Lace extension not found—install from releases.midnight.network');
+        console.warn('Midnight Lace extension not found—install from releases.midnight.network');
     }
 }
 
