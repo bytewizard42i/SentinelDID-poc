@@ -1,7 +1,7 @@
 /* General Styles */
 body {
     font-family: Arial, sans-serif;
-    background: url('../DemoDID/demo-photo.jpg') no-repeat center center fixed; /* Calls from DemoDID folder */
+    background: url('demo-photo.jpg') no-repeat center center fixed;
     background-size: cover;
     background-color: transparent;
     text-align: center;
