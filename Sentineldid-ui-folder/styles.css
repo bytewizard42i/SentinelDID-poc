@@ -242,3 +242,8 @@ button:disabled {
     justify-content: center;
     margin-top: 10px;
 }
+
+/* Added: Larger text for Connect Wallet button */
+.connect-wallet-btn {
+    font-size: 28px; /* Bigger than the 20px default */
+}
