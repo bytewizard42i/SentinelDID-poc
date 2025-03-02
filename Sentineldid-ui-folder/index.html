@@ -8,65 +8,120 @@
         <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
     </head>
     <body>
+        <!-- Header Section -->
         <h1>SentinelDID<sup class="tm">TM</sup></h1>
+        <br>
         <h2>"Digital IDentity, Saving Lives"</h2>
-        <h4>***Proof of Concept for Secure Identity Management***</h4>        
+        <br>
+        <h4>***Proof of Concept for Secure Identity Management***</h4>
+        <br>
+
+        <!-- Main Form Container -->
         <div class="form-container">
+            <!-- Connect Wallet Button -->
             <button class="connect-wallet-btn" onclick="connectLace()">Connect Wallet</button>
-            <!-- Changed: Wrapped wallet address in a container, added hidden label, updated copy button text -->
+            <br>
+
+            <!-- Wallet Address Display -->
             <div class="wallet-address-container">
                 <span class="wallet-label" style="display: none;">Here is your Public Address:</span>
                 <span id="walletAddress" class="wallet-address">Connected to Midnight Lace Wallet: Not connected</span>
                 <button class="copy-button" onclick="copyAddress()">Copy your public wallet address from here</button>
             </div>
-            <!-- Form for user information -->
+            <br>
+
+            <!-- User Information Form -->
             <form id="kycForm" aria-labelledby="formTitle">
                 <h3 id="formTitle">Enter Your Information</h3>
+                <br>
+
+                <!-- Personal Info Inputs -->
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" placeholder="e.g., Johnny" required><br>
+                <input type="text" id="firstName" placeholder="e.g., Johnny" required>
+                <br>
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" placeholder="e.g., Bytewizard" required><br>
+                <input type="text" id="lastName" placeholder="e.g., Bytewizard" required>
+                <br>
                 <label for="idNumber">Sentinel-Assigned-ID:</label>
-                <input type="text" id="idNumber" placeholder="e.g., SDIDxx12345" required><br>
+                <input type="text" id="idNumber" placeholder="e.g., SDIDxx12345" required>
+                <br>
                 <label for="driversLicense">Driver’s License:</label>
-                <input type="text" id="driversLicense" placeholder="e.g., DL12345678" required><br>
+                <input type="text" id="driversLicense" placeholder="e.g., DL12345678" required>
+                <br>
                 <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" placeholder="YYYY-MM-DD" min="1925-01-01" max="2025-12-31" required>
+                <br>
                 <label for="ssn">Social Security Number:</label>
-                <input type="password" id="ssn" placeholder="e.g., 123-45-6789" required><br>
+                <input type="password" id="ssn" placeholder="e.g., 123-45-6789" required>
+                <br>
                 <label for="address">Current Address:</label>
-                <textarea id="address" placeholder="e.g., 123 Main St, Anytown, USA" required></textarea><br>
+                <textarea id="address" placeholder="e.g., 123 Main St, Anytown, USA" required></textarea>
+                <br>
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" placeholder="e.g., 555-123-4567" required><br>
+                <input type="tel" id="phone" placeholder="e.g., 555-123-4567" required>
+                <br>
                 <label for="biometric">Biometric Fingerprint (Simulated):</label>
-                <input type="text" id="biometric" placeholder="e.g., Fingerprint123" required><br>
+                <input type="text" id="biometric" placeholder="e.g., Fingerprint123" required>
+                <br>
                 <label for="backgroundCheck">Background Check Permission:</label>
-                <input type="checkbox" id="backgroundCheck"><br>
+                <input type="checkbox" id="backgroundCheck">
+                <br>
+
+                <!-- Next of Kin Section -->
                 <h3>Next of Kin</h3>
+                <br>
                 <label for="nokName">Name:</label>
-                <input type="text" id="nokName" placeholder="e.g., Jane Doe" required><br>
+                <input type="text" id="nokName" placeholder="e.g., Jane Doe" required>
+                <br>
                 <label for="nokRelationship">Relationship:</label>
-                <input type="text" id="nokRelationship" placeholder="e.g., Spouse" required><br>
+                <input type="text" id="nokRelationship" placeholder="e.g., Spouse" required>
+                <br>
                 <label for="nokPhone">Phone Number:</label>
-                <input type="tel" id="nokPhone" placeholder="e.g., 555-987-6543" required><br>
+                <input type="tel" id="nokPhone" placeholder="e.g., 555-987-6543" required>
+                <br>
+
+                <!-- Mint DID Button -->
                 <button id="mintButton" type="button" onclick="mintDid()" disabled aria-label="Mint DID (disabled until wallet connected)">Mint DID</button>
             </form>
+            <br>
+
+            <!-- QR Code Display -->
             <img id="qrCode" alt="Your DID QR Code" style="display:none;">
+            <br>
+
+            <!-- Verification Buttons -->
             <div id="verificationButtons">
                 <button type="button" onclick="verifyProof('Age')">Verify Age</button>
+                <br> <!-- Added line break between Verify Age and Verify Identity -->
                 <button type="button" onclick="verifyProof('Identity')">Verify Identity</button>
             </div>
+            <br>
+
+            <!-- Verification Result -->
             <div id="verificationResult" style="display:none;"></div>
+            <br>
+
+            <!-- Check DID Section -->
             <div id="callDid">
                 <label for="checkDid">Check DID:</label>
-                <input id="checkDid" placeholder="Paste DID"><br>
+                <input id="checkDid" placeholder="Paste DID">
+                <br>
                 <button type="button" onclick="checkDid()" aria-label="Verify DID">Verify DID</button>
+                <br> <!-- Added line break between Verify DID and Stats -->
                 <button type="button" onclick="getStats()" aria-label="Get DID Stats">Stats</button>
+                <br>
                 <p id="callResult"></p>
+                <br>
                 <p id="stats" aria-live="polite"></p>
             </div>
+            <br>
+
+            <!-- Exit Button -->
             <button type="button" id="exitButton" onclick="exitDid()">Exit</button>
+            <br>
         </div>
+
+        <!-- Server Log Section -->
         <h3>Server Log</h3>
         <pre id="serverLog"></pre>
         <script src="script.js"></script>
