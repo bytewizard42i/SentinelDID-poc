@@ -5,26 +5,25 @@ const didData = {
     'did:sentineldid:abc123': { name: 'Johnny Bytewizard', age: 30 }
 };
 
-// Log function (your cool demo feature—unchanged)
+// Log function (unchanged)
 function logMessage(message) {
     const log = document.getElementById('serverLog');
     log.textContent += `[${new Date().toLocaleTimeString()}] ${message}\n`;
     log.scrollTop = log.scrollHeight;
 }
 
-// Connect to Midnight Lace wallet (tweaked with debug)
+// Connect to Midnight Lace wallet (your latest attempt)
 async function connectLace() {
     logMessage('Connecting to wallet...');
-    console.log('Checking window.midnight:', window.midnight); // Debug: Verify extension availability
+    console.log('Checking window.midnight:', window.midnight);
     if (window.midnight?.mnLace) {
         console.log('mnLace detected:', window.midnight.mnLace);
         try {
             const wallet = await window.midnight.mnLace.enable({ network: 'testnet' });
-            console.log('Wallet object:', wallet); // Debug: Inspect wallet object
-            const state = await wallet.state(); // Get wallet state
-            console.log('Wallet state:', state); // Debug: Log state to find address property
-            // Extract address; adjust based on state structure
-            const walletAddress = state.address || state.walletAddress || 'Unknown Address';
+            console.log('Wallet object:', wallet);
+            const state = await wallet.state(); // Using state() as attempted
+            console.log('Wallet state:', state);
+            walletAddress = state.address || state.walletAddress || 'Unknown Address'; // Fallback for address
             document.getElementById('mintButton').disabled = false;
             document.getElementById('walletAddress').textContent = `Midnight Wallet: ${walletAddress}`;
             logMessage(`Connected to wallet: ${walletAddress}`);
@@ -39,6 +38,17 @@ async function connectLace() {
     }
 }
 
+// Added: Function to copy wallet address to clipboard
+function copyAddress() {
+    const addressElement = document.getElementById('walletAddress');
+    const addressText = addressElement.textContent.replace('Midnight Wallet: ', '');
+    navigator.clipboard.writeText(addressText).then(() => {
+        alert('Address copied to clipboard!');
+    }).catch(() => {
+        alert('Failed to copy address');
+    });
+}
+
 // Mint DID (unchanged)
 async function mintDid() {
     if (!walletAddress) {
@@ -46,7 +56,7 @@ async function mintDid() {
         return;
     }
     logMessage('Minting DID...');
-    const kycHash = btoa("kycData"); // Placeholder
+    const kycHash = btoa("kycData");
     try {
         const response = await fetch('http://localhost:3000/mint-nft', {
             method: 'POST',
@@ -87,7 +97,7 @@ async function checkDid() {
     }
 }
 
-// Verify Proof (unchanged demo flair)
+// Verify Proof (unchanged)
 async function verifyProof(type) {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
@@ -124,7 +134,7 @@ async function getStats() {
     }
 }
 
-// Exit DID (unchanged demo exit)
+// Exit DID (unchanged)
 function exitDid() {
     logMessage('Exiting workflow...');
     document.querySelector('.form-container').style.display = 'none';
