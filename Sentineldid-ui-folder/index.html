@@ -13,60 +13,111 @@
         <h4>***Proof of Concept for Secure Identity Management***</h4>        
         <div class="form-container">
             <button class="connect-wallet-btn" onclick="connectLace()">Connect Wallet</button>
+            <br> <!-- Added line break after Connect Wallet button -->
+
             <!-- Changed: Wrapped wallet address in a container, added hidden label, updated copy button text -->
             <div class="wallet-address-container">
                 <span class="wallet-label" style="display: none;">Here is your Public Address:</span>
                 <span id="walletAddress" class="wallet-address">Connected to Midnight Lace Wallet: Not connected</span>
                 <button class="copy-button" onclick="copyAddress()">Copy your public wallet address from here</button>
             </div>
+            <br> <!-- Added line break after wallet address container -->
+
             <!-- Form for user information -->
             <form id="kycForm" aria-labelledby="formTitle">
                 <h3 id="formTitle">Enter Your Information</h3>
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" placeholder="e.g., Johnny" required><br>
+                <input type="text" id="firstName" placeholder="e.g., Johnny" required>
+                <br> <!-- Already present -->
+
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" placeholder="e.g., Bytewizard" required><br>
+                <input type="text" id="lastName" placeholder="e.g., Bytewizard" required>
+                <br> <!-- Already present -->
+
                 <label for="idNumber">Sentinel-Assigned-ID:</label>
-                <input type="text" id="idNumber" placeholder="e.g., SDIDxx12345" required><br>
+                <input type="text" id="idNumber" placeholder="e.g., SDIDxx12345" required>
+                <br> <!-- Already present -->
+
                 <label for="driversLicense">Driver’s License:</label>
-                <input type="text" id="driversLicense" placeholder="e.g., DL12345678" required><br>
+                <input type="text" id="driversLicense" placeholder="e.g., DL12345678" required>
+                <br> <!-- Already present -->
+
                 <label for="dob">Date of Birth:</label>
                 <input type="date" id="dob" placeholder="YYYY-MM-DD" min="1925-01-01" max="2025-12-31" required>
+                <br> <!-- Added line break after DOB field -->
+
                 <label for="ssn">Social Security Number:</label>
-                <input type="password" id="ssn" placeholder="e.g., 123-45-6789" required><br>
+                <input type="password" id="ssn" placeholder="e.g., 123-45-6789" required>
+                <br> <!-- Already present -->
+
                 <label for="address">Current Address:</label>
-                <textarea id="address" placeholder="e.g., 123 Main St, Anytown, USA" required></textarea><br>
+                <textarea id="address" placeholder="e.g., 123 Main St, Anytown, USA" required></textarea>
+                <br> <!-- Already present -->
+
                 <label for="phone">Phone Number:</label>
-                <input type="tel" id="phone" placeholder="e.g., 555-123-4567" required><br>
+                <input type="tel" id="phone" placeholder="e.g., 555-123-4567" required>
+                <br> <!-- Already present -->
+
                 <label for="biometric">Biometric Fingerprint (Simulated):</label>
-                <input type="text" id="biometric" placeholder="e.g., Fingerprint123" required><br>
+                <input type="text" id="biometric" placeholder="e.g., Fingerprint123" required>
+                <br> <!-- Already present -->
+
                 <label for="backgroundCheck">Background Check Permission:</label>
-                <input type="checkbox" id="backgroundCheck"><br>
+                <input type="checkbox" id="backgroundCheck">
+                <br> <!-- Already present -->
+
                 <h3>Next of Kin</h3>
                 <label for="nokName">Name:</label>
-                <input type="text" id="nokName" placeholder="e.g., Jane Doe" required><br>
+                <input type="text" id="nokName" placeholder="e.g., Jane Doe" required>
+                <br> <!-- Already present -->
+
                 <label for="nokRelationship">Relationship:</label>
-                <input type="text" id="nokRelationship" placeholder="e.g., Spouse" required><br>
+                <input type="text" id="nokRelationship" placeholder="e.g., Spouse" required>
+                <br> <!-- Already present -->
+
                 <label for="nokPhone">Phone Number:</label>
-                <input type="tel" id="nokPhone" placeholder="e.g., 555-987-6543" required><br>
+                <input type="tel" id="nokPhone" placeholder="e.g., 555-987-6543" required>
+                <br> <!-- Already present -->
+
                 <button id="mintButton" type="button" onclick="mintDid()" disabled aria-label="Mint DID (disabled until wallet connected)">Mint DID</button>
+                <br> <!-- Added line break after Mint DID button -->
+
+                <!-- Moved: Check DID section from div#callDid, now inside form -->
+                <label for="checkDid">Check DID:</label>
+                <input id="checkDid" placeholder="Paste DID">
+                <br> <!-- Added line break after Check DID input -->
+
+                <button type="button" onclick="checkDid()" aria-label="Verify DID">Verify DID</button>
+                <br> <!-- Added line break after Verify DID button -->
+
+                <button type="button" onclick="getStats()" aria-label="Get DID Stats">Stats</button>
+                <br> <!-- Added line break after Stats button -->
+
+                <p id="callResult"></p>
+                <br> <!-- Added line break after callResult -->
+
+                <p id="stats" aria-live="polite"></p>
             </form>
+            <br> <!-- Added line break after form -->
+
             <img id="qrCode" alt="Your DID QR Code" style="display:none;">
+            <br> <!-- Added line break after QR code -->
+
             <div id="verificationButtons">
                 <button type="button" onclick="verifyProof('Age')">Verify Age</button>
+                <br> <!-- Added line break after Verify Age button -->
+
                 <button type="button" onclick="verifyProof('Identity')">Verify Identity</button>
             </div>
+            <br> <!-- Added line break after verificationButtons -->
+
             <div id="verificationResult" style="display:none;"></div>
-            <div id="callDid">
-                <label for="checkDid">Check DID:</label>
-                <input id="checkDid" placeholder="Paste DID"><br>
-                <button type="button" onclick="checkDid()" aria-label="Verify DID">Verify DID</button>
-                <button type="button" onclick="getStats()" aria-label="Get DID Stats">Stats</button>
-                <p id="callResult"></p>
-                <p id="stats" aria-live="polite"></p>
-            </div>
+            <br> <!-- Added line break after verificationResult -->
+
             <button type="button" id="exitButton" onclick="exitDid()">Exit</button>
         </div>
+        <br> <!-- Added line break after form-container -->
+
         <h3>Server Log</h3>
         <pre id="serverLog"></pre>
         <script src="script.js"></script>
