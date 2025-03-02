@@ -1,7 +1,11 @@
 {
     "name": "sentineldid-contract",
     "version": "1.0.0",
-    "scripts": {
-        "deploy": "midnight-cli deploy SentinelDID.compact --network testnet"
+    "dependencies": {
+      "@midnight-ntwrk/compact": "^0.19.0"
+    },
+    "devDependencies": {
+      "ts-node": "^10.9.2",
+      "typescript": "^5.2.2"
     }
-}
+  }
