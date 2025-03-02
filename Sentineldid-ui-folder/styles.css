@@ -219,3 +219,25 @@ button:disabled {
     font-family: monospace;
     border-radius: 5px;
 }
+
+/* Added: Style for wallet address to wrap and match form aesthetic */
+.wallet-address {
+    word-break: break-all;       /* Breaks long strings onto new lines */
+    max-width: calc(100% - 80px); /* Matches input/button width */
+    margin-right: 40px;          /* Matches input/button margins */
+    margin-left: 40px;           /* Matches input/button margins */
+    overflow-wrap: break-word;   /* Ensures wrapping */
+    display: block;              /* Forces full width with wrapping */
+    color: #fff;                 /* White text, matching labels */
+    font-size: 18px;             /* Matches form labels */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Matches demo style */
+}
+
+/* Updated: Ensure container supports wrapping */
+.wallet-address-container {
+    display: flex;
+    flex-wrap: wrap;             /* Allows content to wrap */
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
