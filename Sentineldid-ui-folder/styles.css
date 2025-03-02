@@ -11,27 +11,27 @@ body {
 
 /* 🔹 Title & Headers */
 h1 {
-    font-size: 92px;
+    font-size: 104px;
     font-weight: bold;
     color: #fff;
     display: inline-block;
     position: relative;
-    text-shadow: 6px 8px 16px rgba(0, 0, 0, 0.8);
+    text-shadow: 6px 8px 16px rgb(0, 0, 0);
     margin-bottom: 10px; /* Added: Reduces gap below h1 */
 }
 
 .tm {
     font-size: 25px !important;
     vertical-align: super;
-    color: #ccc;
+    color: #f7f7f7;
     margin-left: 3px;
 }
 
 h2 {
-    font-size: 40px; /* Larger, just under h1's 46px */
+    font-size: 60px; /* Larger, just under h1's 46px */
     color: #fff;
     font-weight: bold; /* Bolder text */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.912);
 }
 
 h3 {
@@ -43,7 +43,7 @@ h3 {
 
 h4 {
     font-size: 27px;
-    color: #fbff01;
+    color: #f6ff00;
     font-weight: 500;
     text-shadow: 4px 4px 8px rgb(0, 0, 0);
 }
