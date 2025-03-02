@@ -49,25 +49,32 @@ function copyAddress() {
     });
 }
 
-// Mint DID (unchanged)
+// Mint DID (changed)
 async function mintDid() {
     if (!walletAddress) {
         alert('Please connect your Midnight Lace wallet first!');
         return;
     }
     logMessage('Minting DID...');
-    const kycHash = btoa("kycData");
+    const kycHash = btoa("kycData"); // Replace with your actual KYC hash logic
+    const uri = "https://example.com/qr/" + kycHash; // Generate a real URI for the NFT
     try {
-        const response = await fetch('http://localhost:3000/mint-nft', {
-            method: 'POST',
-            body: JSON.stringify({ kycHash, wallet: walletAddress }),
-            headers: { 'Content-Type': 'application/json' }
-        });
+        // Enable Lace wallet
+        const wallet = await window.midnight.mnLace.enable({ network: 'testnet' });
+        const contractAddress = "your_sentineldid_contract_address"; // Replace with your deployed contract address
+        const txData = encodeFunctionCall("issueDid", [kycHash, uri]); // Use Midnight SDK to encode
+        const tx = {
+            to: contractAddress,
+            value: 10000000, // 0.1 tDUST in octas (adjust based on gas needs)
+            data: txData
+        };
+        // Submit transaction via Lace wallet
+        const response = await wallet.submitTransaction(tx); // Adjust to actual Lace API method
         const data = await response.json();
-        if (data.qrUrl) {
-            document.getElementById('qrCode').src = data.qrUrl;
+        if (data.didId && data.tokenId) {
+            document.getElementById('qrCode').src = uri;
             document.getElementById('qrCode').style.display = 'block';
-            logMessage(`DID minted: ${data.didId}`);
+            logMessage(`DID minted: ${data.didId}, Token ID: ${data.tokenId}`);
         } else {
             alert('Failed to mint DID: ' + (data.error || 'Unknown error'));
         }
