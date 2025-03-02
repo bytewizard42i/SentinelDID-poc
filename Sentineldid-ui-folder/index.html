@@ -93,52 +93,53 @@
 
 <!-- Mint DID Button -->
                 <button id="mintButton" type="button" onclick="mintDid()" disabled aria-label="Mint DID (disabled until wallet connected)">Mint DID</button>
-                <br>
+                <br><br>
 
 <!-- QR Code Display -->
                 <!-- <img id="qrCode" alt="Your DID QR Code" style="display:none;">
                 <br> -->
 
+<!-- Check DID Section -->
+                <div id="callDid">
+                    <label for="checkDid">Check DID:</label>
+                    <input id="checkDid" placeholder="Paste DID">
+                    <br>
+
+                    <button type="button" onclick="checkDid()" aria-label="Verify DID">Verify DID</button>
+                    <br> 
+                    
+<!-- Stats Button -->
+                    <button type="button" onclick="getStats()" aria-label="Get DID Stats">Stats</button>
+                    <br>
+                    <p id="callResult"></p>
+                    <br>
+                    <p id="stats" aria-live="polite"></p>
+                </div>
+                <br>
+
 <!--Verification Buttons-->
                 Verification Buttons
                 <id="verificationButtons">
-                <br>
                 
 
 <!--Verify Age -->
             <button type="button" onclick="verifyProof('Age')">Verify Age</button>
             <br>
 
-
-
-
 <!--Verify Identity -->
                 <button type="button" onclick="verifyProof('Identity')">Verify Identity</button>
-            </div>
-            <br>
-
-<!-- Verification Result -->
-            <div id="verificationResult" style="display:none;"></div>
-            <br>
-
-<!-- Check DID Section -->
-            <div id="callDid">
-                <label for="checkDid">Check DID:</label>
-                <input id="checkDid" placeholder="Paste DID">
-                <br>
-                <button type="button" onclick="checkDid()" aria-label="Verify DID">Verify DID</button>
-                <br> <!-- Added line break between Verify DID and Stats -->
-                <button type="button" onclick="getStats()" aria-label="Get DID Stats">Stats</button>
-                <br>
-                <p id="callResult"></p>
-                <br>
-                <p id="stats" aria-live="polite"></p>
-            </div>
+            
             <br>
 
 <!-- Exit Button -->
             <button type="button" id="exitButton" onclick="exitDid()">Exit</button>
             <br>
+
+<!-- Verification Result -->
+            <div id="verificationResult" style="display:none;"></div>
+            <br>
+            </div>
+
         </div>
 
 <!-- Server Log Section -->
