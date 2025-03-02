@@ -89,24 +89,28 @@
 
                 <label for="nokPhone">Phone Number:</label>
                 <input type="tel" id="nokPhone" placeholder="e.g., 555-987-6543" required>
-                <br><br>
+                <br>
 
 <!-- Mint DID Button -->
                 <button id="mintButton" type="button" onclick="mintDid()" disabled aria-label="Mint DID (disabled until wallet connected)">Mint DID</button>
-            </form>
-            <br>
+                <br>
 
 <!-- QR Code Display -->
-            <img id="qrCode" alt="Your DID QR Code" style="display:none;">
-            <br>
+                <!-- <img id="qrCode" alt="Your DID QR Code" style="display:none;">
+                <br> -->
 
 <!--Verification Buttons-->
-            Verification Buttons
-            <div id="verificationButtons">
+                Verification Buttons
+                <id="verificationButtons">
+                <br>
+                
 
 <!--Verify Age -->
-                <button type="button" onclick="verifyProof('Age')">Verify Age</button>
-                <br>
+            <button type="button" onclick="verifyProof('Age')">Verify Age</button>
+            <br>
+
+
+
 
 <!--Verify Identity -->
                 <button type="button" onclick="verifyProof('Identity')">Verify Identity</button>
