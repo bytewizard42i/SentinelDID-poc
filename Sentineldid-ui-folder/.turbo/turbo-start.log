@@ -1,107 +1,17 @@
 
-[0302/140531.848286:ERROR:file_io_posix.cc(153)] open /home/js/.config/google-chrome/Crash Reports/pending/841b1be6-46d4-45a5-a106-8ede8774d28a.lock: File exists (17)
+[0302/164220.195598:ERROR:file_io_posix.cc(153)] open /home/js/.config/google-chrome/Crash Reports/pending/841b1be6-46d4-45a5-a106-8ede8774d28a.lock: File exists (17)
 Opening in existing browser session.
 [38;2;162;59;114m[1][39m  INFO  Accepting connections at http://localhost:3001
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:33 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:33 PM ::1 Returned 304 in 29 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:33 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:33 PM ::1 Returned 304 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:33 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:33 PM ::1 Returned 304 in 3 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:34 PM ::1 GET /demo-photo.jpg
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:34 PM ::1 Returned 304 in 6 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:34 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:05:34 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:52 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:52 PM ::1 Returned 200 in 4 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:52 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:52 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:52 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:52 PM ::1 Returned 304 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:53 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:06:53 PM ::1 Returned 200 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:04 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:04 PM ::1 Returned 200 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:04 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:04 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:04 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:04 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:05 PM ::1 GET /demo-photo.jpg
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:05 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:05 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:08:05 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:01 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:01 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 GET /demo-photo.jpg
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 Returned 304 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:09:04 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:13 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:13 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:16 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:16 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:16 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:16 PM ::1 Returned 304 in 0 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:16 PM ::1 GET /demo-photo.jpg
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:16 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:17 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:17 PM ::1 Returned 200 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:39 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:39 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:39 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:39 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:39 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:39 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:40 PM ::1 GET /demo-photo.jpg
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:40 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:40 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:40 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:50 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:50 PM ::1 Returned 200 in 3 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:50 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:50 PM ::1 Returned 304 in 0 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:50 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:50 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:51 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:11:51 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:36 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 Returned 200 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 GET /demo-photo.jpg
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:14:59 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:00 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:00 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:17 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:17 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:17 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:17 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:17 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:17 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:18 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:18 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 Returned 200 in 2 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 GET /styles.css
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 GET /script.js
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 Returned 304 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 GET /favicon.ico
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:15:52 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:17:22 PM ::1 GET /
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:17:22 PM ::1 Returned 200 in 1 ms
-[38;2;162;59;114m[1][39m  HTTP  3/2/2025 2:17:22 PM ::1 GET /styles.css
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:21 PM ::1 GET /
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:21 PM ::1 Returned 200 in 19 ms
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:21 PM ::1 GET /styles.css
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:21 PM ::1 GET /script.js
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:21 PM ::1 Returned 304 in 7 ms
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:21 PM ::1 Returned 200 in 3 ms
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:22 PM ::1 GET /demo-photo.jpg
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:22 PM ::1 Returned 304 in 9 ms
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:22 PM ::1 GET /favicon.ico
+[38;2;162;59;114m[1][39m  HTTP  3/2/2025 4:42:22 PM ::1 Returned 200 in 2 ms
+[38;2;162;59;114m[1][39m 
+[38;2;162;59;114m[1][39m  INFO  Gracefully shutting down. Please wait...
+Job [38;2;162;59;114m[1][39m, '[38;2;162;59;114mserve -s . -p 3001[39m' has ended
