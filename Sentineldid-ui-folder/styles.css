@@ -11,12 +11,13 @@ body {
 
 /* 🔹 Title & Headers */
 h1 {
-    font-size: 46px;
+    font-size: 92px;
     font-weight: bold;
     color: #fff;
     display: inline-block;
     position: relative;
-    text-shadow: 3px 4px 8px rgba(0, 0, 0, 0.8);
+    text-shadow: 6px 8px 16px rgba(0, 0, 0, 0.8);
+    margin-bottom: 10px; /* Added: Reduces gap below h1 */
 }
 
 .tm {
