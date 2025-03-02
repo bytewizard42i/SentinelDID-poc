@@ -1,15 +1,15 @@
 import CompactStandardLibrary prefix Std_;
 
 contract SentinelDID {
-    // Updated: Store DIDnft with token ID and URI
+    // Ledger to store DIDnft with tokenId and URI
     ledger didNFTs: Std_Map<bytes32, { tokenId: uint64, uri: string }>;
     ledger lastDid: bytes32;
     ledger nextTokenId: uint64 = 0;
 
     event DidIssued(bytes32 didId, uint64 tokenId, string uri);
 
-    // Updated: Mint DIDnft with payment and URI
-    public function issueDid(bytes32 kycHash, string uri) returns (bytes32, uint64) payable {
+    // Mint DIDnft with payment and URI
+    public function issueDid(bytes32 kycHash, string uri) payable {
         require(Std_msg_value() >= 10000000, "Minimum payment of 0.1 tDUST required");
         bytes32 didId = kycHash;
         require(!didNFTs.member(didId), "DID already exists");
@@ -18,7 +18,6 @@ contract SentinelDID {
         didNFTs.insert(didId, { tokenId: tokenId, uri: uri });
         lastDid = didId;
         Std_emit_event("DidIssued", didId, tokenId, uri);
-        return (didId, tokenId);
     }
 
     public function verifyDid(bytes32 didId) returns (bool) {
@@ -33,12 +32,13 @@ contract SentinelDID {
         return lastDid;
     }
 
-    // Added: Get NFT details
+    // Get NFT details
     public function getDidNft(bytes32 didId) returns (uint64, string) {
         let nft = didNFTs.lookup(didId);
         return (nft.tokenId, nft.uri);
     }
 
+    // ZK Predicate for age verification
     predicate isOver18(bytes32 kycHash, bytes proof) {
         assert(Std_verifyZkProof(proof, kycHash));
     }
