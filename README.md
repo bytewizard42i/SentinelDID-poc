@@ -64,7 +64,7 @@ Fire up the engines with `yarn turbo run start`—here’s the magic it unleashe
 
 - **Manual Navigation**:  
   No auto-open? No sweat—point your browser to:  
-  **`http://localhost:3000`**  
+  **`http://localhost:3001`**  
   *(Tweak the port if you’ve customized it—3000’s the default!)*
 
 ---
