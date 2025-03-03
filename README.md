@@ -40,6 +40,8 @@ To launch the SentinelDID form and backend services, execute this command from t
 
 yarn turbo run start
 
+Install the Midnight protocol on your local machine and spin up the testnet proof server. https://docs.midnight.network/develop/tutorial/
+
 ## **🚀 What Happens When You Start?**
 
 Fire up the engines with `yarn turbo run start`—here’s the magic it unleashes:
