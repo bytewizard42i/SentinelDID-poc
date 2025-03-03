@@ -108,12 +108,13 @@ We use fields that are **unique to an individual and rarely change**:
 - **Full Name** (first name + last name)
 - **Driver’s License Number (DL#)**
 - **Social Security Number (SSN)**
+- **Date of Birth (DOB)**
 
 ### **2️⃣ Normalization of Data**
 To ensure consistency and prevent variations (**e.g., extra spaces or capitalization**) from affecting the hash:
 - **Full Name** → Converted to **lowercase** and **stripped of spaces or special characters**  
   _(e.g., "John Doe" → "johndoe")_
-- **DL# and SSN** → **Spaces, dashes, and separators removed**  
+- **DL#, DOB, and SSN** → **Spaces, dashes, and separators removed**  
   _(e.g., "DL123 456" → "dl123456", "123-45-6789" → "123456789")_
 
 ### **3️⃣ Concatenation and Hashing**
