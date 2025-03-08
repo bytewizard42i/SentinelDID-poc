@@ -96,7 +96,7 @@ This schema leverages **cryptographic hashing** to securely and efficiently dete
 
 The hashing schema is designed to:  
 
-- **Prevent duplicate DIDs** by ensuring that each unique combination of **immutable KYC data** (e.g., **full name, driver’s license number, Social Security Number**) corresponds to **only one DID**.  
+- **Prevent duplicate DIDs** by ensuring that each unique combination of **immutable KYC data** (e.g., **full name, DOB, Social Security Number**) corresponds to **only one DID**.  
 - **Detect altered or fraudulent data** by flagging inconsistencies in **immutable fields**, such as slight modifications to **SSNs or driver’s license numbers**.
 
 ---
