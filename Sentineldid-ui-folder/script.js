@@ -16,6 +16,7 @@ function logMessage(message) {
 async function connectLace() {
     logMessage('Connecting to wallet...');
     console.log('Checking window.midnight:', window.midnight);
+    
     if (window.midnight?.mnLace) {
         console.log('mnLace detected:', window.midnight.mnLace);
         try {
