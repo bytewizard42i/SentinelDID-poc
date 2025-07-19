@@ -28,7 +28,7 @@ This file maintains a running log of all AI conversations and their correspondin
 - `Sentineldid-ui-folder/index.html` - Fixed background check field and form submission
 - `DEPLOYMENT.md` - Created comprehensive deployment guide
 
-**Git Commit**: [To be added after commit]
+**Git Commit**: 793244a - "Complete SentinelDID PoC repair and enhancement"
 
 ### User Request 2: AI Chat Log Creation
 **Date**: 2025-07-19 14:50:15 EST  
@@ -42,7 +42,7 @@ This file maintains a running log of all AI conversations and their correspondin
 **Files Created**:
 - `AI-CHAT.md` - This conversation log file
 
-**Git Commit**: [To be added after commit]
+**Git Commit**: 793244a - "Complete SentinelDID PoC repair and enhancement"
 
 ---
 
