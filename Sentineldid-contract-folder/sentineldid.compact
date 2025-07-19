@@ -1,50 +1,171 @@
+/**
+ * SentinelDID Smart Contract
+ * 
+ * This Midnight Compact contract manages decentralized identity NFTs for emergency response:
+ * 1. Mints DID NFTs using KYC hash as unique identifier
+ * 2. Stores NFT metadata and token information on-chain
+ * 3. Provides verification functions for DID existence
+ * 4. Implements ZK proof verification for age/identity verification
+ * 5. Maintains payment requirements for DID minting
+ * 
+ * Flow:
+ * KYC Hash → Payment Verification → Mint NFT → Store On-Chain → Emit Event
+ */
+
+// Import Midnight Compact Standard Library for core functions
 import CompactStandardLibrary prefix Std_;
 
 contract SentinelDID {
-    // Ledger to store DIDnft with tokenId and URI
+    /**
+     * LEDGER STORAGE
+     * 
+     * These ledgers store the contract's persistent state on the Midnight blockchain
+     */
+    
+    // Main storage for DID NFTs: maps DID hash to NFT data
+    // Key: bytes32 (KYC hash serving as unique DID identifier)
+    // Value: { tokenId: sequential NFT ID, uri: metadata URI }
     ledger didNFTs: Std_Map<bytes32, { tokenId: uint64, uri: string }>;
+    
+    // Tracks the most recently minted DID for reference
     ledger lastDid: bytes32;
+    
+    // Auto-incrementing counter for NFT token IDs
     ledger nextTokenId: uint64 = 0;
 
+    /**
+     * EVENTS
+     * 
+     * Events are emitted to notify external systems of contract state changes
+     */
+    
+    // Emitted when a new DID NFT is successfully minted
     event DidIssued(bytes32 didId, uint64 tokenId, string uri);
 
-    // Mint DIDnft with payment and URI
+    /**
+     * PUBLIC FUNCTIONS
+     * 
+     * These functions can be called by external users and applications
+     */
+    
+    /**
+     * Issue (mint) a new DID NFT
+     * 
+     * Process Flow:
+     * 1. Verify minimum payment (0.1 tDUST = 10,000,000 octas)
+     * 2. Use KYC hash as unique DID identifier
+     * 3. Check that DID doesn't already exist (prevents duplicates)
+     * 4. Assign sequential token ID
+     * 5. Store NFT data in ledger
+     * 6. Update tracking variables
+     * 7. Emit event for external monitoring
+     * 
+     * @param kycHash - Keccak256 hash of user's KYC data (serves as unique DID)
+     * @param uri - Metadata URI for the NFT (typically IPFS or web URL)
+     */
     public function issueDid(bytes32 kycHash, string uri) payable {
+        // Verify minimum payment requirement (anti-spam measure)
         require(Std_msg_value() >= 10000000, "Minimum payment of 0.1 tDUST required");
+        
+        // Use KYC hash directly as DID identifier for privacy and uniqueness
         bytes32 didId = kycHash;
+        
+        // Prevent duplicate DIDs - same person can't create multiple DIDs
         require(!didNFTs.member(didId), "DID already exists");
+        
+        // Assign sequential token ID for NFT tracking
         uint64 tokenId = nextTokenId;
         nextTokenId = nextTokenId + 1;
+        
+        // Store NFT data in the blockchain ledger
         didNFTs.insert(didId, { tokenId: tokenId, uri: uri });
+        
+        // Update last minted DID for reference
         lastDid = didId;
+        
+        // Emit event to notify external systems (indexers, frontend, etc.)
         Std_emit_event("DidIssued", didId, tokenId, uri);
     }
 
+    /**
+     * Verify if a DID exists in the system
+     * 
+     * @param didId - The DID identifier to check
+     * @return bool - True if DID exists, false otherwise
+     */
     public function verifyDid(bytes32 didId) returns (bool) {
         return didNFTs.member(didId);
     }
 
+    /**
+     * Get the total number of DIDs minted
+     * 
+     * @return uint64 - Total count of DIDs in the system
+     */
     public function getDidCount() returns (uint64) {
         return didNFTs.size();
     }
 
+    /**
+     * Get the most recently minted DID identifier
+     * 
+     * @return bytes32 - The last DID that was minted
+     */
     public function getLastDid() returns (bytes32) {
         return lastDid;
     }
 
-    // Get NFT details
+    /**
+     * Retrieve NFT details for a specific DID
+     * 
+     * @param didId - The DID identifier to look up
+     * @return (uint64, string) - Tuple of (tokenId, uri)
+     */
     public function getDidNft(bytes32 didId) returns (uint64, string) {
         let nft = didNFTs.lookup(didId);
         return (nft.tokenId, nft.uri);
     }
 
-    // ZK Predicate for age verification
+    /**
+     * ZERO-KNOWLEDGE PROOF VERIFICATION
+     * 
+     * These functions implement privacy-preserving verification using ZK proofs
+     */
+    
+    /**
+     * ZK Predicate for age verification
+     * 
+     * This predicate verifies that a user is over 18 without revealing their actual age.
+     * The proof contains cryptographic evidence that the user meets the age requirement
+     * while keeping the birth date private.
+     * 
+     * @param kycHash - Hash of the user's KYC data
+     * @param proof - Zero-knowledge proof of age eligibility
+     */
     predicate isOver18(bytes32 kycHash, bytes proof) {
+        // Verify the ZK proof against the KYC hash
+        // This ensures the proof corresponds to the correct user's data
         assert(Std_verifyZkProof(proof, kycHash));
     }
 
+    /**
+     * Public function to verify age using ZK proofs
+     * 
+     * Process Flow:
+     * 1. Extract KYC hash from DID (simplified approach)
+     * 2. Verify ZK proof against the KYC hash
+     * 3. Return verification result
+     * 
+     * @param didId - The DID identifier for the user
+     * @param proof - Zero-knowledge proof of age
+     * @return bool - True if age verification passes
+     */
     public function verifyAge(bytes32 didId, bytes proof) returns (bool) {
-        bytes32 kycHash = didId; // Simplified—use real kycHash if stored separately
+        // In this simplified version, we use didId as kycHash
+        // In production, you might store kycHash separately for additional privacy
+        bytes32 kycHash = didId;
+        
+        // Call the ZK predicate to verify the proof
         return isOver18(kycHash, proof);
     }
 }

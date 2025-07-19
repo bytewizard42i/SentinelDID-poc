@@ -1,6 +1,14 @@
 {
     "name": "sentineldid-contract",
     "version": "1.0.0",
+    "description": "SentinelDID smart contract written in Midnight Compact",
+    "main": "sentineldid.compact",
+    "scripts": {
+      "build": "compact-cli build sentineldid.compact",
+      "deploy": "compact-cli deploy sentineldid.compact --network testnet",
+      "verify": "compact-cli verify sentineldid.compact --network testnet",
+      "start": "echo 'Contract build completed. Use deploy script to deploy to Midnight Testnet.'"
+    },
     "dependencies": {
       "@midnight-ntwrk/compact": "^0.19.0"
     },

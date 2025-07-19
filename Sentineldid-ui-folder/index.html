@@ -73,7 +73,11 @@
                 <br>
 
                 <label for="backgroundCheck">Background Check Permission:</label>
-                <input type="checkbox" id="backgroundCheck">
+                <select id="backgroundCheck" required>
+                    <option value="">Select...</option>
+                    <option value="granted">Granted</option>
+                    <option value="denied">Denied</option>
+                </select>
                 <br>
 
 <!-- Next of Kin Section -->
@@ -94,7 +98,7 @@
 
 
 <!-- Mint DID Button -->
-                <button id="mintButton" type="button" onclick="mintDid()" disabled aria-label="Mint DID (disabled until wallet connected)">Mint DID</button>
+                <button id="mintButton" type="submit" disabled aria-label="Mint DID (disabled until wallet connected)">Mint DID</button>
                 <br>
 
 <!-- QR Code Display -->
