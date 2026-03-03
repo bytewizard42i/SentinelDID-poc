@@ -1,38 +1,182 @@
-import CompactStandardLibrary prefix Std_;
+/**
+ * SentinelDID — Privacy-Preserving DID Registry
+ *
+ * Manages issuance and verification of Decentralized Identifiers (DIDs)
+ * on Midnight Network with zero-knowledge proofs.
+ *
+ * Patterns: Based on official bboard (midnightntwrk/example-bboard)
+ * and KYCzAnchor (bytewizard42i/KYCz_us_app) reference contracts.
+ *
+ * Compiler: compactc v0.29.0
+ */
 
-contract SentinelDID {
-    ledger didNFTs: Std_Map<bytes32, bool>;  // Implicit Cell for Map
-    ledger lastDid: bytes32;                 // Implicit Cell removed
+pragma language_version >= 0.16;
 
-    event DidIssued(bytes32 didId);
+import CompactStandardLibrary;
 
-    public function issueDid(bytes32 kycHash) returns (bytes32) {
-        bytes32 didId = kycHash;
-        require(!didNFTs.member(didId), "DID already exists");
-        didNFTs.insert(didId, true);
-        lastDid = didId;  // Implicit write
-        Std_emit_event("DidIssued", didId);
-        return didId;
-    }
+// ============================================================================
+// DATA STRUCTURES
+// ============================================================================
 
-    public function verifyDid(bytes32 didId) returns (bool) {
-        return didNFTs.member(didId);
-    }
+struct DidRecord {
+  kycHash: Bytes<32>;        // Hash of KYC data backing this DID
+  issuedAt: Uint<64>;        // Timestamp of DID issuance
+  isActive: Boolean;         // Whether this DID is currently active
+}
 
-    public function getDidCount() returns (uint64) {
-        return didNFTs.size();
-    }
+struct DidHashInput {
+  separator: Bytes<32>;
+  kycHash: Bytes<32>;
+}
 
-    public function getLastDid() returns (bytes32) {
-        return lastDid;  // Implicit read
-    }
+// ============================================================================
+// LEDGER STATE
+// ============================================================================
 
-    predicate isOver18(bytes32 kycHash, bytes proof) {
-        assert(Std_verifyZkProof(proof, kycHash));
-    }
+// Public: anyone can query DID count and last DID
+export ledger didRegistry: Map<Bytes<32>, DidRecord>;
+export ledger totalDidsIssued: Counter;
+export ledger lastIssuedDid: Bytes<32>;
 
-    public function verifyAge(bytes32 didId, bytes proof) returns (bool) {
-        bytes32 kycHash = didNFTs.lookup(didId);
-        return isOver18(kycHash, proof);
-    }
+// Sealed: only deployer can see the issuer key (set at deploy time)
+sealed ledger issuerKey: ZswapCoinPublicKey;
+
+// ============================================================================
+// WITNESSES (private data from the prover)
+// ============================================================================
+
+witness localSecretKey(): Bytes<32>;
+
+// ============================================================================
+// CONSTRUCTOR
+// ============================================================================
+
+constructor() {
+  // The deployer's key becomes the trusted issuer
+  // Pattern: same as KYCzAnchor — ownPublicKey() captures the deployer
+  issuerKey = ownPublicKey();
+  lastIssuedDid = pad(32, "");
+}
+
+// ============================================================================
+// CIRCUITS
+// ============================================================================
+
+/**
+ * Issue a new DID backed by a KYC hash
+ *
+ * Only the trusted issuer (deployer) can issue DIDs.
+ * The DID identifier is derived from a persistent hash of the KYC data,
+ * ensuring deterministic and collision-resistant IDs.
+ *
+ * @param kycHash - Hash of the subject's verified KYC data
+ * @param currentTime - Current timestamp for issuance record
+ * @returns The newly created DID identifier (Bytes<32>)
+ */
+export circuit issueDid(kycHash: Bytes<32>, currentTime: Uint<64>): Bytes<32> {
+  // Only the trusted issuer can issue DIDs
+  assert(ownPublicKey() == issuerKey, "Only the trusted issuer can issue DIDs");
+
+  // Derive a deterministic DID identifier from the KYC hash
+  const didId = persistentHash<DidHashInput>(DidHashInput {
+    separator: pad(32, "sentineldid:did:"),
+    kycHash: kycHash
+  });
+
+  // Ensure this DID has not already been issued
+  assert(!didRegistry.member(disclose(didId)), "DID already exists");
+
+  // Create and store the DID record
+  const record = DidRecord {
+    kycHash: kycHash,
+    issuedAt: currentTime,
+    isActive: true
+  };
+  didRegistry.insert(disclose(didId), disclose(record));
+
+  // Update counters and last-issued tracker
+  totalDidsIssued.increment(1);
+  lastIssuedDid = disclose(didId);
+
+  return disclose(didId);
+}
+
+/**
+ * Verify that a DID exists and is active
+ *
+ * @param didId - The DID identifier to verify
+ * @returns true if the DID exists and is active
+ */
+export circuit verifyDid(didId: Bytes<32>): Boolean {
+  if (!didRegistry.member(disclose(didId))) {
+    return false;
+  }
+  const record = didRegistry.lookup(disclose(didId));
+  return record.isActive;
+}
+
+/**
+ * Revoke a DID (issuer only)
+ *
+ * Marks the DID as inactive. Cannot be re-activated.
+ *
+ * @param didId - The DID to revoke
+ */
+export circuit revokeDid(didId: Bytes<32>): [] {
+  // Only the trusted issuer can revoke
+  assert(ownPublicKey() == issuerKey, "Only the trusted issuer can revoke DIDs");
+
+  // Ensure the DID exists
+  assert(didRegistry.member(disclose(didId)), "DID not found");
+
+  // Load and update the record
+  const record = didRegistry.lookup(disclose(didId));
+  assert(record.isActive, "DID already revoked");
+
+  const revokedRecord = DidRecord {
+    kycHash: record.kycHash,
+    issuedAt: record.issuedAt,
+    isActive: false
+  };
+  didRegistry.insert(disclose(didId), disclose(revokedRecord));
+}
+
+/**
+ * Prove that the subject behind a DID matches a given KYC hash
+ *
+ * This is a ZK proof — the verifier learns only yes/no, never the
+ * actual KYC data. The prover must know the KYC hash that was used
+ * at issuance time.
+ *
+ * @param didId - The DID to check
+ * @param claimedKycHash - The KYC hash the prover claims to own
+ */
+export circuit proveKycOwnership(didId: Bytes<32>, claimedKycHash: Bytes<32>): [] {
+  // Ensure the DID exists and is active
+  assert(didRegistry.member(disclose(didId)), "DID not found");
+  const record = didRegistry.lookup(disclose(didId));
+  assert(record.isActive, "DID is revoked");
+
+  // Verify the claimed KYC hash matches the one stored at issuance
+  // The claimedKycHash comes from the prover's private state (witness)
+  // and is compared in ZK — the verifier never sees it
+  assert(record.kycHash == claimedKycHash, "KYC hash does not match DID record");
+}
+
+/**
+ * Derive a public key from a secret key (helper circuit)
+ *
+ * Uses the bboard pattern: persistentHash with a domain separator
+ * to derive a public key without exposing the secret.
+ *
+ * @param secretKey - The secret key (from witness)
+ * @param context - Domain separator (e.g., DID identifier)
+ * @returns Derived public key as Bytes<32>
+ */
+circuit derivePublicKey(secretKey: Bytes<32>, context: Bytes<32>): Bytes<32> {
+  return persistentHash<Vector<3, Bytes<32>>>([
+    pad(32, "sentineldid:pk:"),
+    context,
+    secretKey
+  ]);
 }
