@@ -78,6 +78,48 @@ Each health data repo has a dedicated cross-pollination document:
 
 ---
 
+## RFID / NFC Identity Bridge — Physical-to-DID Layer
+
+SentinelDID's QR-based identity extends naturally to RFID and NFC hardware — the physical scan layer that bridges the real world to on-chain DIDs.
+
+### Scan → DID Resolution Across All Platforms
+
+| Platform | Primary Scan | Secondary | Tertiary | Hardware |
+|----------|-------------|-----------|----------|----------|
+| **Safe Health Data** (human) | NFC medical alert bracelet | NFC hospital wristband / phone tap | QR on bracelet | Any NFC smartphone |
+| **PetProData** (companion animal) | ISO 11784/11785 RFID microchip | NFC smart collar tag | QR collar tag | Universal ISO scanner or NFC phone |
+| **EquineProData** (equine) | ISO 11784/11785 RFID + UELN | NFC smart halter tag | QR halter plate / freeze brand OCR | Professional ISO scanner (extended range) |
+| **SentinelDID** (emergency workforce) | NFC badge / wristband | QR code | KYCz biometric re-verify | NFC smartphone |
+
+**All scan methods resolve to the same DID on Midnight.** The physical tag is just a lookup key — the identity, health records, credentials, and disclosure policies all live on-chain.
+
+### The Binding Protocol (Universal)
+
+```
+Physical tag (RFID/NFC/QR) → Read identifier → Hash with domain separator
+     → persistentHash("[platform]:rfid:", identifier)
+     → Deterministic DID on Midnight
+     → ZK-verified credential check on requester
+     → Selective disclosure per policy
+     → On-chain audit log
+```
+
+### Key Privacy Property
+
+**The physical identifier (chip number, NFC UID) is never stored on-chain** — only the hash. This means:
+- Scanning the physical tag is the ONLY way to resolve to a DID
+- The on-chain ledger cannot be scraped to find animals/patients
+- Even if someone obtains the DID, they cannot reverse-engineer the chip number
+- Compliant with HIPAA, GDPR, and veterinary privacy requirements
+
+### Animals Already Have the Infrastructure
+
+Over 100 million pets and millions of horses worldwide carry ISO-compliant RFID microchips. Many equine registries (FEI, EU regulation) **mandate** chipping. PetProData and EquineProData don't need to deploy new hardware — they bridge existing chips to Midnight DIDs.
+
+For humans, NFC medical alert jewelry is a growing market. SentinelDID + Safe Health Data makes these tags **intelligent** — instead of engraved text, they carry a DID that resolves to a living, updatable, privacy-controlled health record.
+
+---
+
 ## Proposed Contract Extensions
 
 ### Emergency Disclosure Circuit (for sentineldid.compact)
