@@ -202,3 +202,13 @@ All while maintaining a **simple and efficient process**.
 This approach ensures that **each DID is uniquely tied to an individual’s identity**, fostering **trust** and **reliability** in **decentralized emergency management**.  
 
 ---
+
+## Three-pillar connection
+
+SentinelDID is a **consumer product** built on the DIDz three-pillar model:
+
+- **DIDz (root identity):** Emergency responders hold a DIDz; SentinelDID verifies their credentials without revealing identity.
+- **AgenticDID (agent authority):** Response agents can be delegated authority to verify identities in the field.
+- **RWAz (object identity):** Not directly used.
+
+SentinelDID uses `sentineldid.compact` (4 circuits).
