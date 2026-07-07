@@ -1,4 +1,4 @@
-# 🧬 KYCz — Zero-Knowledge KYC with Biometric Liveness
+# 🧬 KYCz, Zero-Knowledge KYC with Biometric Liveness
 
 **Future Identity Verification Integration for SentinelDID**
 
@@ -9,11 +9,11 @@
 
 ## What Is KYCz?
 
-**KYC + zkProofs = KYCz** — Privacy-preserving identity verification powered by the Midnight blockchain.
+**KYC + zkProofs = KYCz**, Privacy-preserving identity verification powered by the Midnight blockchain.
 
-KYCz takes traditional Know Your Customer (KYC) data, stores it in Midnight's **private state**, and uses **zero-knowledge proofs** to make assertions about that data — **without ever revealing the underlying information**.
+KYCz takes traditional Know Your Customer (KYC) data, stores it in Midnight's **private state**, and uses **zero-knowledge proofs** to make assertions about that data, **without ever revealing the underlying information**.
 
-Identity is verified through **multi-factor biometric liveness detection**, ensuring a real human is behind every verification — not a deepfake, bot, or synthetic identity.
+Identity is verified through **multi-factor biometric liveness detection**, ensuring a real human is behind every verification, not a deepfake, bot, or synthetic identity.
 
 ---
 
@@ -31,7 +31,7 @@ Human → KYCz Biometric Liveness → Midnight Private State → zk-Proof Creden
 
 | Factor | Weight | Technique |
 |--------|--------|----------|
-| **3D Parallax** | 17% | Depth variation detection — defeats flat screen/photo spoofs |
+| **3D Parallax** | 17% | Depth variation detection, defeats flat screen/photo spoofs |
 | **Eye Blink Rate** | 15% | Eye Aspect Ratio (EAR) via 68-point facial landmarks |
 | **Face Micro-Movements** | 15% | Involuntary movement signatures, frame-to-frame landmark drift |
 | **Face Movement Challenge** | 15% | Random head-turn/nod/blink-on-command prompts |

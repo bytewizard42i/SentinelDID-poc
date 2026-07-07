@@ -1,4 +1,4 @@
-# ⚕️ SentinelDID — Decentralized Identity, Saving Lives
+# ⚕️ SentinelDID, Decentralized Identity, Saving Lives
 
 > **Privacy-first emergency workforce management powered by zero-knowledge proofs on [Midnight Network](https://docs.midnight.network).**
 
@@ -17,20 +17,20 @@ SentinelDID is a cutting-edge proof-of-concept for **decentralized identity mana
 
 ### The Vision
 
-Easily buildable, highly scalable emergency workforce management that revolutionizes hierarchical delegation, communication, and victim coordination — with effective, secure, and **selectively private** data handling.
+Easily buildable, highly scalable emergency workforce management that revolutionizes hierarchical delegation, communication, and victim coordination, with effective, secure, and **selectively private** data handling.
 
 ### Key Capabilities
 
-- **Real-time chain of command** — Never wonder who is in charge or where an individual is supposed to be. With Starlink and World Mobile integration, no one gets left behind.
-- **Instant victim alerts** — When victims are found, those closest are alerted along with the chain of command. Gone are the days of searching for someone who's already been found.
-- **DownMan switch** — Groundbreaking inactivity detection alerts superiors and team if someone is unresponsive or loses contact. *(Powered by [DownMan](https://github.com/bytewizard42i/DownMan) protocol.)*
-- **Dynamic hierarchy** — When better qualified leaders arrive on scene, the AI-assisted protocol passes the baton and automatically updates the entire workforce's hierarchy schema.
-- **Approval-gated AI** — All delegations, workloads, and AI assistance must be approved and may be modified in real time for fast, effective leadership.
-- **Instant volunteer onboarding** — Volunteers can quickly join the workforce with just their KYC and a smart phone.
-- **Full situational awareness** — Rescuers always know who they report to, where those individuals are, and what they themselves are tasked with.
-- **Privacy-preserving victim management** — Superiors, subordinates, victims, and their families — all protected, all in contact, in real time. Victim identity is preserved whether alive or otherwise.
-- **AI-assisted first aid** — Dedicated medical AI model with Bluetooth proprietary devices that communicate with the system in real time for victim vitals tracking as part of the [SafeHealthData](https://github.com/bytewizard42i/safeHealthData_me) protocol.
-- **Biometric identity verification** — KYC hashing with biometric variation enables reproducible, provable identity management in real time. Workers are verified beyond doubt before being placed in charge of life-and-death tasks.
+- **Real-time chain of command**, Never wonder who is in charge or where an individual is supposed to be. With Starlink and World Mobile integration, no one gets left behind.
+- **Instant victim alerts**, When victims are found, those closest are alerted along with the chain of command. Gone are the days of searching for someone who's already been found.
+- **DownMan switch**, Groundbreaking inactivity detection alerts superiors and team if someone is unresponsive or loses contact. *(Powered by [DownMan](https://github.com/bytewizard42i/DownMan) protocol.)*
+- **Dynamic hierarchy**, When better qualified leaders arrive on scene, the AI-assisted protocol passes the baton and automatically updates the entire workforce's hierarchy schema.
+- **Approval-gated AI**, All delegations, workloads, and AI assistance must be approved and may be modified in real time for fast, effective leadership.
+- **Instant volunteer onboarding**, Volunteers can quickly join the workforce with just their KYC and a smart phone.
+- **Full situational awareness**, Rescuers always know who they report to, where those individuals are, and what they themselves are tasked with.
+- **Privacy-preserving victim management**, Superiors, subordinates, victims, and their families, all protected, all in contact, in real time. Victim identity is preserved whether alive or otherwise.
+- **AI-assisted first aid**, Dedicated medical AI model with Bluetooth proprietary devices that communicate with the system in real time for victim vitals tracking as part of the [SafeHealthData](https://github.com/bytewizard42i/safeHealthData_me) protocol.
+- **Biometric identity verification**, KYC hashing with biometric variation enables reproducible, provable identity management in real time. Workers are verified beyond doubt before being placed in charge of life-and-death tasks.
 
 **The future is now for emergency response. Crisis management will never be the same.** 
 
@@ -76,13 +76,13 @@ Install the Midnight protocol on your local machine and spin up the testnet proo
 
 ## **🚀 What Happens When You Start?**
 
-Fire up the engines with `yarn turbo run start`—here’s the magic it unleashes:
+Fire up the engines with `yarn turbo run start`,here’s the magic it unleashes:
 
 - **🔧 Backend API**:  
-  Ignites `server.js` in `sentineldid-api-folder`—powers DID minting and zero-knowledge proof (ZKP) verification like a pro!
+  Ignites `server.js` in `sentineldid-api-folder`,powers DID minting and zero-knowledge proof (ZKP) verification like a pro!
 
 - **🎨 Frontend UI**:  
-  Serves `index.html` from `sentineldid-ui-folder`—your sleek portal to decentralized identity management.
+  Serves `index.html` from `sentineldid-ui-folder`,your sleek portal to decentralized identity management.
 
 - **🔗 Seamless Connection**:  
   Links the frontend and backend for a flawless, smooth-as-silk experience.
@@ -92,12 +92,12 @@ Fire up the engines with `yarn turbo run start`—here’s the magic it unleashe
 ## **🌐 Accessing the App**
 
 - **Auto-Launch**:  
-  Once the server’s humming, your default browser should pop open the app—ready to roll!
+  Once the server’s humming, your default browser should pop open the app,ready to roll!
 
 - **Manual Navigation**:  
-  No auto-open? No sweat—point your browser to:  
+  No auto-open? No sweat,point your browser to:  
   **`http://localhost:3001`**  
-  *(Tweak the port if you've customized it—3001 is the default!)*
+  *(Tweak the port if you've customized it,3001 is the default!)*
 
 ---
 
@@ -106,7 +106,7 @@ Fire up the engines with `yarn turbo run start`—here’s the magic it unleashe
 Need to dock the ship? Easy peasy!
 
 - **In the Terminal**:  
-  Hit **`CTRL + C`** where the app’s running—shuts it down faster than a blink.
+  Hit **`CTRL + C`** where the app’s running,shuts it down faster than a blink.
 
 ### **Restarting**
 - Ready to sail again? Just rerun:  
@@ -217,7 +217,7 @@ SentinelDID uses `sentineldid.compact` (4 circuits).
 
 ## DIDz Ecosystem
 
-This project is part of the DIDz ecosystem — a suite of privacy-preserving
+This project is part of the DIDz ecosystem, a suite of privacy-preserving
 identity, credential, and application tools built on Midnight Network.
 
 ![DIDz Ecosystem Map](docs/DIDz-ecosystem-map.png)

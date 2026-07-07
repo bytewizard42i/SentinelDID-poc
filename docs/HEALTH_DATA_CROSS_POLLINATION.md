@@ -1,4 +1,4 @@
-# SentinelDID × Health Data — Cross-Pollination Reference
+# SentinelDID × Health Data, Cross-Pollination Reference
 
 *SentinelDID's emergency protocol has direct applications across the Safe Health Data ecosystem.*
 
@@ -8,7 +8,7 @@
 
 ## Overview
 
-SentinelDID was built for emergency workforce management and victim identification. The same patterns — DID-based identity, ZK-verified credentials, emergency disclosure, Downman switch, workforce hierarchy, and satellite connectivity — apply directly to three health data platforms in the DIDz ecosystem:
+SentinelDID was built for emergency workforce management and victim identification. The same patterns, DID-based identity, ZK-verified credentials, emergency disclosure, Downman switch, workforce hierarchy, and satellite connectivity, apply directly to three health data platforms in the DIDz ecosystem:
 
 | Platform | Focus | Key Emergency Integration |
 |----------|-------|--------------------------|
@@ -78,9 +78,9 @@ Each health data repo has a dedicated cross-pollination document:
 
 ---
 
-## RFID / NFC Identity Bridge — Physical-to-DID Layer
+## RFID / NFC Identity Bridge, Physical-to-DID Layer
 
-SentinelDID's QR-based identity extends naturally to RFID and NFC hardware — the physical scan layer that bridges the real world to on-chain DIDs.
+SentinelDID's QR-based identity extends naturally to RFID and NFC hardware, the physical scan layer that bridges the real world to on-chain DIDs.
 
 ### Scan → DID Resolution Across All Platforms
 
@@ -91,7 +91,7 @@ SentinelDID's QR-based identity extends naturally to RFID and NFC hardware — t
 | **EquineProData** (equine) | ISO 11784/11785 RFID + UELN | NFC smart halter tag | QR halter plate / freeze brand OCR | Professional ISO scanner (extended range) |
 | **SentinelDID** (emergency workforce) | NFC badge / wristband | QR code | KYCz biometric re-verify | NFC smartphone |
 
-**All scan methods resolve to the same DID on Midnight.** The physical tag is just a lookup key — the identity, health records, credentials, and disclosure policies all live on-chain.
+**All scan methods resolve to the same DID on Midnight.** The physical tag is just a lookup key, the identity, health records, credentials, and disclosure policies all live on-chain.
 
 ### The Binding Protocol (Universal)
 
@@ -106,7 +106,7 @@ Physical tag (RFID/NFC/QR) → Read identifier → Hash with domain separator
 
 ### Key Privacy Property
 
-**The physical identifier (chip number, NFC UID) is never stored on-chain** — only the hash. This means:
+**The physical identifier (chip number, NFC UID) is never stored on-chain**, only the hash. This means:
 - Scanning the physical tag is the ONLY way to resolve to a DID
 - The on-chain ledger cannot be scraped to find animals/patients
 - Even if someone obtains the DID, they cannot reverse-engineer the chip number
@@ -114,9 +114,9 @@ Physical tag (RFID/NFC/QR) → Read identifier → Hash with domain separator
 
 ### Animals Already Have the Infrastructure
 
-Over 100 million pets and millions of horses worldwide carry ISO-compliant RFID microchips. Many equine registries (FEI, EU regulation) **mandate** chipping. PetProData and EquineProData don't need to deploy new hardware — they bridge existing chips to Midnight DIDs.
+Over 100 million pets and millions of horses worldwide carry ISO-compliant RFID microchips. Many equine registries (FEI, EU regulation) **mandate** chipping. PetProData and EquineProData don't need to deploy new hardware, they bridge existing chips to Midnight DIDs.
 
-For humans, NFC medical alert jewelry is a growing market. SentinelDID + Safe Health Data makes these tags **intelligent** — instead of engraved text, they carry a DID that resolves to a living, updatable, privacy-controlled health record.
+For humans, NFC medical alert jewelry is a growing market. SentinelDID + Safe Health Data makes these tags **intelligent**, instead of engraved text, they carry a DID that resolves to a living, updatable, privacy-controlled health record.
 
 ---
 

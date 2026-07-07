@@ -1,4 +1,4 @@
-# SentinelDID × SelectConnect — Emergency Contact Protocol
+# SentinelDID × SelectConnect, Emergency Contact Protocol
 
 *How SelectConnect's progressive reveal extends SentinelDID's emergency protocol with controlled contact sharing for first responders, victim support, and post-emergency follow-up.*
 
@@ -65,4 +65,4 @@ SentinelDID's hierarchical delegation + SelectConnect:
 
 ---
 
-*Last updated: March 22, 2026 — Penny 🎀*
+*Last updated: March 22, 2026, Penny 🎀*
