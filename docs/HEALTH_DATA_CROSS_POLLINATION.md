@@ -8,7 +8,7 @@
 
 ## Overview
 
-SentinelDID was built for emergency workforce management and victim identification. The same patterns, DID-based identity, ZK-verified credentials, emergency disclosure, Downman switch, workforce hierarchy, and satellite connectivity, apply directly to three health data platforms in the DIDz ecosystem:
+SentinelDID was built for emergency workforce management and victim identification. The same patterns, DID-based identity, ZK-verified credentials, emergency disclosure, LegacyKey switch, workforce hierarchy, and satellite connectivity, apply directly to three health data platforms in the DIDz ecosystem:
 
 | Platform | Focus | Key Emergency Integration |
 |----------|-------|--------------------------|
@@ -25,7 +25,7 @@ SentinelDID was built for emergency workforce management and victim identificati
 | **DID-NFT + QR** | Medical identity wristband (human), collar tag (pet), competition ID (equine) |
 | **ZK proof verification** | Verify responder/vet credentials without revealing personal identity |
 | **Workforce hierarchy** | Emergency chain-of-command for data access authorization |
-| **Downman switch** | Medical dead-man's switch → advance directives, pet safety alerts, foaling watch |
+| **LegacyKey switch** | Medical dead-man's switch → advance directives, pet safety alerts, foaling watch |
 | **AI-assisted delegation** | Triage workflow based on ZK-verified medical data |
 | **Volunteer onboarding** | Disaster medical/animal rescue volunteers verified in minutes |
 | **Victim management** | Privacy-preserving patient/animal tracking across facilities |
@@ -40,7 +40,7 @@ SentinelDID was built for emergency workforce management and victim identificati
 |--------------------|------------------------|
 | **Selective health disclosure** | SentinelDID victims can have critical medical info released to responders without full record exposure |
 | **Drug interaction checking** | Emergency treatment can be validated against existing medications via ZK proofs |
-| **Advance directives** | Downman switch can push DNR/medical POA when triggered |
+| **Advance directives** | LegacyKey switch can push DNR/medical POA when triggered |
 | **Vaccination verification** | Rescue volunteers' vaccination status verified without revealing medical history |
 | **Epic/FHIR integration** | SentinelDID emergency data can flow into hospital clinical workflows via SMART on FHIR / CDS Hooks |
 | **TEFCA portability** | Emergency health data follows the victim across any TEFCA-connected facility nationwide |
@@ -55,7 +55,7 @@ Each health data repo has a dedicated cross-pollination document:
    - Emergency triage with selective health disclosure
    - Hospital pre-arrival data push
    - Mass casualty victim privacy preservation
-   - Downman switch → medical power of attorney
+   - LegacyKey switch → medical power of attorney
    - Adverse drug interaction emergency override
    - Schools/camps/assisted living institutional access
 
@@ -65,7 +65,7 @@ Each health data repo has a dedicated cross-pollination document:
    - Shelter/foster coordination during mass intake
    - Domestic violence safe pet surrender
    - Hoarding/cruelty seizure evidence chain
-   - Elderly/disabled owner Downman switch for pet safety
+   - Elderly/disabled owner LegacyKey switch for pet safety
 
 3. **EquineProData**: `DIDzMonolith/equineProData/docs/SENTINELDID_EMERGENCY_PROTOCOL.md`
    - Wildfire/disaster evacuation with triage prioritization
@@ -74,7 +74,7 @@ Each health data repo has a dedicated cross-pollination document:
    - Colic emergency with pre-arrival surgical data push
    - Barn fire evacuation coordination
    - RWA multi-stakeholder emergency treatment authorization
-   - Foaling watch Downman switch
+   - Foaling watch LegacyKey switch
 
 ---
 

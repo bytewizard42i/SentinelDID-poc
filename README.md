@@ -23,7 +23,7 @@ Easily buildable, highly scalable emergency workforce management that revolution
 
 - **Real-time chain of command**, Never wonder who is in charge or where an individual is supposed to be. With Starlink and World Mobile integration, no one gets left behind.
 - **Instant victim alerts**, When victims are found, those closest are alerted along with the chain of command. Gone are the days of searching for someone who's already been found.
-- **DownMan switch**, Groundbreaking inactivity detection alerts superiors and team if someone is unresponsive or loses contact. *(Powered by [DownMan](https://github.com/bytewizard42i/DownMan) protocol.)*
+- **LegacyKey switch**, Groundbreaking inactivity detection alerts superiors and team if someone is unresponsive or loses contact. *(Powered by [LegacyKey](https://github.com/bytewizard42i/DownMan) protocol.)*
 - **Dynamic hierarchy**, When better qualified leaders arrive on scene, the AI-assisted protocol passes the baton and automatically updates the entire workforce's hierarchy schema.
 - **Approval-gated AI**, All delegations, workloads, and AI assistance must be approved and may be modified in real time for fast, effective leadership.
 - **Instant volunteer onboarding**, Volunteers can quickly join the workforce with just their KYC and a smart phone.
