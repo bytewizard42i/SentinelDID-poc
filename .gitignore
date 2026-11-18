@@ -1,7 +1,15 @@
 # .gitignore
-# Skips files we don’t want on GitHub - keeps it clean
-node_modules/          # Ignore installed tools
-*.log                  # Skip log files
-YOUR_TESTNET_PRIVATE_KEY  # Don’t commit your key!
+# Skips files we don't want on GitHub - keeps it clean.
+# Note: git does NOT support comments at the end of a pattern line, so each
+# comment lives on its own line (an inline "# ..." would become part of the pattern).
+
+# Installed dependencies (recreate them with `yarn install`)
+node_modules/
+
+# Log files
+*.log
+
+# Never commit your testnet key!
+YOUR_TESTNET_PRIVATE_KEY
 
 build/
